@@ -575,6 +575,7 @@
     if (mapMetric === 'anim') { anim.frame = 29; draw(); animStart(); } else { animStop(); draw(); }
   }));
   const capWords = v => v >= 1000 ? '$' + fmtNum(v / 1000, 2) + 'T' : '$' + fmtNum(v, 0) + 'B';
+  let mapPaint = null;
   function usMap(totals, geo, stocks, color, frameDate, fixedMax) {
     const box = document.getElementById('usmap'); const tip = document.getElementById('tip-map');
     box.classList.remove('dash-skeleton'); box.innerHTML = '';
@@ -599,34 +600,42 @@
     const CX = 487.5, CY = 305;
     const plane = () => { const a = view.rot * Math.PI / 180, c = Math.cos(a), s = Math.sin(a), tl = view.tilt;
       return { a: c, b: s * tl, c: -s, d: c * tl, e: VW / 2 - (c * CX - s * CY), f: VH / 2 + 30 - (s * CX + c * CY) * tl }; };
-    const items = geo.map(s => { const r = byState.get(s.name); const sign = (pctMode && r && r.gain_pct < 0) ? -1 : 1; const h = sign * Math.round(hScale(val(r))); const top = stateColor(r); const dc = d3.color(top);
-      return { s, r, h, top, side: dc ? dc.darker(sign < 0 ? 1.5 : 0.9).formatRgb() : top }; });
-    const gs = gStates.selectAll('g.state').data(items).join('g').attr('class', 'state').style('cursor', 'grab');
-    gs.each(function (d) {
-      const g1 = d3.select(this); const ks = [];
-      if (d.h >= 0) { for (let k = Math.max(0, d.h - 1); k >= 0; k -= 2) ks.push(k); } else { for (let k = -1; k > d.h; k -= 2) ks.push(k); }
-      let holder = g1;
-      if (d.h < 0) { // a loss is cut into the base plane: walls and floor are clipped to the state's outline
-        const cid = `pit-${d.s.id}`;
-        g1.append('clipPath').attr('id', cid).attr('clipPathUnits', 'userSpaceOnUse').append('path').attr('class', 'clipbase').attr('d', d.s.path);
-        holder = g1.append('g').attr('clip-path', `url(#${cid})`);
-      }
-      holder.selectAll('path.side').data(ks).join('path').attr('class', 'side').attr('d', d.s.path).attr('fill', d.side);
-      holder.append('path').attr('class', 'face').attr('d', d.s.path).attr('fill', d.top).attr('stroke', 'var(--color-bg)').attr('stroke-width', 0.7).attr('stroke-linejoin', 'round');
-      if (d.h < 0) g1.append('path').attr('class', 'rim').attr('d', d.s.path).attr('fill', 'none').attr('stroke', 'var(--color-bg)').attr('stroke-width', 0.7).attr('stroke-linejoin', 'round');
-    });
+    const mkItems = (tot) => { const bs = new Map(tot.map(r => [r.state, r])); return geo.map(s => { const r = bs.get(s.name); const sign = (pctMode && r && r.gain_pct < 0) ? -1 : 1; const h = sign * Math.round(hScale(val(r))); const top = stateColor(r); const dc = d3.color(top);
+      return { s, r, h, top, side: dc ? dc.darker(sign < 0 ? 1.5 : 0.9).formatRgb() : top }; }); };
+    let items = mkItems(totals);
+    let gs = gStates.selectAll('g.state').data(items, d => d.s.id).join('g').attr('class', 'state').style('cursor', 'grab');
+    let lab = null;
+    const paintStates = () => {
+      gs.each(function (d) {
+        const g1 = d3.select(this); g1.selectAll('*').remove(); const ks = [];
+        if (d.h >= 0) { for (let k = Math.max(0, d.h - 1); k >= 0; k -= 2) ks.push(k); } else { for (let k = -1; k > d.h; k -= 2) ks.push(k); }
+        let holder = g1;
+        if (d.h < 0) { // a loss is cut into the base plane: walls and floor are clipped to the state's outline
+          const cid = `pit-${d.s.id}`;
+          g1.append('clipPath').attr('id', cid).attr('clipPathUnits', 'userSpaceOnUse').append('path').attr('class', 'clipbase').attr('d', d.s.path);
+          holder = g1.append('g').attr('clip-path', `url(#${cid})`);
+        }
+        holder.selectAll('path.side').data(ks).join('path').attr('class', 'side').attr('d', d.s.path).attr('fill', d.side);
+        holder.append('path').attr('class', 'face').attr('d', d.s.path).attr('fill', d.top).attr('stroke', 'var(--color-bg)').attr('stroke-width', 0.7).attr('stroke-linejoin', 'round');
+        if (d.h < 0) g1.append('path').attr('class', 'rim').attr('d', d.s.path).attr('fill', 'none').attr('stroke', 'var(--color-bg)').attr('stroke-width', 0.7).attr('stroke-linejoin', 'round');
+      });
+      const labelItems = items.filter(d => { const bb = gs.filter(x => x === d).select('path.face').node().getBBox(); d.bb = bb; return bb.width > 30 && bb.height > 18 && (d.h !== 0 || bb.width > 60); })
+        .map(d => ({ d, abbr: d.s.abbr, value: (d.bb.width > 46 && d.bb.height > 34) ? labelFor(d.r) : '' }));
+      gLabels.selectAll('*').remove();
+      lab = gLabels.selectAll('g').data(labelItems).join('g');
+      lab.append('text').attr('dy', d => d.value ? '-0.2em' : '0.35em').attr('text-anchor', 'middle').attr('font-size', '10px').attr('font-weight', '600').attr('fill', 'var(--color-fg)').text(d => d.abbr);
+      lab.filter(d => d.value).append('text').attr('dy', '0.95em').attr('text-anchor', 'middle').attr('font-size', '9px').attr('fill', 'var(--color-fg)').attr('fill-opacity', 0.85).text(d => d.value);
+    };
+    paintStates();
+    let curDate = frameDate;
+    const legendDate = () => { if (pctMode) document.getElementById('legend-map-note').textContent = (curDate ? `· ${d3.utcFormat('%a %b %-d')(new Date(curDate + 'T00:00:00Z'))} · ` : '· ') + 'Gains rise above the base plane, losses sink below it'; };
     gs.on('mousemove', (ev, d) => {
       const rb = box.getBoundingClientRect(); const s = d.s, r = d.r;
       const cos = stocks.filter(x => x.hq_state === s.name && x.hq_country === 'US').map(x => ({ t: x.ticker, cap: num(x.cap_b), chg: num(x.chg_pct) })).sort((a, b) => b.cap - a.cap).slice(0, 5);
       const list = cos.length ? cos.map(c => `<div>${esc(c.t)} · ${capWords(c.cap)} · <span class="${cls(c.chg)}">${fmtPct(c.chg)}</span></div>`).join('') : '<div class="t">No S&amp;P 500 headquarters</div>';
-      const body = r ? `<div>${fmtNum(r.n, 0)} HQ${r.n === 1 ? '' : 's'} · ${capWords(r.cap_b)} market value</div><div class="${cls(r.gain_b)}">${frameDate ? d3.utcFormat('%b %-d')(new Date(frameDate + 'T00:00:00Z')) : 'Today'}: ${r.gain_b >= 0 ? '+' : '−'}$${fmtNum(Math.abs(r.gain_b), 1)}B (${fmtPct(r.gain_pct)})</div>` : '';
+      const body = r ? `<div>${fmtNum(r.n, 0)} HQ${r.n === 1 ? '' : 's'} · ${capWords(r.cap_b)} market value</div><div class="${cls(r.gain_b)}">${curDate ? d3.utcFormat('%b %-d')(new Date(curDate + 'T00:00:00Z')) : 'Today'}: ${r.gain_b >= 0 ? '+' : '−'}$${fmtNum(Math.abs(r.gain_b), 1)}B (${fmtPct(r.gain_pct)})</div>` : '';
       showTip(tip, box, ev.clientX - rb.left, ev.clientY - rb.top, `<div class="t">${esc(s.name)}</div>${body}<div class="t" style="margin-top:4px">Largest headquartered here</div>${list}`);
     }).on('mouseleave', () => tip.style.display = 'none');
-    const labelItems = items.filter(d => { const bb = gs.filter(x => x === d).select('path.face').node().getBBox(); d.bb = bb; return bb.width > 30 && bb.height > 18 && (d.h !== 0 || bb.width > 60); })
-      .map(d => ({ d, abbr: d.s.abbr, value: (d.bb.width > 46 && d.bb.height > 34) ? labelFor(d.r) : '' }));
-    const lab = gLabels.selectAll('g').data(labelItems).join('g');
-    lab.append('text').attr('dy', d => d.value ? '-0.2em' : '0.35em').attr('text-anchor', 'middle').attr('font-size', '10px').attr('font-weight', '600').attr('fill', 'var(--color-fg)').text(d => d.abbr);
-    lab.filter(d => d.value).append('text').attr('dy', '0.95em').attr('text-anchor', 'middle').attr('font-size', '9px').attr('fill', 'var(--color-fg)').attr('fill-opacity', 0.85).text(d => d.value);
     const render = () => {
       const m = plane(); const ms = `matrix(${m.a} ${m.b} ${m.c} ${m.d} ${m.e} ${m.f})`;
       const depth = d => Math.sin(view.rot * Math.PI / 180) * d.s.cx + Math.cos(view.rot * Math.PI / 180) * d.s.cy;
@@ -638,6 +647,7 @@
       document.getElementById('map-rot').value = Math.round(view.rot); document.getElementById('map-tilt').value = Math.round(view.tilt * 100);
     };
     mapRender = render; render();
+    mapPaint = (tot, date) => { items = mkItems(tot); gs = gStates.selectAll('g.state').data(items, d => d.s.id); paintStates(); curDate = date; legendDate(); render(); };
     const zoom = d3.zoom().scaleExtent([0.5, 6]).filter(ev => !ev.shiftKey && !ev.button).on('zoom', ev => { zoomT = ev.transform; gView.attr('transform', zoomT); });
     svg.call(zoom); svg.call(zoom.transform, zoomT);
     svg.on('mousedown.rotate', ev => {
@@ -756,10 +766,13 @@
     if (mapMetric === 'anim') {
       if (sd.status === 'ok' && geo.status === 'ok' && members.status === 'ok' && Array.isArray(sd.data) && sd.data.length) {
         anim.days = Array.from(new Set(sd.data.map(r => r.date))).sort();
-        const animMax = d3.max(sd.data.filter(r => r.state !== 'Outside US'), r => Math.abs(Number(r.gain_pct))) || 1;
+        // one height scale for the whole window: the largest move of any state with several HQs (single-company states swing too wildly to set the scale)
+        const animMax = d3.max(sd.data.filter(r => r.state !== 'Outside US' && r.n >= 2), r => Math.abs(Number(r.gain_pct))) || 1;
+        let built = false;
         const sl = document.getElementById('anim-day'); sl.max = anim.days.length - 1; if (anim.frame > anim.days.length - 1) anim.frame = anim.days.length - 1;
         mapRedraw = () => { const d = anim.days[anim.frame]; sl.value = anim.frame; document.getElementById('anim-date').textContent = d3.utcFormat('%a, %b %-d, %Y')(new Date(d + 'T00:00:00Z'));
-          usMap(sd.data.filter(r => r.date === d), geo.data, members.data, color, d, animMax); };
+          const tot = sd.data.filter(r => r.date === d);
+          if (!built || !mapPaint) { usMap(tot, geo.data, members.data, color, d, animMax); built = true; } else mapPaint(tot, d); };
         mapRedraw();
       } else if (sd.status === 'error' || geo.status === 'error') fail(um);
       else { um.innerHTML = ''; um.classList.add('dash-skeleton'); }
