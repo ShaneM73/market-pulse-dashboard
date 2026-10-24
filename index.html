@@ -127,7 +127,7 @@
 
   <div class="card full" id="map-card">
     <h2 id="hqmap">Where the gains land — company headquarters by state</h2>
-    <p class="note">Index: <span class="seg" id="map-idx-seg"><button data-idx="sp500" class="on">S&amp;P 500</button><button data-idx="dow30">Dow 30</button><button data-idx="ndx100">Nasdaq-100</button></span> · Show: <span class="seg" id="map-seg"><button data-m="cap" class="on">Total market value</button><button data-m="pct">Change today (±%)</button><button data-m="anim">Change, past 30 days ▶</button></span> — each state is raised, colored and labeled by the measure chosen, summed over the chosen index's companies headquartered there (market value on a square-root scale so California doesn't flatten everyone else; percent change on one fixed linear scale, ±3% = full height, shared by the daily and 30-day views). Headquarters is a proxy for where a company's people, plants and taxes sit — most large companies spread those across many states.
+    <p class="note">Index: <span class="seg" id="map-idx-seg"><button data-idx="sp500" class="on">S&amp;P 500</button><button data-idx="dow30">Dow 30</button><button data-idx="ndx100">Nasdaq-100</button></span> · Show: <span class="seg" id="map-seg"><button data-m="cap" class="on">Total market value</button><button data-m="pct">Change today (±%)</button><button data-m="anim">Change, past 30 days ▶</button></span> — each state is raised, colored and labeled by the measure chosen, summed over the chosen index's companies headquartered there (market value on a square-root scale so California doesn't flatten everyone else; percent change on a shorter linear scale). Headquarters is a proxy for where a company's people, plants and taxes sit — most large companies spread those across many states.
       <span class="ml" data-idx="sp500"><span data-source="state_totals" data-field="n" data-where="state=Outside%20US">—</span> S&amp;P 500 members are headquartered abroad (Ireland, the UK, Switzerland, the Netherlands, Bermuda).</span>
       <span class="ml" data-idx="dow30" style="display:none">All 30 Dow companies are headquartered in the US.</span>
       <span class="ml" data-idx="ndx100" style="display:none"><span data-source="state_totals_ndx" data-field="n" data-where="state=Outside%20US">—</span> Nasdaq-100 members are headquartered abroad (the Netherlands, the UK, Canada, Ireland, Uruguay, Switzerland, Bermuda).</span>
@@ -621,33 +621,31 @@
     if (mapMetric === 'anim') { anim.frame = 29; draw(); animStart(); } else { animStop(); draw(); }
   }));
   const capWords = v => v >= 1000 ? '$' + fmtNum(v / 1000, 2) + 'T' : '$' + fmtNum(v, 0) + 'B';
-  function usMap(totals, geo, stocks, color, frameDate) {
+  function usMap(totals, geo, stocks, color, frameDate, fixedMax) {
     const box = document.getElementById('usmap'); const tip = document.getElementById('tip-map');
     box.classList.remove('dash-skeleton'); box.innerHTML = '';
-    const W = box.clientWidth || 900; const PAD = 130; const VH = 610 + PAD; const VW = 1060; const XOFF = 90;
+    const W = box.clientWidth || 900; const PAD = 90; const VH = 610 + PAD; const VW = 1060; const XOFF = 90;
     const H = Math.round(W * VH / VW); box.style.minHeight = H + 'px';
     const byState = new Map(totals.map(r => [r.state, r]));
     const pctMode = mapMetric !== 'cap';
     const val = r => !r ? 0 : pctMode ? Math.abs(r.gain_pct) : r.cap_b;
     const usOnly = geo.map(s => byState.get(s.name)).filter(Boolean);
-    const maxV = d3.max(usOnly, val) || 1;
+    const maxV = fixedMax || d3.max(usOnly, val) || 1;
     // market value: square-root scale up to 72px; percent change: linear and capped at 36px so a big mover doesn't bury its neighbours
-    // percent views share one fixed scale: a 3% combined move = full height, larger moves clamp, so days and views compare directly
-    const PCT_FULL = 3;
-    const hScale = pctMode ? d3.scaleLinear([0, PCT_FULL], [0, 112]).clamp(true) : d3.scaleSqrt([0, maxV], [0, 72]);
+    const hScale = pctMode ? d3.scaleLinear([0, maxV], [0, 36]) : d3.scaleSqrt([0, maxV], [0, 72]);
     const muted = tok('--cds-chart-muted'); probe.style.color = (dash.colors && dash.colors[0]) || 'var(--color-fg)'; const accent = getComputedStyle(probe).color;
     const seq = d3.scaleSqrt([0, maxV], [0, 1]); const seqColor = v => d3.interpolateRgb(muted, accent)(seq(v));
     const stateColor = r => !r ? muted : pctMode ? color(r.gain_pct * 2) : seqColor(r.cap_b);
     const labelFor = r => !r ? '' : pctMode ? fmtPct(r.gain_pct) : capWords(r.cap_b);
     const lg = document.getElementById('legend-bar-map');
-    if (pctMode) { lg.style.background = `linear-gradient(90deg, ${color(-3)}, ${color(0)}, ${color(3)})`; document.getElementById('legend-map-lo').textContent = (frameDate ? 'Combined move: −1.5%' : 'Combined move today: −1.5%'); document.getElementById('legend-map-hi').textContent = '+1.5%'; document.getElementById('legend-map-note').textContent = (frameDate ? `· ${d3.utcFormat('%a %b %-d')(new Date(frameDate + 'T00:00:00Z'))} · ` : '· ') + 'Height: a +3% combined move = full height, a −3% move = half that depth (same scale on every day); gains rise above the base plane, losses sink below it'; }
+    if (pctMode) { lg.style.background = `linear-gradient(90deg, ${color(-3)}, ${color(0)}, ${color(3)})`; document.getElementById('legend-map-lo').textContent = (frameDate ? 'Combined move: −1.5%' : 'Combined move today: −1.5%'); document.getElementById('legend-map-hi').textContent = '+1.5%'; document.getElementById('legend-map-note').textContent = (frameDate ? `· ${d3.utcFormat('%a %b %-d')(new Date(frameDate + 'T00:00:00Z'))} · ` : '· ') + 'Gains rise above the base plane, losses sink below it'; }
     else { lg.style.background = `linear-gradient(90deg, ${seqColor(0)}, ${seqColor(maxV / 4)}, ${seqColor(maxV)})`; document.getElementById('legend-map-lo').textContent = 'Market value of HQs: $0'; document.getElementById('legend-map-hi').textContent = capWords(maxV); document.getElementById('legend-map-note').textContent = '· Height = market value'; }
     const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${VW} ${VH}`).style('display', 'block');
     const gView = svg.append('g'); const gStates = gView.append('g'); const gLabels = gView.append('g').style('pointer-events', 'none');
     const CX = 487.5, CY = 305;
     const plane = () => { const a = view.rot * Math.PI / 180, c = Math.cos(a), s = Math.sin(a), tl = view.tilt;
       return { a: c, b: s * tl, c: -s, d: c * tl, e: VW / 2 - (c * CX - s * CY), f: VH / 2 + 30 - (s * CX + c * CY) * tl }; };
-    const items = geo.map(s => { const r = byState.get(s.name); const sign = (pctMode && r && r.gain_pct < 0) ? -1 : 1; const h = sign * Math.round(hScale(val(r)) * (sign < 0 ? 0.5 : 1)); /* losses sink at half the rate gains rise */ const top = stateColor(r); const dc = d3.color(top);
+    const items = geo.map(s => { const r = byState.get(s.name); const sign = (pctMode && r && r.gain_pct < 0) ? -1 : 1; const h = sign * Math.round(hScale(val(r))); const top = stateColor(r); const dc = d3.color(top);
       return { s, r, h, top, side: dc ? dc.darker(sign < 0 ? 1.5 : 0.9).formatRgb() : top }; });
     const gs = gStates.selectAll('g.state').data(items).join('g').attr('class', 'state').style('cursor', 'grab');
     gs.each(function (d) {
@@ -804,9 +802,10 @@
     if (mapMetric === 'anim') {
       if (sd.status === 'ok' && geo.status === 'ok' && members.status === 'ok' && Array.isArray(sd.data) && sd.data.length) {
         anim.days = Array.from(new Set(sd.data.map(r => r.date))).sort();
+        const animMax = d3.max(sd.data.filter(r => r.state !== 'Outside US'), r => Math.abs(Number(r.gain_pct))) || 1;
         const sl = document.getElementById('anim-day'); sl.max = anim.days.length - 1; if (anim.frame > anim.days.length - 1) anim.frame = anim.days.length - 1;
         mapRedraw = () => { const d = anim.days[anim.frame]; sl.value = anim.frame; document.getElementById('anim-date').textContent = d3.utcFormat('%a, %b %-d, %Y')(new Date(d + 'T00:00:00Z'));
-          usMap(sd.data.filter(r => r.date === d), geo.data, members.data, color, d); };
+          usMap(sd.data.filter(r => r.date === d), geo.data, members.data, color, d, animMax); };
         mapRedraw();
       } else if (sd.status === 'error' || geo.status === 'error') fail(um);
       else { um.innerHTML = ''; um.classList.add('dash-skeleton'); }
