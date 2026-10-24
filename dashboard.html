@@ -1,0 +1,709 @@
+<style>
+.mp { font-family: var(--font-anthropic-sans); font-variant-numeric: tabular-nums; }
+.mp h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0 0 var(--cds-gap-xs); }
+.mp .take { color: var(--color-fg-muted); font-size: var(--cds-font-size-body); margin: 0 0 var(--cds-gap-lg); max-width: 60rem; }
+.mp .meta { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0 0 var(--cds-gap-md); }
+.mp .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--cds-gap-md); margin-bottom: var(--cds-gap-md); }
+.mp .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); gap: var(--cds-gap-md); margin-bottom: var(--cds-gap-md); }
+.mp .card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+.mp .card h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 2px; }
+.mp .card .note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0 0 var(--cds-gap-md); }
+.mp .kpi .label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.mp .kpi .big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.2; margin: 4px 0 2px; }
+.mp .kpi .delta { font-size: var(--cds-font-size-caption); }
+.mp .up { color: var(--color-ok); } .mp .down { color: var(--color-bad); }
+.mp .full { margin-bottom: var(--cds-gap-md); }
+.mp .chartbox { position: relative; }
+.mp .tip { position: absolute; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); pointer-events: none; display: none; max-width: 16rem; z-index: 2; }
+.mp .tip .t { color: var(--cds-text-secondary); }
+.mp .legend { display: flex; align-items: center; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: var(--cds-gap-sm); flex-wrap: wrap; }
+.mp .legend .bar { flex: 0 0 10rem; height: 10px; border-radius: 5px; }
+.mp table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); }
+.mp th { text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: 6px 8px 6px 0; border-bottom: 1px solid var(--color-border-line); position: sticky; top: 0; background: var(--color-panel); white-space: nowrap; }
+.mp th button { all: unset; cursor: pointer; }
+.mp th[aria-sort="ascending"] button::after { content: " ↑"; } .mp th[aria-sort="descending"] button::after { content: " ↓"; }
+.mp td { padding: 6px 8px 6px 0; border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+.mp td.num { text-align: right; white-space: nowrap; }
+.mp th.num { text-align: right; }
+.mp .scroll { max-height: 26rem; overflow: auto; }
+.mp .themes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--cds-gap-md); }
+.mp .theme { border-left: 3px solid var(--cds-chart-muted); padding-left: var(--cds-pad-md); }
+.mp .theme.pos { border-color: var(--color-ok); } .mp .theme.neg { border-color: var(--color-bad); } .mp .theme.warn { border-color: var(--color-warn); }
+.mp .theme h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0 0 4px; }
+.mp .theme p { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 6px; line-height: 1.5; }
+.mp .theme p b { font-weight: 500; color: var(--color-fg); }
+.mp .disc { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-md); margin-top: var(--cds-gap-lg); }
+.mp [data-dash-source-state=empty] { color: transparent; }
+.mp [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+.mp .fail { display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.mp .fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+.mp .probe { position: absolute; visibility: hidden; }
+.mp .tip .mini { display: block; margin-top: 6px; }
+.mp .tip .mini-head { display: flex; justify-content: space-between; gap: 8px; margin-top: 6px; color: var(--cds-text-secondary); }
+.mp .tip .mini-note { color: var(--cds-text-secondary); margin-top: 4px; }
+.mp .seg { display: inline-flex; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); overflow: hidden; margin-left: var(--cds-gap-sm); vertical-align: middle; }
+.mp .seg button { all: unset; cursor: pointer; padding: 2px 8px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.mp .seg button.on { background: var(--color-fg-muted); color: var(--color-panel); }
+.mp .mapctl { display: flex; flex-wrap: wrap; align-items: center; gap: var(--cds-gap-sm) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-sm); }
+.mp .mapctl label { display: inline-flex; align-items: center; gap: 6px; }
+.mp .mapctl input[type=range] { width: 8rem; margin: 0; accent-color: var(--color-fg-muted); }
+.mp .mapctl button { all: unset; cursor: pointer; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 2px 8px; }
+.mp #usmap svg { cursor: grab; } .mp #usmap svg:active { cursor: grabbing; }
+</style>
+
+<div class="mp">
+  <h1 id="title">Market Pulse — Wednesday, October 21, 2026</h1>
+  <p class="take" id="takeaway" data-source="indices" data-field="chg_pct" data-where="index=S%26P%20500">—</p>
+  <p class="meta">Regular-session closes, Oct 21, 2026. Sector multi-period returns through Oct 20. Hover any tile or bar for detail; click a column header to sort.</p>
+
+  <div class="kpis" id="kpis">
+    <div class="card kpi"><div class="label">S&amp;P 500</div><div class="big" data-source="indices" data-field="close" data-where="index=S%26P%20500">—</div><div class="delta" data-source="indices" data-field="chg_pct" data-where="index=S%26P%20500">—</div></div>
+    <div class="card kpi"><div class="label">Dow Jones</div><div class="big" data-source="indices" data-field="close" data-where="index=Dow%20Jones%20Industrial%20Average">—</div><div class="delta" data-source="indices" data-field="chg_pct" data-where="index=Dow%20Jones%20Industrial%20Average">—</div></div>
+    <div class="card kpi"><div class="label">Nasdaq Composite</div><div class="big" data-source="indices" data-field="close" data-where="index=Nasdaq%20Composite">—</div><div class="delta" data-source="indices" data-field="chg_pct" data-where="index=Nasdaq%20Composite">—</div></div>
+    <div class="card kpi"><div class="label">Russell 2000</div><div class="big" data-source="indices" data-field="close" data-where="index=Russell%202000">—</div><div class="delta" data-source="indices" data-field="chg_pct" data-where="index=Russell%202000">—</div></div>
+    <div class="card kpi"><div class="label">VIX (fear gauge)</div><div class="big" data-source="macro" data-field="value" data-where="metric=VIX">—</div><div class="delta" data-source="macro" data-field="change" data-where="metric=VIX">—</div></div>
+    <div class="card kpi"><div class="label">10-year Treasury</div><div class="big" data-source="macro" data-field="value" data-where="metric=10-year%20Treasury%20yield">—</div><div class="delta" data-source="macro" data-field="change" data-where="metric=10-year%20Treasury%20yield">—</div></div>
+  </div>
+
+  <div class="card full" id="heatmap-card">
+    <h2 id="heatmap">Heat map — one-day change by sector</h2>
+    <p class="note">Index: <span class="seg" id="idx-seg"><button data-idx="sp500" class="on">S&amp;P 500</button><button data-idx="dow30">Dow 30</button><button data-idx="ndx100">Nasdaq-100</button></span> · each box is sized by market value and colored by today's price change; sector headers show the members' value-weighted move.
+      <span class="bl" data-idx="sp500">463 S&amp;P 500 constituents (the ~36 smallest are not included): <span data-source="breadth" data-field="up" data-row="0">—</span> of <span data-source="breadth" data-field="total" data-row="0">—</span> advanced today, median move <span data-source="breadth" data-field="median_pct" data-row="0">—</span>.</span>
+      <span class="bl" data-idx="dow30" style="display:none">All 30 Dow stocks: <span data-source="breadth_dow" data-field="up" data-row="0">—</span> of <span data-source="breadth_dow" data-field="total" data-row="0">—</span> advanced today, median move <span data-source="breadth_dow" data-field="median_pct" data-row="0">—</span>.</span>
+      <span class="bl" data-idx="ndx100" style="display:none">All 100 Nasdaq-100 stocks: <span data-source="breadth_ndx" data-field="up" data-row="0">—</span> of <span data-source="breadth_ndx" data-field="total" data-row="0">—</span> advanced today, median move <span data-source="breadth_ndx" data-field="median_pct" data-row="0">—</span>.</span>
+      Hover a box for a mini price chart (loaded for the 90 largest S&amp;P 500 companies and today's notable movers; daily closes, roughly Aug 11 – Oct 21). Chart window: <span class="seg" id="win-seg"><button data-win="22">1 month</button><button data-win="all" class="on">All (~10 weeks)</button></span></p>
+    <div class="chartbox" data-source="sp500 dow30 ndx100 sectors history">
+      <div id="treemap" class="dash-skeleton" style="min-height: 520px"></div>
+      <div class="tip" id="tip-tm"></div>
+    </div>
+    <div class="legend"><span>−3%</span><span class="bar" id="legend-bar"></span><span>+3%</span><span>· Grey ≈ unchanged</span></div>
+  </div>
+
+  <div class="card full" id="map-card">
+    <h2 id="hqmap">Where the gains land — company headquarters by state</h2>
+    <p class="note">Index: <span class="seg" id="map-idx-seg"><button data-idx="sp500" class="on">S&amp;P 500</button><button data-idx="dow30">Dow 30</button><button data-idx="ndx100">Nasdaq-100</button></span> · Show: <span class="seg" id="map-seg"><button data-m="cap" class="on">Total market value</button><button data-m="pct">Change today (±%)</button></span> — each state is raised, colored and labeled by the measure chosen, summed over the chosen index's companies headquartered there (market value on a square-root scale so California doesn't flatten everyone else; percent change on a shorter linear scale). Headquarters is a proxy for where a company's people, plants and taxes sit — most large companies spread those across many states.
+      <span class="ml" data-idx="sp500"><span data-source="state_totals" data-field="n" data-where="state=Outside%20US">—</span> S&amp;P 500 members are headquartered abroad (Ireland, the UK, Switzerland, the Netherlands, Bermuda).</span>
+      <span class="ml" data-idx="dow30" style="display:none">All 30 Dow companies are headquartered in the US.</span>
+      <span class="ml" data-idx="ndx100" style="display:none"><span data-source="state_totals_ndx" data-field="n" data-where="state=Outside%20US">—</span> Nasdaq-100 members are headquartered abroad (the Netherlands, the UK, Canada, Ireland, Uruguay, Switzerland, Bermuda).</span>
+      Hover a state for its top companies.</p>
+    <div class="mapctl">
+      <span>Drag to move · scroll to zoom · Shift+drag to rotate and tilt</span>
+      <label>Rotate <input type="range" id="map-rot" min="-180" max="180" value="0"></label>
+      <label>Tilt <input type="range" id="map-tilt" min="25" max="100" value="80"></label>
+      <button id="map-reset">Reset view</button>
+    </div>
+    <div class="chartbox" data-source="state_totals state_totals_dow state_totals_ndx states_geo sp500 dow30 ndx100">
+      <div id="usmap" class="dash-skeleton" style="min-height: 520px"></div>
+      <div class="tip" id="tip-map"></div>
+    </div>
+    <div class="legend"><span id="legend-map-lo">—</span><span class="bar" id="legend-bar-map"></span><span id="legend-map-hi">—</span><span id="legend-map-note"></span></div>
+  </div>
+
+  <div class="card full">
+    <h2 id="state-table">State scorecard — headquarters of <span id="state-table-idx">S&amp;P 500</span> companies</h2>
+    <p class="note">Market value and today's change in dollars are summed over the companies headquartered in each state; "today's change" is each company's market value minus what it was worth at yesterday's close.</p>
+    <div class="scroll">
+      <table id="tbl-states" data-source="state_totals" data-row-key="state">
+        <thead><tr>
+          <th data-field="state"><button>State</button></th>
+          <th class="num" data-field="n"><button>HQs</button></th>
+          <th class="num" data-field="cap_b"><button>Market value ($B)</button></th>
+          <th class="num" data-field="gain_b"><button>Today's change ($B)</button></th>
+          <th class="num" data-field="gain_pct"><button>Combined move</button></th>
+          <th data-field="top"><button>Largest companies</button></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2 id="sector-day">Sector moves today</h2>
+      <p class="note">SPDR sector ETFs, Oct 21 price change.</p>
+      <div class="chartbox" data-source="sectors"><div id="bar-d1" class="dash-skeleton" style="min-height: 330px"></div><div class="tip" id="tip-d1"></div></div>
+    </div>
+    <div class="card">
+      <h2 id="sector-ytd">Sector returns year to date</h2>
+      <p class="note">Total return including dividends, through Oct 20.</p>
+      <div class="chartbox" data-source="sectors"><div id="bar-ytd" class="dash-skeleton" style="min-height: 330px"></div><div class="tip" id="tip-ytd"></div></div>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h2 id="sector-table">Sector scorecard</h2>
+    <p class="note">1D is Oct 21; other periods are total returns through Oct 20. Weight is the sector's approximate share of the S&amp;P 500.</p>
+    <div class="scroll">
+      <table id="tbl-sectors" data-source="sectors" data-row-key="sector">
+        <thead><tr>
+          <th data-field="sector"><button>Sector</button></th>
+          <th data-field="etf"><button>ETF</button></th>
+          <th class="num" data-field="weight_pct"><button>Weight</button></th>
+          <th class="num" data-field="d1_pct"><button>1D</button></th>
+          <th class="num" data-field="d5_pct"><button>5D</button></th>
+          <th class="num" data-field="m1_pct"><button>1M</button></th>
+          <th class="num" data-field="m3_pct"><button>3M</button></th>
+          <th class="num" data-field="ytd_pct"><button>YTD</button></th>
+          <th class="num" data-field="y1_pct"><button>1Y</button></th>
+          <th class="num" data-field="div_yield_pct"><button>Yield</button></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2 id="movers">Notable movers</h2>
+      <p class="note">Widely followed names with a reported move today, and the reason behind it.</p>
+      <div class="scroll">
+        <table id="tbl-stocks" data-source="stocks" data-row-key="ticker">
+          <thead><tr>
+            <th data-field="ticker"><button>Ticker</button></th>
+            <th data-field="name"><button>Company</button></th>
+            <th data-field="sector"><button>Sector</button></th>
+            <th class="num" data-field="chg_pct"><button>Change</button></th>
+            <th data-field="note"><button>Why</button></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <h2 id="macro">Rates, inflation, commodities, breadth</h2>
+      <p class="note">The backdrop every stock trades against.</p>
+      <div class="scroll">
+        <table id="tbl-macro" data-source="macro" data-row-key="metric">
+          <thead><tr>
+            <th data-field="metric"><button>Metric</button></th>
+            <th class="num" data-field="value"><button>Value</button></th>
+            <th class="num" data-field="change"><button>Change</button></th>
+            <th data-field="note"><button>Context</button></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2 id="gainers">Top 10 S&amp;P 500 gainers today</h2>
+      <p class="note">By percent change among the 464 constituents shown.</p>
+      <table id="tbl-gainers" data-source="top_gainers" data-row-key="ticker">
+        <thead><tr><th data-field="ticker"><button>Ticker</button></th><th data-field="name"><button>Company</button></th><th data-field="sector"><button>Sector</button></th><th class="num" data-field="chg_pct"><button>Change</button></th><th class="num" data-field="cap_b"><button>Mkt cap ($B)</button></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h2 id="losers">Top 10 S&amp;P 500 losers today</h2>
+      <p class="note">By percent change among the 464 constituents shown.</p>
+      <table id="tbl-losers" data-source="top_losers" data-row-key="ticker">
+        <thead><tr><th data-field="ticker"><button>Ticker</button></th><th data-field="name"><button>Company</button></th><th data-field="sector"><button>Sector</button></th><th class="num" data-field="chg_pct"><button>Change</button></th><th class="num" data-field="cap_b"><button>Mkt cap ($B)</button></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card full" id="ideas-card">
+    <h2 id="ideas">What the data suggests — themes to consider</h2>
+    <p class="note">Observations drawn from the figures above, not personalized advice. Each theme names the numbers behind it so you can judge it yourself.</p>
+    <div class="themes">
+      <div class="theme pos">
+        <h3>AI hardware momentum is back, but it's narrow</h3>
+        <p>Technology led today at <b data-source="sectors" data-field="d1_pct" data-where="sector=Technology">—</b> and is up <b data-source="sectors" data-field="ytd_pct" data-where="sector=Technology">—</b> YTD after Super Micro (<b data-source="stocks" data-field="chg_pct" data-where="ticker=SMCI">—</b>) raised guidance and SpaceX (<b data-source="stocks" data-field="chg_pct" data-where="ticker=SPCX">—</b>) posted its first profit. The catch: NYSE breadth was only <b data-source="macro" data-field="value" data-where="metric=NYSE%20advancers%20vs%20decliners">—</b>:1 and the Nasdaq saw <b data-source="macro" data-field="value" data-where="metric=Nasdaq%20new%20lows">—</b> new lows. Gains are concentrated in chips, servers and a few megacaps.</p>
+        <p><b>Consider:</b> broad semiconductor or tech-sector exposure rather than single names chasing today's spike; position sizes that respect how quickly this group sold off earlier in October (eight straight down days).</p>
+      </div>
+      <div class="theme pos">
+        <h3>Energy is 2026's quiet winner</h3>
+        <p>Energy is the best sector YTD at <b data-source="sectors" data-field="ytd_pct" data-where="sector=Energy">—</b> with Brent near $<b data-source="macro" data-field="value" data-where="metric=Brent%20crude">—</b> on the Iran/Hormuz stalemate, and it pays a <b data-source="sectors" data-field="div_yield_pct" data-where="sector=Energy">—</b> yield. It is only ~<b data-source="sectors" data-field="weight_pct" data-where="sector=Energy">—</b>% of the index, so most index investors own little of it.</p>
+        <p><b>Consider:</b> energy as an inflation and geopolitical hedge inside a diversified mix. The risk is symmetric: a Hormuz resolution could unwind the premium quickly.</p>
+      </div>
+      <div class="theme warn">
+        <h3>Bonds and cash now compete with stocks</h3>
+        <p>The 10-year yields <b data-source="macro" data-field="value" data-where="metric=10-year%20Treasury%20yield">—</b>%, the 2-year <b data-source="macro" data-field="value" data-where="metric=2-year%20Treasury%20yield">—</b>%, with CPI at <b data-source="macro" data-field="value" data-where="metric=CPI%20inflation%20(Sep%20y%2Fy)">—</b>% and roughly <b data-source="macro" data-field="value" data-where="metric=Odds%20of%2025%20bp%20hike%20in%20December">—</b>% odds of a December hike. That is a real-yield environment most investors haven't seen in two decades.</p>
+        <p><b>Consider:</b> holding part of the portfolio in Treasuries or a money-market fund earns a competitive return with no equity risk, and gives dry powder if a rate shock hits richly valued growth stocks.</p>
+      </div>
+      <div class="theme pos">
+        <h3>Defensives are quietly outperforming</h3>
+        <p>Health Care (<b data-source="sectors" data-field="ytd_pct" data-where="sector=Health%20Care">—</b> YTD, <b data-source="sectors" data-field="m3_pct" data-where="sector=Health%20Care">—</b> over 3 months) and Staples (<b data-source="sectors" data-field="ytd_pct" data-where="sector=Consumer%20Staples">—</b> YTD) have beaten the broad market lately, while Tech is down <b data-source="sectors" data-field="d5_pct" data-where="sector=Technology">—</b> over five days. Rotation into defensives tends to show up when the AI trade wobbles.</p>
+        <p><b>Consider:</b> keeping a defensive sleeve so the portfolio isn't a single bet on AI capex continuing.</p>
+      </div>
+      <div class="theme neg">
+        <h3>Telecom and streaming are being repriced</h3>
+        <p>Communication Services is the worst sector YTD at <b data-source="sectors" data-field="ytd_pct" data-where="sector=Communication%20Services">—</b>. Today AT&amp;T fell <b data-source="stocks" data-field="chg_pct" data-where="ticker=T">—</b> despite beating estimates, on fears SpaceX's Starlink Mobile becomes a wireless rival; Netflix hit a 52-week low (<b data-source="stocks" data-field="chg_pct" data-where="ticker=NFLX">—</b>) on weak Q4 guidance.</p>
+        <p><b>Consider:</b> "cheap" telecom dividends may be cheap for a reason; weigh the competitive threat before buying the dip.</p>
+      </div>
+      <div class="theme warn">
+        <h3>Valuation and timing</h3>
+        <p>The S&amp;P 500 sits <b data-source="macro" data-field="value" data-where="metric=S%26P%20500%20distance%20from%20record">—</b>% from its record with the VIX at <b data-source="macro" data-field="value" data-where="metric=VIX">—</b>, i.e. little fear priced in, days before the Oct 27–28 Fed meeting and in the middle of earnings season. Alphabet (<b data-source="stocks" data-field="chg_pct" data-where="ticker=GOOGL">—</b> today) trades at a large discount to Apple on earnings, showing the market is paying up for AI "winners" and discounting heavy spenders.</p>
+        <p><b>Consider:</b> dollar-cost averaging rather than a lump sum into a market near highs; rebalance winners back to target weights.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h2 id="calendar">What to watch next</h2>
+    <p class="note">Catalysts over the coming days.</p>
+    <table id="tbl-cal" data-source="calendar" data-row-key="event">
+      <thead><tr>
+        <th data-field="when"><button>When</button></th>
+        <th data-field="event"><button>Event</button></th>
+        <th data-field="why_it_matters"><button>Why it matters</button></th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <p class="disc">Sources: Dow 30 membership from Kiplinger (Oct 15, 2026) and Nasdaq-100 membership from StockAnalysis.com, with Oct 21 quotes for non-S&amp;P names from their StockAnalysis quote pages; headquarters locations and state outlines from Wikipedia's S&amp;P 500 list and the us-atlas (U.S. Census) boundaries; StockAnalysis.com constituent prices, % changes and market values (Oct 21 close) with GICS sectors from the S&amp;P 500 list on Wikipedia; Reuters/AP closes via STL.News; CappNotes Closing Look (sector ETFs, movers, rates, commodities); ChartRow sector returns; Yahoo Finance and MacDailyNews quotes and market values; TradingView/Trading Economics for yields and Fed pricing. This panel is informational and not investment advice; I'm not a licensed financial advisor. Markets change quickly — ask me to refresh the figures.</p>
+  <span class="probe" id="probe"></span>
+</div>
+
+<script>
+(function () {
+  const num = v => (v === '' || v == null) ? NaN : Number(v);
+  const fmtPct = v => isNaN(v) ? '—' : (v > 0 ? '+' : '') + d3.format('.2f')(v) + '%';
+  const fmtPct1 = v => isNaN(v) ? '—' : (v > 0 ? '+' : '') + d3.format('.1f')(v) + '%';
+  const fmtNum = (v, d) => isNaN(v) ? '—' : d3.format(',.' + d + 'f')(v);
+  const cls = v => v > 0 ? 'up' : v < 0 ? 'down' : '';
+  const addCls = (el, c) => { if (c) el.classList.add(c); };
+  const probe = document.getElementById('probe');
+  const tok = name => { probe.style.color = 'var(' + name + ')'; return getComputedStyle(probe).color; };
+
+  // ---------- color scale (shared by heat map and bars) ----------
+  function colorScale() {
+    const ok = tok('--color-ok'), bad = tok('--color-bad'), mid = tok('--cds-chart-muted');
+    const up = d3.interpolateRgb(mid, ok), dn = d3.interpolateRgb(mid, bad);
+    return v => v >= 0 ? up(Math.min(1, v / 3)) : dn(Math.min(1, -v / 3));
+  }
+  const legendBar = document.getElementById('legend-bar');
+
+  // ---------- generic helpers ----------
+  function setMark(sel, text, c) {
+    document.querySelectorAll(sel).forEach(el => { el.textContent = text; el.classList.remove('up', 'down'); if (c) el.classList.add(c); });
+  }
+  function fail(el) { el.classList.remove('dash-skeleton'); el.innerHTML = ''; const f = document.createElement('div'); f.className = 'fail'; f.textContent = 'Failed to load'; f.style.minHeight = el.style.minHeight; el.appendChild(f); }
+  function showTip(tip, box, x, y, html) {
+    if (html != null) tip.innerHTML = html; tip.style.display = 'block';
+    const r = box.getBoundingClientRect(); const w = tip.offsetWidth, h = tip.offsetHeight;
+    let left = x + 12, top = y + 12;
+    if (left + w > r.width) left = Math.max(0, x - w - 12);
+    if (top + h > r.height) top = Math.max(0, y - h - 12);
+    tip.style.left = left + 'px'; tip.style.top = top + 'px';
+  }
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  // ---------- sortable tables ----------
+  const sortState = {};
+  function renderTable(id, rows, cols, keyCol) {
+    const table = document.getElementById(id); const tbody = table.querySelector('tbody');
+    const st = sortState[id];
+    let data = rows.slice();
+    if (st) data.sort((a, b) => {
+      const av = a[st.field], bv = b[st.field]; const an = Number(av), bn = Number(bv);
+      const both = av !== '' && bv !== '' && !isNaN(an) && !isNaN(bn);
+      const c = both ? an - bn : String(av).localeCompare(String(bv));
+      return st.dir === 'asc' ? c : -c;
+    });
+    table.querySelectorAll('th').forEach(th => { th.removeAttribute('aria-sort'); if (st && th.dataset.field === st.field) th.setAttribute('aria-sort', st.dir === 'asc' ? 'ascending' : 'descending'); });
+    tbody.innerHTML = '';
+    data.forEach(r => {
+      const tr = document.createElement('tr'); tr.dataset.key = r[keyCol];
+      cols.forEach(c => { const td = document.createElement('td'); const v = r[c.field]; td.textContent = c.fmt ? c.fmt(v) : v; if (c.num) td.className = 'num'; if (c.color) { addCls(td, cls(Number(v))); } tr.appendChild(td); });
+      tbody.appendChild(tr);
+    });
+    if (!table.dataset.wired) {
+      table.dataset.wired = '1';
+      table.querySelectorAll('th button').forEach(b => b.addEventListener('click', () => {
+        const f = b.parentElement.dataset.field; const cur = sortState[id];
+        sortState[id] = { field: f, dir: cur && cur.field === f && cur.dir === 'desc' ? 'asc' : 'desc' };
+        draw();
+      }));
+    }
+  }
+
+  // ---------- bar chart ----------
+  function barChart(boxId, tipId, rows, field, fmt, color) {
+    const box = document.getElementById(boxId); const tip = document.getElementById(tipId);
+    box.classList.remove('dash-skeleton'); box.innerHTML = '';
+    const W = box.clientWidth || 400, rowH = 28, m = { top: 6, right: 56, bottom: 6, left: 8 };
+    const data = rows.map(r => ({ sector: r.sector, etf: r.etf, v: num(r[field]) })).filter(d => !isNaN(d.v)).sort((a, b) => b.v - a.v);
+    const H = m.top + m.bottom + data.length * rowH;
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).style('display', 'block');
+    // measure label width
+    const probeT = svg.append('text').attr('font-size', 'var(--cds-font-size-caption)').style('visibility', 'hidden');
+    let lw = 0; data.forEach(d => { probeT.text(d.sector); lw = Math.max(lw, probeT.node().getComputedTextLength()); }); probeT.remove();
+    const labelW = Math.min(lw + 10, W * 0.42);
+    const x0 = m.left + labelW;
+    const ext = d3.max(data, d => Math.abs(d.v)) || 1;
+    const x = d3.scaleLinear([-ext, ext], [x0, W - m.right]);
+    const y = d3.scaleBand(data.map(d => d.sector), [m.top, H - m.bottom]).padding(0.25);
+    svg.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', m.top).attr('y2', H - m.bottom).attr('stroke', 'var(--cds-chart-axis)');
+    const g = svg.append('g');
+    g.selectAll('rect').data(data).join('rect')
+      .attr('x', d => Math.min(x(0), x(d.v))).attr('y', d => y(d.sector))
+      .attr('width', d => Math.abs(x(d.v) - x(0))).attr('height', y.bandwidth()).attr('rx', 4)
+      .attr('fill', d => color(d.v));
+    svg.append('g').selectAll('text').data(data).join('text')
+      .attr('x', m.left).attr('y', d => y(d.sector) + y.bandwidth() / 2).attr('dy', '0.35em')
+      .attr('font-size', 'var(--cds-font-size-caption)').attr('fill', 'var(--color-fg)')
+      .text(d => d.sector.length * 6.5 > labelW ? d.etf : d.sector);
+    const flip = d => d.v < 0 && (x(d.v) - x0) < 52;
+    svg.append('g').selectAll('text').data(data).join('text')
+      .attr('x', d => d.v >= 0 ? x(d.v) + 4 : flip(d) ? x(0) + 4 : x(d.v) - 4).attr('text-anchor', d => d.v >= 0 || flip(d) ? 'start' : 'end')
+      .attr('y', d => y(d.sector) + y.bandwidth() / 2).attr('dy', '0.35em')
+      .attr('font-size', 'var(--cds-font-size-caption)').attr('fill', 'var(--color-fg-muted)').text(d => fmt(d.v))
+      .each(function (d) { const len = this.getComputedTextLength(); const xa = Number(this.getAttribute('x')); const left = this.getAttribute('text-anchor') === 'end' ? xa - len : xa; const right = left + len; if (left < x0 || right > W) this.remove(); });
+    g.selectAll('rect').on('mousemove', (ev, d) => {
+      const r = box.getBoundingClientRect();
+      showTip(tip, box, ev.clientX - r.left, ev.clientY - r.top, `<div class="t">${esc(d.sector)} · ${esc(d.etf)}</div><div>${fmt(d.v)}</div>`);
+    }).on('mouseleave', () => tip.style.display = 'none');
+  }
+
+  // ---------- hover mini chart ----------
+  let histBy = new Map(); let miniWin = 'all';
+  document.querySelectorAll('#win-seg button').forEach(b => b.addEventListener('click', () => {
+    miniWin = b.dataset.win; document.querySelectorAll('#win-seg button').forEach(x => x.classList.toggle('on', x === b)); document.getElementById('tip-tm').dataset.ticker = '';
+  }));
+  const fmtDay = d3.utcFormat('%b %-d');
+  function miniChart(container, ticker) {
+    const all = histBy.get(ticker);
+    const host = d3.select(container);
+    if (!all || all.length < 2) { host.append('div').attr('class', 'mini-note').text('No price history loaded for this stock.'); return; }
+    const ser = miniWin === 'all' ? all : all.slice(-Number(miniWin));
+    const W = 232, H = 72, m = { top: 6, right: 6, bottom: 4, left: 6 };
+    const first = ser[0], last = ser[ser.length - 1];
+    const pct = (last.close / first.close - 1) * 100;
+    const head = host.append('div').attr('class', 'mini-head');
+    head.append('span').text(`${fmtDay(first.date)} → ${fmtDay(last.date)}`);
+    head.append('span').attr('class', cls(pct)).text(fmtPct(pct));
+    const svg = host.append('svg').attr('class', 'mini').attr('width', W).attr('height', H).attr('viewBox', `0 0 ${W} ${H}`);
+    const x = d3.scaleUtc([first.date, last.date], [m.left, W - m.right]);
+    const [lo, hi] = d3.extent(ser, d => d.close);
+    const y = d3.scaleLinear([lo, hi], [H - m.bottom, m.top]);
+    const col = pct >= 0 ? tok('--color-ok') : tok('--color-bad');
+    const line = d3.line().x(d => x(d.date)).y(d => y(d.close));
+    // split into continuous runs; a gap over 7 calendar days is drawn dashed
+    let run = [ser[0]]; let gap = false;
+    for (let i = 1; i < ser.length; i++) {
+      const days = (ser[i].date - ser[i - 1].date) / 864e5;
+      if (days > 7) { svg.append('path').attr('d', line(run)).attr('fill', 'none').attr('stroke', col).attr('stroke-width', 1.75).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round');
+        svg.append('path').attr('d', line([ser[i - 1], ser[i]])).attr('fill', 'none').attr('stroke', col).attr('stroke-width', 1.25).attr('stroke-dasharray', '3 3'); run = [ser[i]]; gap = true; }
+      else run.push(ser[i]);
+    }
+    svg.append('path').attr('d', line(run)).attr('fill', 'none').attr('stroke', col).attr('stroke-width', 1.75).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round');
+    svg.append('circle').attr('cx', x(last.date)).attr('cy', y(last.close)).attr('r', 2.5).attr('fill', col);
+    const lab = (d, anchor) => svg.append('text').attr('x', x(d.date)).attr('y', y(d.close) + (d.close === hi ? -3 : 10)).attr('text-anchor', anchor).attr('font-size', '9px').attr('fill', 'var(--color-fg-muted)').text('$' + fmtNum(d.close, 2));
+    const hiPt = ser.find(d => d.close === hi), loPt = ser.find(d => d.close === lo);
+    lab(hiPt, x(hiPt.date) > W / 2 ? 'end' : 'start'); lab(loPt, x(loPt.date) > W / 2 ? 'end' : 'start');
+    if (gap) host.append('div').attr('class', 'mini-note').text('Dashed: no daily data for part of the window; the last two points are the Oct 20 and Oct 21 closes.');
+  }
+
+  // ---------- treemap ----------
+  function treemap(stocks, sectors, color) {
+    const box = document.getElementById('treemap'); const tip = document.getElementById('tip-tm');
+    box.classList.remove('dash-skeleton'); box.innerHTML = '';
+    const W = box.clientWidth || 800; const H = Math.max(440, Math.min(680, Math.round(W * 0.64)));
+    box.style.minHeight = H + 'px';
+    const bySector = d3.group(stocks.filter(d => !isNaN(num(d.cap_b))), d => d.sector);
+    const children = Array.from(bySector, ([name, kids]) => {
+      const ok = kids.filter(d => !isNaN(num(d.chg_pct)));
+      const w = d3.sum(ok, d => num(d.cap_b)); const d1 = w ? d3.sum(ok, d => num(d.cap_b) * num(d.chg_pct)) / w : NaN;
+      return { name, d1, children: kids.map(d => ({ name: d.ticker, full: d.name, cap: num(d.cap_b), chg: num(d.chg_pct), price: num(d.price) })) };
+    });
+    const root = d3.hierarchy({ name: 'S&P 500', children }).sum(d => d.children ? 0 : d.cap).sort((a, b) => b.value - a.value);
+    const HEAD = 18;
+    d3.treemap().size([W, H]).paddingOuter(2).paddingTop(HEAD + 2).paddingInner(1).round(true)(root);
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).style('display', 'block');
+    const sec = svg.selectAll('g.sec').data(root.children).join('g').attr('class', 'sec');
+    sec.append('rect').attr('x', d => d.x0).attr('y', d => d.y0).attr('width', d => d.x1 - d.x0).attr('height', d => d.y1 - d.y0)
+      .attr('fill', 'var(--color-bg)').attr('stroke', 'var(--color-border-line)');
+    sec.append('text').attr('x', d => d.x0 + 5).attr('y', d => d.y0 + HEAD - 5)
+      .attr('font-size', '11px').attr('font-weight', '600').attr('fill', 'var(--color-fg)')
+      .each(function (d) {
+        const el = d3.select(this); const max = d.x1 - d.x0 - 10;
+        const tries = [`${d.data.name} ${fmtPct(d.data.d1)}`, d.data.name, d.data.name.split(' ').map(s => s[0]).join('')];
+        for (const s of tries) { el.text(s); if (this.getComputedTextLength() <= max) return; }
+        el.text('');
+      });
+    const leaves = root.leaves();
+    const leaf = svg.selectAll('g.leaf').data(leaves).join('g').attr('class', 'leaf').attr('transform', d => `translate(${d.x0},${d.y0})`);
+    leaf.append('rect').attr('width', d => Math.max(0, d.x1 - d.x0)).attr('height', d => Math.max(0, d.y1 - d.y0)).attr('rx', 1.5)
+      .attr('fill', d => isNaN(d.data.chg) ? tok('--cds-chart-muted') : color(d.data.chg)).attr('stroke', 'var(--color-panel)').attr('stroke-width', 0.75);
+    leaf.each(function (d) {
+      const w = d.x1 - d.x0, h = d.y1 - d.y0; const g = d3.select(this);
+      const fs = Math.max(8, Math.min(26, Math.sqrt(w * h) / 4.2));
+      if (w < fs * 0.62 * d.data.name.length + 4 || h < fs + 3) return;
+      const two = h > fs * 2.3;
+      const t1 = g.append('text').attr('x', w / 2).attr('y', two ? h / 2 - fs * 0.15 : h / 2).attr('dy', two ? '0' : '0.35em').attr('text-anchor', 'middle')
+        .attr('font-size', fs + 'px').attr('font-weight', '600').attr('fill', 'var(--color-fg)').text(d.data.name);
+      if (t1.node().getComputedTextLength() > w - 4) { t1.remove(); return; }
+      if (two) {
+        const t2 = g.append('text').attr('x', w / 2).attr('y', h / 2 + fs * 0.95).attr('text-anchor', 'middle')
+          .attr('font-size', Math.max(8, fs * 0.6) + 'px').attr('fill', 'var(--color-fg)').attr('fill-opacity', 0.85).text(fmtPct(d.data.chg));
+        if (t2.node().getComputedTextLength() > w - 4) t2.remove();
+      }
+    });
+    leaf.on('mousemove', (ev, d) => {
+      const r = box.getBoundingClientRect();
+      if (tip.dataset.ticker !== d.data.name) {
+        tip.dataset.ticker = d.data.name;
+        tip.innerHTML = `<div class="t">${esc(d.parent.data.name)}</div><div><b>${esc(d.data.name)}</b> · ${esc(d.data.full)}</div><div class="${cls(d.data.chg)}">${isNaN(d.data.chg) ? 'No Oct 21 quote' : fmtPct(d.data.chg) + ' today'} · $${fmtNum(d.data.price, 2)}</div><div>Market value: $${d.data.cap >= 1000 ? fmtNum(d.data.cap / 1000, 2) + 'T' : fmtNum(d.data.cap, 0) + 'B'}</div><div class="mini-host"></div>`;
+        miniChart(tip.querySelector('.mini-host'), d.data.name);
+      }
+      showTip(tip, box, ev.clientX - r.left, ev.clientY - r.top, null);
+    }).on('mouseleave', () => { tip.style.display = 'none'; tip.dataset.ticker = ''; });
+  }
+
+  // ---------- calcs over the constituent list ----------
+  dash.calc('breadth', { inputs: ['sp500'], title: 'Heat-map breadth', description: 'How many of the shown constituents rose today, and the median move.',
+    fn: (sp500) => { const v = sp500.map(r => Number(r.chg_pct)).filter(x => !isNaN(x)); const s = v.slice().sort((a, b) => a - b); const m = s.length ? (s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2) : NaN; return [{ up: v.filter(x => x > 0).length, total: v.length, median_pct: m }]; } });
+  dash.calc('breadth_dow', { inputs: ['dow30'], title: 'Dow 30 breadth', description: 'How many Dow stocks rose today, and the median move.', fn: (dow30) => { const v = dow30.map(r => Number(r.chg_pct)).filter(x => !isNaN(x)); const s = v.slice().sort((a, b) => a - b); const m = s.length ? (s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2) : NaN; return [{ up: v.filter(x => x > 0).length, total: v.length, median_pct: m }]; } });
+  dash.calc('breadth_ndx', { inputs: ['ndx100'], title: 'Nasdaq-100 breadth', description: 'How many Nasdaq-100 stocks rose today, and the median move.', fn: (ndx100) => { const v = ndx100.map(r => Number(r.chg_pct)).filter(x => !isNaN(x)); const s = v.slice().sort((a, b) => a - b); const m = s.length ? (s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2) : NaN; return [{ up: v.filter(x => x > 0).length, total: v.length, median_pct: m }]; } });
+  let heatIdx = 'sp500';
+  document.querySelectorAll('#idx-seg button').forEach(b => b.addEventListener('click', () => {
+    heatIdx = b.dataset.idx; document.querySelectorAll('#idx-seg button').forEach(x => x.classList.toggle('on', x === b));
+    document.querySelectorAll('#heatmap-card .bl').forEach(x => x.style.display = x.dataset.idx === heatIdx ? '' : 'none'); draw();
+  }));
+  dash.calc('top_gainers', { inputs: ['sp500'], title: 'Top 10 gainers', description: 'The ten constituents with the largest percent gain today.',
+    fn: (sp500) => sp500.slice().sort((a, b) => Number(b.chg_pct) - Number(a.chg_pct)).slice(0, 10) });
+  dash.calc('top_losers', { inputs: ['sp500'], title: 'Top 10 losers', description: 'The ten constituents with the largest percent loss today.',
+    fn: (sp500) => sp500.slice().sort((a, b) => Number(a.chg_pct) - Number(b.chg_pct)).slice(0, 10) });
+
+  // ---------- headquarters by state ----------
+  dash.calc('state_totals', { inputs: ['sp500'], title: 'Totals by HQ state', description: 'Count, market value and today\'s dollar change of the companies headquartered in each state; foreign HQs are grouped as Outside US.',
+    fn: (sp500) => {
+      const g = new Map();
+      for (const r of sp500) {
+        const key = r.hq_country === 'non-US' ? 'Outside US' : (r.hq_state || 'Unknown');
+        const cap = Number(r.cap_b), chg = Number(r.chg_pct); if (isNaN(cap) || isNaN(chg)) continue;
+        const a = g.get(key) || { state: key, n: 0, cap_b: 0, gain_b: 0, cos: [] };
+        a.n += 1; a.cap_b += cap; a.gain_b += cap - cap / (1 + chg / 100); a.cos.push([r.ticker, cap]); g.set(key, a);
+      }
+      return Array.from(g.values()).map(a => ({ state: a.state, n: a.n, cap_b: Math.round(a.cap_b * 100) / 100, gain_b: Math.round(a.gain_b * 100) / 100,
+        gain_pct: Math.round(a.gain_b / (a.cap_b - a.gain_b) * 10000) / 100, top: a.cos.sort((x, y) => y[1] - x[1]).slice(0, 4).map(x => x[0]).join(', ') }))
+        .sort((x, y) => y.cap_b - x.cap_b);
+    } });
+  dash.calc('state_totals_dow', { inputs: ['dow30'], title: 'Dow 30 totals by HQ state', description: 'Count, market value and today\'s dollar change of the Dow companies headquartered in each state.',
+    fn: (dow30) => {
+      const g = new Map();
+      for (const r of dow30) {
+        const key = r.hq_country === 'non-US' ? 'Outside US' : (r.hq_state || 'Unknown');
+        const cap = Number(r.cap_b), chg = Number(r.chg_pct); if (isNaN(cap) || isNaN(chg)) continue;
+        const a = g.get(key) || { state: key, n: 0, cap_b: 0, gain_b: 0, cos: [] };
+        a.n += 1; a.cap_b += cap; a.gain_b += cap - cap / (1 + chg / 100); a.cos.push([r.ticker, cap]); g.set(key, a);
+      }
+      return Array.from(g.values()).map(a => ({ state: a.state, n: a.n, cap_b: Math.round(a.cap_b * 100) / 100, gain_b: Math.round(a.gain_b * 100) / 100,
+        gain_pct: Math.round(a.gain_b / (a.cap_b - a.gain_b) * 10000) / 100, top: a.cos.sort((x, y) => y[1] - x[1]).slice(0, 4).map(x => x[0]).join(', ') }))
+        .sort((x, y) => y.cap_b - x.cap_b);
+    } });
+  dash.calc('state_totals_ndx', { inputs: ['ndx100'], title: 'Nasdaq-100 totals by HQ state', description: 'Count, market value and today\'s dollar change of the Nasdaq-100 companies headquartered in each state; foreign HQs are grouped as Outside US.',
+    fn: (ndx100) => {
+      const g = new Map();
+      for (const r of ndx100) {
+        const key = r.hq_country === 'non-US' ? 'Outside US' : (r.hq_state || 'Unknown');
+        const cap = Number(r.cap_b), chg = Number(r.chg_pct); if (isNaN(cap) || isNaN(chg)) continue;
+        const a = g.get(key) || { state: key, n: 0, cap_b: 0, gain_b: 0, cos: [] };
+        a.n += 1; a.cap_b += cap; a.gain_b += cap - cap / (1 + chg / 100); a.cos.push([r.ticker, cap]); g.set(key, a);
+      }
+      return Array.from(g.values()).map(a => ({ state: a.state, n: a.n, cap_b: Math.round(a.cap_b * 100) / 100, gain_b: Math.round(a.gain_b * 100) / 100,
+        gain_pct: Math.round(a.gain_b / (a.cap_b - a.gain_b) * 10000) / 100, top: a.cos.sort((x, y) => y[1] - x[1]).slice(0, 4).map(x => x[0]).join(', ') }))
+        .sort((x, y) => y.cap_b - x.cap_b);
+    } });
+  let mapMetric = 'cap'; let mapIdx = 'sp500'; const view = { rot: 0, tilt: 0.8 }; let zoomT = d3.zoomIdentity; let mapRender = null;
+  document.querySelectorAll('#map-idx-seg button').forEach(b => b.addEventListener('click', () => {
+    mapIdx = b.dataset.idx; document.querySelectorAll('#map-idx-seg button').forEach(x => x.classList.toggle('on', x === b));
+    document.querySelectorAll('#map-card .ml').forEach(x => x.style.display = x.dataset.idx === mapIdx ? '' : 'none'); draw();
+  }));
+  document.getElementById('map-rot').addEventListener('input', e => { view.rot = Number(e.target.value); if (mapRender) mapRender(); });
+  document.getElementById('map-tilt').addEventListener('input', e => { view.tilt = Number(e.target.value) / 100; if (mapRender) mapRender(); });
+  document.getElementById('map-reset').addEventListener('click', () => { view.rot = 0; view.tilt = 0.8; zoomT = d3.zoomIdentity; draw(); });
+  document.querySelectorAll('#map-seg button').forEach(b => b.addEventListener('click', () => {
+    mapMetric = b.dataset.m; document.querySelectorAll('#map-seg button').forEach(x => x.classList.toggle('on', x === b)); draw();
+  }));
+  const capWords = v => v >= 1000 ? '$' + fmtNum(v / 1000, 2) + 'T' : '$' + fmtNum(v, 0) + 'B';
+  function usMap(totals, geo, stocks, color) {
+    const box = document.getElementById('usmap'); const tip = document.getElementById('tip-map');
+    box.classList.remove('dash-skeleton'); box.innerHTML = '';
+    const W = box.clientWidth || 900; const PAD = 90; const VH = 610 + PAD; const VW = 1060; const XOFF = 90;
+    const H = Math.round(W * VH / VW); box.style.minHeight = H + 'px';
+    const byState = new Map(totals.map(r => [r.state, r]));
+    const pctMode = mapMetric === 'pct';
+    const val = r => !r ? 0 : pctMode ? Math.abs(r.gain_pct) : r.cap_b;
+    const usOnly = geo.map(s => byState.get(s.name)).filter(Boolean);
+    const maxV = d3.max(usOnly, val) || 1;
+    // market value: square-root scale up to 72px; percent change: linear and capped at 36px so a big mover doesn't bury its neighbours
+    const hScale = pctMode ? d3.scaleLinear([0, maxV], [0, 36]) : d3.scaleSqrt([0, maxV], [0, 72]);
+    const muted = tok('--cds-chart-muted'); probe.style.color = (dash.colors && dash.colors[0]) || 'var(--color-fg)'; const accent = getComputedStyle(probe).color;
+    const seq = d3.scaleSqrt([0, maxV], [0, 1]); const seqColor = v => d3.interpolateRgb(muted, accent)(seq(v));
+    const stateColor = r => !r ? muted : pctMode ? color(r.gain_pct * 2) : seqColor(r.cap_b);
+    const labelFor = r => !r ? '' : pctMode ? fmtPct(r.gain_pct) : capWords(r.cap_b);
+    const lg = document.getElementById('legend-bar-map');
+    if (pctMode) { lg.style.background = `linear-gradient(90deg, ${color(-3)}, ${color(0)}, ${color(3)})`; document.getElementById('legend-map-lo').textContent = 'Combined move today: −1.5%'; document.getElementById('legend-map-hi').textContent = '+1.5%'; document.getElementById('legend-map-note').textContent = '· Gains rise above the base plane, losses sink below it'; }
+    else { lg.style.background = `linear-gradient(90deg, ${seqColor(0)}, ${seqColor(maxV / 4)}, ${seqColor(maxV)})`; document.getElementById('legend-map-lo').textContent = 'Market value of HQs: $0'; document.getElementById('legend-map-hi').textContent = capWords(maxV); document.getElementById('legend-map-note').textContent = '· Height = market value'; }
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${VW} ${VH}`).style('display', 'block');
+    const gView = svg.append('g'); const gStates = gView.append('g'); const gLabels = gView.append('g').style('pointer-events', 'none');
+    const CX = 487.5, CY = 305;
+    const plane = () => { const a = view.rot * Math.PI / 180, c = Math.cos(a), s = Math.sin(a), tl = view.tilt;
+      return { a: c, b: s * tl, c: -s, d: c * tl, e: VW / 2 - (c * CX - s * CY), f: VH / 2 + 30 - (s * CX + c * CY) * tl }; };
+    const items = geo.map(s => { const r = byState.get(s.name); const sign = (pctMode && r && r.gain_pct < 0) ? -1 : 1; const h = sign * Math.round(hScale(val(r))); const top = stateColor(r); const dc = d3.color(top);
+      return { s, r, h, top, side: dc ? dc.darker(sign < 0 ? 1.5 : 0.9).formatRgb() : top }; });
+    const gs = gStates.selectAll('g.state').data(items).join('g').attr('class', 'state').style('cursor', 'grab');
+    gs.each(function (d) {
+      const g1 = d3.select(this); const ks = [];
+      if (d.h >= 0) { for (let k = Math.max(0, d.h - 1); k >= 0; k -= 2) ks.push(k); } else { for (let k = -1; k > d.h; k -= 2) ks.push(k); }
+      let holder = g1;
+      if (d.h < 0) { // a loss is cut into the base plane: walls and floor are clipped to the state's outline
+        const cid = `pit-${d.s.id}`;
+        g1.append('clipPath').attr('id', cid).attr('clipPathUnits', 'userSpaceOnUse').append('path').attr('class', 'clipbase').attr('d', d.s.path);
+        holder = g1.append('g').attr('clip-path', `url(#${cid})`);
+      }
+      holder.selectAll('path.side').data(ks).join('path').attr('class', 'side').attr('d', d.s.path).attr('fill', d.side);
+      holder.append('path').attr('class', 'face').attr('d', d.s.path).attr('fill', d.top).attr('stroke', 'var(--color-bg)').attr('stroke-width', 0.7).attr('stroke-linejoin', 'round');
+      if (d.h < 0) g1.append('path').attr('class', 'rim').attr('d', d.s.path).attr('fill', 'none').attr('stroke', 'var(--color-bg)').attr('stroke-width', 0.7).attr('stroke-linejoin', 'round');
+    });
+    gs.on('mousemove', (ev, d) => {
+      const rb = box.getBoundingClientRect(); const s = d.s, r = d.r;
+      const cos = stocks.filter(x => x.hq_state === s.name && x.hq_country === 'US').map(x => ({ t: x.ticker, cap: num(x.cap_b), chg: num(x.chg_pct) })).sort((a, b) => b.cap - a.cap).slice(0, 5);
+      const list = cos.length ? cos.map(c => `<div>${esc(c.t)} · ${capWords(c.cap)} · <span class="${cls(c.chg)}">${fmtPct(c.chg)}</span></div>`).join('') : '<div class="t">No S&amp;P 500 headquarters</div>';
+      const body = r ? `<div>${fmtNum(r.n, 0)} HQ${r.n === 1 ? '' : 's'} · ${capWords(r.cap_b)} market value</div><div class="${cls(r.gain_b)}">Today: ${r.gain_b >= 0 ? '+' : '−'}$${fmtNum(Math.abs(r.gain_b), 1)}B (${fmtPct(r.gain_pct)})</div>` : '';
+      showTip(tip, box, ev.clientX - rb.left, ev.clientY - rb.top, `<div class="t">${esc(s.name)}</div>${body}<div class="t" style="margin-top:4px">Largest headquartered here</div>${list}`);
+    }).on('mouseleave', () => tip.style.display = 'none');
+    const labelItems = items.filter(d => { const bb = gs.filter(x => x === d).select('path.face').node().getBBox(); d.bb = bb; return bb.width > 30 && bb.height > 18 && (d.h !== 0 || bb.width > 60); })
+      .map(d => ({ d, abbr: d.s.abbr, value: (d.bb.width > 46 && d.bb.height > 34) ? labelFor(d.r) : '' }));
+    const lab = gLabels.selectAll('g').data(labelItems).join('g');
+    lab.append('text').attr('dy', d => d.value ? '-0.2em' : '0.35em').attr('text-anchor', 'middle').attr('font-size', '10px').attr('font-weight', '600').attr('fill', 'var(--color-fg)').text(d => d.abbr);
+    lab.filter(d => d.value).append('text').attr('dy', '0.95em').attr('text-anchor', 'middle').attr('font-size', '9px').attr('fill', 'var(--color-fg)').attr('fill-opacity', 0.85).text(d => d.value);
+    const render = () => {
+      const m = plane(); const ms = `matrix(${m.a} ${m.b} ${m.c} ${m.d} ${m.e} ${m.f})`;
+      const depth = d => Math.sin(view.rot * Math.PI / 180) * d.s.cx + Math.cos(view.rot * Math.PI / 180) * d.s.cy;
+      gs.sort((a, b) => depth(a) - depth(b));
+      gs.selectAll('path.side').attr('transform', k => `translate(0,${-k}) ${ms}`);
+      gs.select('path.face').attr('transform', d => `translate(0,${-d.h}) ${ms}`);
+      gs.selectAll('path.clipbase, path.rim').attr('transform', ms);
+      lab.attr('transform', d => { const x = m.a * d.d.s.cx + m.c * d.d.s.cy + m.e, y = m.b * d.d.s.cx + m.d * d.d.s.cy + m.f - d.d.h; return `translate(${x},${y})`; });
+      document.getElementById('map-rot').value = Math.round(view.rot); document.getElementById('map-tilt').value = Math.round(view.tilt * 100);
+    };
+    mapRender = render; render();
+    const zoom = d3.zoom().scaleExtent([0.5, 6]).filter(ev => !ev.shiftKey && !ev.button).on('zoom', ev => { zoomT = ev.transform; gView.attr('transform', zoomT); });
+    svg.call(zoom); svg.call(zoom.transform, zoomT);
+    svg.on('mousedown.rotate', ev => {
+      if (!ev.shiftKey) return; ev.preventDefault();
+      const start = { x: ev.clientX, y: ev.clientY, rot: view.rot, tilt: view.tilt }; tip.style.display = 'none';
+      const move = e => { view.rot = ((start.rot + (e.clientX - start.x) * 0.5 + 540) % 360) - 180; view.tilt = Math.max(0.25, Math.min(1, start.tilt - (e.clientY - start.y) * 0.004)); render(); };
+      const up = () => { window.removeEventListener('mousemove', move); window.removeEventListener('mouseup', up); };
+      window.addEventListener('mousemove', move); window.addEventListener('mouseup', up);
+    });
+  }
+
+  // ---------- main ----------
+  function draw() {
+    const color = colorScale();
+    legendBar.style.background = `linear-gradient(90deg, ${color(-3)}, ${color(0)}, ${color(3)})`;
+    const idx = dash.data('indices'), sec = dash.data('sectors'), stk = dash.data('stocks'), mac = dash.data('macro'), cal = dash.data('calendar');
+    const sp = dash.data('sp500'), br = dash.data('breadth'), tg = dash.data('top_gainers'), tl = dash.data('top_losers');
+    const dj = dash.data('dow30'), nx = dash.data('ndx100'), brd = dash.data('breadth_dow'), brn = dash.data('breadth_ndx');
+    const hs = dash.data('history');
+    const geo = dash.data('states_geo');
+    const stAll = { sp500: dash.data('state_totals'), dow30: dash.data('state_totals_dow'), ndx100: dash.data('state_totals_ndx') };
+    const st = stAll[mapIdx]; const members = mapIdx === 'dow30' ? dj : mapIdx === 'ndx100' ? nx : sp;
+    const idxName = { sp500: 'S&P 500', dow30: 'Dow 30', ndx100: 'Nasdaq-100' }[mapIdx];
+    document.getElementById('state-table-idx').textContent = idxName;
+    document.getElementById('tbl-states').setAttribute('data-source', { sp500: 'state_totals', dow30: 'state_totals_dow', ndx100: 'state_totals_ndx' }[mapIdx]);
+    histBy = new Map();
+    if (hs.status === 'ok') {
+      const parsed = hs.data.map(r => ({ ticker: r.ticker, date: new Date(r.date.slice(0, 10) + 'T00:00:00Z'), close: num(r.close) })).filter(r => !isNaN(r.close) && !isNaN(r.date));
+      histBy = d3.group(parsed, r => r.ticker);
+      histBy.forEach(v => v.sort((a, b) => a.date - b.date));
+    }
+
+    // KPIs + takeaway
+    document.querySelectorAll('.kpi .big, .kpi .delta').forEach(el => el.classList.toggle('dash-skeleton', idx.status === 'loading' || mac.status === 'loading'));
+    if (idx.status === 'ok') {
+      const rows = idx.data; const by = n => rows.find(r => r.index === n) || {};
+      [['S&P 500', 1], ['Dow Jones Industrial Average', 1], ['Nasdaq Composite', 1], ['Russell 2000', 1]].forEach(([n]) => {
+        const r = by(n); const c = num(r.chg_pct);
+        setMark(`[data-source="indices"][data-field="close"][data-where="index=${encodeURIComponent(n).replace(/%20/g,'%20')}"]`, fmtNum(num(r.close), 2));
+        setMark(`.kpi [data-source="indices"][data-field="chg_pct"][data-where="index=${encodeURIComponent(n)}"]`, `${fmtPct(c)} (${c >= 0 ? '+' : ''}${fmtNum(num(r.chg_pts), 0)} pts) · YTD ${fmtPct1(num(r.ytd_pct))}`, cls(c));
+      });
+      const sp = by('S&P 500'), nq = by('Nasdaq Composite');
+      document.getElementById('takeaway').textContent = `An AI relief rally: the Nasdaq rose ${fmtPct(num(nq.chg_pct))} and the S&P 500 ${fmtPct(num(sp.chg_pct))} to ${fmtNum(num(sp.close), 2)}, within about 1% of its record, after SpaceX and Super Micro reassured investors on AI demand — but breadth was thin, telecoms sold off, and the 10-year yield above 5% keeps valuations on a short leash.`;
+    } else if (idx.status === 'error') { document.getElementById('takeaway').textContent = 'Index data failed to load.'; }
+    else { document.getElementById('takeaway').textContent = '—'; }
+
+    if (mac.status === 'ok') {
+      const by = n => mac.data.find(r => r.metric === n) || {};
+      const vix = by('VIX'), ten = by('10-year Treasury yield');
+      setMark('.kpi [data-source="macro"][data-field="value"][data-where="metric=VIX"]', fmtNum(num(vix.value), 2));
+      setMark('.kpi [data-source="macro"][data-field="change"][data-where="metric=VIX"]', vix.change || '—', (vix.change || '').startsWith('-') ? 'up' : 'down');
+      setMark('.kpi [data-source="macro"][data-field="value"][data-where="metric=10-year%20Treasury%20yield"]', fmtNum(num(ten.value), 2) + '%');
+      setMark('.kpi [data-source="macro"][data-field="change"][data-where="metric=10-year%20Treasury%20yield"]', ten.change || '—');
+      // theme marks
+      document.querySelectorAll('#ideas-card [data-source="macro"]').forEach(el => {
+        const m = decodeURIComponent(el.dataset.where.slice(7)); const r = by(m); const v = num(r.value);
+        el.textContent = isNaN(v) ? '—' : (m === 'NYSE advancers vs decliners' ? fmtNum(v, 2) : m === 'S&P 500 distance from record' ? fmtNum(v, 1) : fmtNum(v, m === 'VIX' || m.includes('yield') ? 2 : (m.includes('Brent') ? 2 : (Number.isInteger(v) ? 0 : 1))));
+      });
+      renderTable('tbl-macro', mac.data, [
+        { field: 'metric' }, { field: 'value', num: true, fmt: v => { const n = num(v); return isNaN(n) ? v : fmtNum(n, Number.isInteger(n) ? 0 : 2); } },
+        { field: 'change', num: true, fmt: v => v || '—' }, { field: 'note', fmt: v => v || '' }], 'metric');
+    } else if (mac.status === 'error') { setMark('.kpi [data-source="macro"]', 'Failed'); }
+
+    // sectors
+    ['bar-d1', 'bar-ytd'].forEach(id => { const el = document.getElementById(id); if (sec.status === 'error') fail(el); else if (sec.status !== 'ok') { el.innerHTML = ''; el.classList.add('dash-skeleton'); } });
+    if (sec.status === 'ok') {
+      barChart('bar-d1', 'tip-d1', sec.data, 'd1_pct', fmtPct, color);
+      const ytdColor = v => color(v / 10); // YTD moves are bigger: ±30% saturates
+      barChart('bar-ytd', 'tip-ytd', sec.data, 'ytd_pct', fmtPct1, ytdColor);
+      renderTable('tbl-sectors', sec.data, [
+        { field: 'sector' }, { field: 'etf' }, { field: 'weight_pct', num: true, fmt: v => fmtNum(num(v), 0) + '%' },
+        ...['d1_pct', 'd5_pct', 'm1_pct', 'm3_pct', 'ytd_pct', 'y1_pct'].map(f => ({ field: f, num: true, color: true, fmt: v => f === 'd1_pct' ? fmtPct(num(v)) : fmtPct1(num(v)) })),
+        { field: 'div_yield_pct', num: true, fmt: v => fmtNum(num(v), 2) + '%' }], 'sector');
+      document.querySelectorAll('#ideas-card [data-source="sectors"]').forEach(el => {
+        const s = decodeURIComponent(el.dataset.where.slice(7)); const r = sec.data.find(x => x.sector === s) || {}; const f = el.dataset.field; const v = num(r[f]);
+        el.textContent = f === 'weight_pct' ? fmtNum(v, 0) : f === 'div_yield_pct' ? fmtNum(v, 2) + '%' : f === 'd1_pct' ? fmtPct(v) : fmtPct1(v);
+        el.classList.remove('up', 'down'); if (f !== 'weight_pct' && f !== 'div_yield_pct') addCls(el, cls(v));
+      });
+    }
+
+    // constituents: treemap, breadth, extremes
+    const tm = document.getElementById('treemap');
+    const active = heatIdx === 'dow30' ? dj : heatIdx === 'ndx100' ? nx : sp;
+    if (active.status === 'ok' && sec.status === 'ok') treemap(active.data, sec.data, color);
+    else if (active.status === 'error' || sec.status === 'error') fail(tm);
+    else { tm.innerHTML = ''; tm.classList.add('dash-skeleton'); }
+    [['breadth', br], ['breadth_dow', brd], ['breadth_ndx', brn]].forEach(([id, d]) => {
+      if (d.status === 'ok' && Array.isArray(d.data) && d.data[0]) {
+        setMark(`[data-source="${id}"][data-field="up"]`, fmtNum(d.data[0].up, 0));
+        setMark(`[data-source="${id}"][data-field="total"]`, fmtNum(d.data[0].total, 0));
+        setMark(`[data-source="${id}"][data-field="median_pct"]`, fmtPct(d.data[0].median_pct));
+      }
+    });
+    const capFmt = v => { const n = num(v); return isNaN(n) ? '—' : fmtNum(n, 2); };
+    const xcols = [{ field: 'ticker' }, { field: 'name' }, { field: 'sector' }, { field: 'chg_pct', num: true, color: true, fmt: v => fmtPct(num(v)) }, { field: 'cap_b', num: true, fmt: capFmt }];
+    if (tg.status === 'ok' && Array.isArray(tg.data)) renderTable('tbl-gainers', tg.data, xcols, 'ticker');
+    if (tl.status === 'ok' && Array.isArray(tl.data)) renderTable('tbl-losers', tl.data, xcols, 'ticker');
+    if (stk.status === 'ok') {
+      if (!sortState['tbl-stocks']) sortState['tbl-stocks'] = { field: 'chg_pct', dir: 'desc' };
+      renderTable('tbl-stocks', stk.data, [{ field: 'ticker' }, { field: 'name' }, { field: 'sector' }, { field: 'chg_pct', num: true, color: true, fmt: v => fmtPct(num(v)) }, { field: 'note' }], 'ticker');
+      document.querySelectorAll('#ideas-card [data-source="stocks"]').forEach(el => {
+        const t = decodeURIComponent(el.dataset.where.slice(7)); const r = stk.data.find(x => x.ticker === t) || {}; const v = num(r.chg_pct);
+        el.textContent = fmtPct(v); el.classList.remove('up', 'down'); addCls(el, cls(v));
+      });
+    }
+    const um = document.getElementById('usmap');
+    if (st.status === 'ok' && geo.status === 'ok' && members.status === 'ok' && Array.isArray(st.data)) usMap(st.data, geo.data, members.data, color);
+    else if (st.status === 'error' || geo.status === 'error' || members.status === 'error') fail(um);
+    else { um.innerHTML = ''; um.classList.add('dash-skeleton'); }
+    [['state_totals', stAll.sp500], ['state_totals_ndx', stAll.ndx100]].forEach(([id, d]) => {
+      if (d.status === 'ok' && Array.isArray(d.data)) setMark(`[data-source="${id}"][data-field="n"][data-where="state=Outside%20US"]`, fmtNum((d.data.find(r => r.state === 'Outside US') || {}).n, 0));
+    });
+    if (st.status === 'ok' && Array.isArray(st.data)) {
+      if (!sortState['tbl-states']) sortState['tbl-states'] = { field: 'cap_b', dir: 'desc' };
+      renderTable('tbl-states', st.data, [{ field: 'state' }, { field: 'n', num: true, fmt: v => fmtNum(num(v), 0) }, { field: 'cap_b', num: true, fmt: v => fmtNum(num(v), 2) },
+        { field: 'gain_b', num: true, color: true, fmt: v => { const n = num(v); return (n > 0 ? '+' : '') + fmtNum(n, 2); } }, { field: 'gain_pct', num: true, color: true, fmt: v => fmtPct(num(v)) }, { field: 'top' }], 'state');
+    }
+    if (cal.status === 'ok') renderTable('tbl-cal', cal.data, [{ field: 'when' }, { field: 'event' }, { field: 'why_it_matters' }], 'event');
+  }
+  dash.onData(draw);
+})();
+</script>
