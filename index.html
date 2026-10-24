@@ -647,7 +647,7 @@
     const CX = 487.5, CY = 305;
     const plane = () => { const a = view.rot * Math.PI / 180, c = Math.cos(a), s = Math.sin(a), tl = view.tilt;
       return { a: c, b: s * tl, c: -s, d: c * tl, e: VW / 2 - (c * CX - s * CY), f: VH / 2 + 30 - (s * CX + c * CY) * tl }; };
-    const items = geo.map(s => { const r = byState.get(s.name); const sign = (pctMode && r && r.gain_pct < 0) ? -1 : 1; const h = sign * Math.round(hScale(val(r)) * (sign < 0 ? 0.5 : 1)); // losses sink at half the rate gains rise const top = stateColor(r); const dc = d3.color(top);
+    const items = geo.map(s => { const r = byState.get(s.name); const sign = (pctMode && r && r.gain_pct < 0) ? -1 : 1; const h = sign * Math.round(hScale(val(r)) * (sign < 0 ? 0.5 : 1)); /* losses sink at half the rate gains rise */ const top = stateColor(r); const dc = d3.color(top);
       return { s, r, h, top, side: dc ? dc.darker(sign < 0 ? 1.5 : 0.9).formatRgb() : top }; });
     const gs = gStates.selectAll('g.state').data(items).join('g').attr('class', 'state').style('cursor', 'grab');
     gs.each(function (d) {
