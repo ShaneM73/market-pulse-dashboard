@@ -98,9 +98,9 @@
 </style>
 
 <div class="mp">
-  <h1 id="title">Market Pulse — Wednesday, October 21, 2026</h1>
+  <h1 id="title">Market Pulse</h1>
   <p class="take" id="takeaway" data-source="indices" data-field="chg_pct" data-where="index=S%26P%20500">—</p>
-  <p class="meta">Regular-session closes, Oct 21, 2026. Sector multi-period returns through Oct 20. Hover any tile or bar for detail; click a column header to sort.</p>
+  <p class="meta" id="meta-line">Regular-session closes. Hover any tile or bar for detail; click a column header to sort.</p>
 
   <div class="kpis" id="kpis">
     <div class="card kpi"><div class="label">S&amp;P 500</div><div class="big" data-source="indices" data-field="close" data-where="index=S%26P%20500">—</div><div class="delta" data-source="indices" data-field="chg_pct" data-where="index=S%26P%20500">—</div></div>
@@ -117,7 +117,7 @@
       <span class="bl" data-idx="sp500">463 S&amp;P 500 constituents (the ~36 smallest are not included): <span data-source="breadth" data-field="up" data-row="0">—</span> of <span data-source="breadth" data-field="total" data-row="0">—</span> advanced today, median move <span data-source="breadth" data-field="median_pct" data-row="0">—</span>.</span>
       <span class="bl" data-idx="dow30" style="display:none">All 30 Dow stocks: <span data-source="breadth_dow" data-field="up" data-row="0">—</span> of <span data-source="breadth_dow" data-field="total" data-row="0">—</span> advanced today, median move <span data-source="breadth_dow" data-field="median_pct" data-row="0">—</span>.</span>
       <span class="bl" data-idx="ndx100" style="display:none">All 100 Nasdaq-100 stocks: <span data-source="breadth_ndx" data-field="up" data-row="0">—</span> of <span data-source="breadth_ndx" data-field="total" data-row="0">—</span> advanced today, median move <span data-source="breadth_ndx" data-field="median_pct" data-row="0">—</span>.</span>
-      Hover a box for a mini price chart (loaded for the 90 largest S&amp;P 500 companies and today's notable movers; daily closes, roughly Aug 11 – Oct 21). Chart window: <span class="seg" id="win-seg"><button data-win="22">1 month</button><button data-win="all" class="on">All (~10 weeks)</button></span></p>
+      Hover a box for a mini price chart of the last ~3 months of daily closes. Chart window: <span class="seg" id="win-seg"><button data-win="22">1 month</button><button data-win="all" class="on">All (~10 weeks)</button></span></p>
     <div class="chartbox" data-source="sp500 dow30 ndx100 sectors history">
       <div id="treemap" class="dash-skeleton" style="min-height: 520px"></div>
       <div class="tip" id="tip-tm"></div>
@@ -253,7 +253,7 @@
 
   <div class="card full" id="ideas-card">
     <h2 id="ideas">What the data suggests — themes to consider</h2>
-    <p class="note">Observations drawn from the figures above, not personalized advice. Each theme names the numbers behind it so you can judge it yourself.</p>
+    <p class="note">Observations drawn from the figures above, not personalized advice. Each theme names the numbers behind it so you can judge it yourself. <b>The narrative was written for the Oct 21, 2026 session; the numbers inside it refresh daily, the wording does not.</b></p>
     <div class="themes">
       <div class="theme pos">
         <h3>AI hardware momentum is back, but it's narrow</h3>
@@ -290,7 +290,7 @@
 
   <div class="card full">
     <h2 id="calendar">What to watch next</h2>
-    <p class="note">Catalysts over the coming days.</p>
+    <p class="note">Catalysts over the coming days (maintained by hand in data/calendar.csv).</p>
     <table id="tbl-cal" data-source="calendar" data-row-key="event">
       <thead><tr>
         <th data-field="when"><button>When</button></th>
@@ -672,8 +672,14 @@
         setMark(`[data-source="indices"][data-field="close"][data-where="index=${encodeURIComponent(n).replace(/%20/g,'%20')}"]`, fmtNum(num(r.close), 2));
         setMark(`.kpi [data-source="indices"][data-field="chg_pct"][data-where="index=${encodeURIComponent(n)}"]`, `${fmtPct(c)} (${c >= 0 ? '+' : ''}${fmtNum(num(r.chg_pts), 0)} pts) · YTD ${fmtPct1(num(r.ytd_pct))}`, cls(c));
       });
-      const sp = by('S&P 500'), nq = by('Nasdaq Composite');
-      document.getElementById('takeaway').textContent = `An AI relief rally: the Nasdaq rose ${fmtPct(num(nq.chg_pct))} and the S&P 500 ${fmtPct(num(sp.chg_pct))} to ${fmtNum(num(sp.close), 2)}, within about 1% of its record, after SpaceX and Super Micro reassured investors on AI demand — but breadth was thin, telecoms sold off, and the 10-year yield above 5% keeps valuations on a short leash.`;
+      const sp = by('S&P 500'), nq = by('Nasdaq Composite'), dw = by('Dow Jones Industrial Average'), ru = by('Russell 2000');
+      const asOf = sp.as_of ? d3.utcFormat('%A, %B %-d, %Y')(new Date(sp.as_of.slice(0, 10) + 'T00:00:00Z')) : '';
+      document.getElementById('title').textContent = 'Market Pulse' + (asOf ? ' — ' + asOf : '');
+      document.getElementById('meta-line').textContent = (sp.as_of ? `Regular-session closes, ${asOf}. ` : '') + 'Hover any tile or bar for detail; click a column header to sort.';
+      const vb = (n, x) => `${n} ${num(x) >= 0 ? 'rose' : 'fell'} ${fmtPct(Math.abs(num(x))).replace('+', '')}`;
+      const gap = Math.abs(num(sp.chg_pct) - num(ru.chg_pct));
+      document.getElementById('takeaway').textContent = `The ${vb('S&P 500', sp.chg_pct)} to ${fmtNum(num(sp.close), 2)} (${fmtPct(num(sp.ytd_pct))} this year); the ${vb('Nasdaq', nq.chg_pct)}, the ${vb('Dow', dw.chg_pct)} and the ${vb('Russell 2000', ru.chg_pct)}` +
+        (gap > 0.5 ? (num(ru.chg_pct) > num(sp.chg_pct) ? ' — small caps led.' : ' — large caps led.') : '.');
     } else if (idx.status === 'error') { document.getElementById('takeaway').textContent = 'Index data failed to load.'; }
     else { document.getElementById('takeaway').textContent = '—'; }
 

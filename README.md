@@ -37,8 +37,24 @@ python3 -m http.server 8000
 | `data/indices.csv`, `data/macro.csv`, `data/stocks.csv`, `data/calendar.csv` | Index closes, macro figures, notable movers, catalysts | Reuters/AP via STL.News, CappNotes, TradingView, Yahoo Finance |
 | `data/states_geo.json` | Simplified state outlines (Albers USA, 975×610) | us-atlas (U.S. Census); rebuilt with `scripts/build_states_geo.mjs` |
 
-All figures are a saved snapshot, not a live feed. The natural next step is a small backend
-(e.g. Rust/Axum) that regenerates these files from a quote API on a schedule.
+## Daily refresh
+
+`.github/workflows/refresh.yml` runs `scripts/refresh_data.py` **every weekday at 22:40 UTC**
+(5:40 pm Central, after the 4 pm Eastern close) and commits the regenerated `data/` files when they
+change. It can also be run by hand from the Actions tab ("Run workflow").
+
+- Quotes and ~3 months of daily closes for all 478 constituents come from Yahoo Finance's chart
+  endpoint, with Stooq as a fallback; sector ETFs, indices, yields, VIX, oil, gold, bitcoin and the
+  dollar come the same way.
+- Market value = shares outstanding (`data/constituents_meta.csv`, `shares_m`) x latest price.
+  Update `shares_m` after large buybacks, issuance or splits.
+- Sector multi-period returns are **price** returns after the first refresh (the original snapshot
+  used total returns); the dividend-yield column stays blank until a source is added.
+- Hand-maintained: `constituents_meta.csv` (membership, sectors, HQs), `sectors_meta.csv`,
+  `macro_manual.csv` (CPI, Fed odds, breadth), `calendar.csv`, and the notes in `stocks.csv`.
+  The "themes to consider" prose on the page was written for Oct 21, 2026; the numbers inside it refresh, the wording does not.
+- Enable GitHub Pages on `main` (root) and the page at `shanem73.github.io/market-pulse-dashboard`
+  updates itself after each run.
 
 ## Caveats
 

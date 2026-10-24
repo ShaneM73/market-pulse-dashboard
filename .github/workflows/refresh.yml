@@ -1,0 +1,42 @@
+name: Refresh market data
+
+on:
+  schedule:
+    # Every weekday at 22:40 UTC (5:40 pm Central / 6:40 pm Eastern), after the 4 pm ET close.
+    # GitHub cron is UTC only; during US daylight time the close is 20:00 UTC, in winter 21:00 UTC.
+    - cron: '40 22 * * 1-5'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Regenerate data files
+        run: python scripts/refresh_data.py
+
+      - name: Commit and push if anything changed
+        run: |
+          git config user.name "market-pulse-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No changes (market closed or data unchanged)."
+            exit 0
+          fi
+          AS_OF=$(python -c "import csv;print(next(csv.DictReader(open('data/indices.csv')))['as_of'])")
+          git commit -m "Refresh market data through $AS_OF"
+          git push
