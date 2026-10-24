@@ -10,7 +10,8 @@ An interactive market dashboard built as a single HTML page with d3. Snapshot da
   colored by the day's move, grouped by sector; hover for a mini price chart (~10 weeks of daily closes for 93 names)
 - **3-D headquarters map** — each state raised by the total market value (or today's ±% change) of the
   index companies headquartered there; drag to pan, scroll to zoom, Shift-drag to rotate and tilt;
-  losses sink below the base plane in the ±% view
+  losses sink below the base plane in the ±% view; **Change, past 30 days** replays each trading day's
+  change as an animation (play/pause, scrub, speed), computed from `data/history.csv`
 - Sector bar charts and scorecard, state scorecard, top gainers/losers, notable movers with reasons,
   macro backdrop (rates, inflation, oil, gold, breadth), themes to consider, upcoming catalysts
 

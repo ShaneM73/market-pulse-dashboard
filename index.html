@@ -127,18 +127,19 @@
 
   <div class="card full" id="map-card">
     <h2 id="hqmap">Where the gains land — company headquarters by state</h2>
-    <p class="note">Index: <span class="seg" id="map-idx-seg"><button data-idx="sp500" class="on">S&amp;P 500</button><button data-idx="dow30">Dow 30</button><button data-idx="ndx100">Nasdaq-100</button></span> · Show: <span class="seg" id="map-seg"><button data-m="cap" class="on">Total market value</button><button data-m="pct">Change today (±%)</button></span> — each state is raised, colored and labeled by the measure chosen, summed over the chosen index's companies headquartered there (market value on a square-root scale so California doesn't flatten everyone else; percent change on a shorter linear scale). Headquarters is a proxy for where a company's people, plants and taxes sit — most large companies spread those across many states.
+    <p class="note">Index: <span class="seg" id="map-idx-seg"><button data-idx="sp500" class="on">S&amp;P 500</button><button data-idx="dow30">Dow 30</button><button data-idx="ndx100">Nasdaq-100</button></span> · Show: <span class="seg" id="map-seg"><button data-m="cap" class="on">Total market value</button><button data-m="pct">Change today (±%)</button><button data-m="anim">Change, past 30 days ▶</button></span> — each state is raised, colored and labeled by the measure chosen, summed over the chosen index's companies headquartered there (market value on a square-root scale so California doesn't flatten everyone else; percent change on a shorter linear scale). Headquarters is a proxy for where a company's people, plants and taxes sit — most large companies spread those across many states.
       <span class="ml" data-idx="sp500"><span data-source="state_totals" data-field="n" data-where="state=Outside%20US">—</span> S&amp;P 500 members are headquartered abroad (Ireland, the UK, Switzerland, the Netherlands, Bermuda).</span>
       <span class="ml" data-idx="dow30" style="display:none">All 30 Dow companies are headquartered in the US.</span>
       <span class="ml" data-idx="ndx100" style="display:none"><span data-source="state_totals_ndx" data-field="n" data-where="state=Outside%20US">—</span> Nasdaq-100 members are headquartered abroad (the Netherlands, the UK, Canada, Ireland, Uruguay, Switzerland, Bermuda).</span>
-      Hover a state for its top companies.</p>
+      Hover a state for its top companies. "Past 30 days" replays each trading day's change as an animation — use the slider to scrub, and watch which regions swing together.</p>
     <div class="mapctl">
       <span>Drag to move · scroll to zoom · Shift+drag to rotate and tilt</span>
       <label>Rotate <input type="range" id="map-rot" min="-180" max="180" value="0"></label>
       <label>Tilt <input type="range" id="map-tilt" min="25" max="100" value="80"></label>
       <button id="map-reset">Reset view</button>
+      <span id="anim-ctl" style="display:none"><button id="anim-play">⏸ Pause</button> <input type="range" id="anim-day" min="0" max="29" value="29" style="width:12rem;vertical-align:middle"> <b id="anim-date" style="color:var(--color-fg)">—</b> <label>Speed <input type="range" id="anim-speed" min="150" max="1500" step="50" value="600" style="width:5rem"></label></span>
     </div>
-    <div class="chartbox" data-source="state_totals state_totals_dow state_totals_ndx states_geo sp500 dow30 ndx100">
+    <div class="chartbox" data-source="state_totals state_totals_dow state_totals_ndx state_daily state_daily_dow state_daily_ndx states_geo sp500 dow30 ndx100">
       <div id="usmap" class="dash-skeleton" style="min-height: 520px"></div>
       <div class="tip" id="tip-map"></div>
     </div>
@@ -556,6 +557,56 @@
         gain_pct: Math.round(a.gain_b / (a.cap_b - a.gain_b) * 10000) / 100, top: a.cos.sort((x, y) => y[1] - x[1]).slice(0, 4).map(x => x[0]).join(', ') }))
         .sort((x, y) => y.cap_b - x.cap_b);
     } });
+  dash.calc('state_daily', { inputs: ['history', 'sp500'], title: 'S&P 500 daily change by state', description: 'For each of the last 30 trading days, the combined market value and day-over-day change of the sp500 companies headquartered in each state (market value = shares outstanding x that day\'s close).',
+    fn: (history, sp500) => {
+      const sh = new Map(); const hq = new Map();
+      for (const r of sp500) { const cap = Number(r.cap_b), px = Number(r.price); if (cap > 0 && px > 0) { sh.set(r.ticker, cap / px); hq.set(r.ticker, r.hq_country === 'non-US' ? 'Outside US' : (r.hq_state || 'Unknown')); } }
+      const byT = new Map();
+      for (const h of history) { if (!sh.has(h.ticker)) continue; const c = Number(h.close); if (!(c > 0)) continue; let a = byT.get(h.ticker); if (!a) { a = []; byT.set(h.ticker, a); } a.push([String(h.date).slice(0, 10), c]); }
+      const days = new Map();
+      byT.forEach((arr, tk) => { arr.sort((x, y) => x[0] < y[0] ? -1 : 1); const s = sh.get(tk), st = hq.get(tk);
+        for (let i = 1; i < arr.length; i++) { const d = arr[i][0]; let m = days.get(d); if (!m) { m = new Map(); days.set(d, m); }
+          const cap = s * arr[i][1], prev = s * arr[i - 1][1]; const a = m.get(st) || { state: st, n: 0, cap_b: 0, gain_b: 0 }; a.n++; a.cap_b += cap; a.gain_b += cap - prev; m.set(st, a); } });
+      const out = []; const ds = Array.from(days.keys()).sort().slice(-30);
+      for (const d of ds) for (const a of days.get(d).values()) out.push({ date: d, state: a.state, n: a.n, cap_b: Math.round(a.cap_b * 100) / 100, gain_b: Math.round(a.gain_b * 100) / 100, gain_pct: Math.round(a.gain_b / (a.cap_b - a.gain_b) * 10000) / 100 });
+      return out;
+    } });
+  dash.calc('state_daily_dow', { inputs: ['history', 'dow30'], title: 'Dow 30 daily change by state', description: 'For each of the last 30 trading days, the combined market value and day-over-day change of the dow30 companies headquartered in each state (market value = shares outstanding x that day\'s close).',
+    fn: (history, dow30) => {
+      const sh = new Map(); const hq = new Map();
+      for (const r of dow30) { const cap = Number(r.cap_b), px = Number(r.price); if (cap > 0 && px > 0) { sh.set(r.ticker, cap / px); hq.set(r.ticker, r.hq_country === 'non-US' ? 'Outside US' : (r.hq_state || 'Unknown')); } }
+      const byT = new Map();
+      for (const h of history) { if (!sh.has(h.ticker)) continue; const c = Number(h.close); if (!(c > 0)) continue; let a = byT.get(h.ticker); if (!a) { a = []; byT.set(h.ticker, a); } a.push([String(h.date).slice(0, 10), c]); }
+      const days = new Map();
+      byT.forEach((arr, tk) => { arr.sort((x, y) => x[0] < y[0] ? -1 : 1); const s = sh.get(tk), st = hq.get(tk);
+        for (let i = 1; i < arr.length; i++) { const d = arr[i][0]; let m = days.get(d); if (!m) { m = new Map(); days.set(d, m); }
+          const cap = s * arr[i][1], prev = s * arr[i - 1][1]; const a = m.get(st) || { state: st, n: 0, cap_b: 0, gain_b: 0 }; a.n++; a.cap_b += cap; a.gain_b += cap - prev; m.set(st, a); } });
+      const out = []; const ds = Array.from(days.keys()).sort().slice(-30);
+      for (const d of ds) for (const a of days.get(d).values()) out.push({ date: d, state: a.state, n: a.n, cap_b: Math.round(a.cap_b * 100) / 100, gain_b: Math.round(a.gain_b * 100) / 100, gain_pct: Math.round(a.gain_b / (a.cap_b - a.gain_b) * 10000) / 100 });
+      return out;
+    } });
+  dash.calc('state_daily_ndx', { inputs: ['history', 'ndx100'], title: 'Nasdaq-100 daily change by state', description: 'For each of the last 30 trading days, the combined market value and day-over-day change of the ndx100 companies headquartered in each state (market value = shares outstanding x that day\'s close).',
+    fn: (history, ndx100) => {
+      const sh = new Map(); const hq = new Map();
+      for (const r of ndx100) { const cap = Number(r.cap_b), px = Number(r.price); if (cap > 0 && px > 0) { sh.set(r.ticker, cap / px); hq.set(r.ticker, r.hq_country === 'non-US' ? 'Outside US' : (r.hq_state || 'Unknown')); } }
+      const byT = new Map();
+      for (const h of history) { if (!sh.has(h.ticker)) continue; const c = Number(h.close); if (!(c > 0)) continue; let a = byT.get(h.ticker); if (!a) { a = []; byT.set(h.ticker, a); } a.push([String(h.date).slice(0, 10), c]); }
+      const days = new Map();
+      byT.forEach((arr, tk) => { arr.sort((x, y) => x[0] < y[0] ? -1 : 1); const s = sh.get(tk), st = hq.get(tk);
+        for (let i = 1; i < arr.length; i++) { const d = arr[i][0]; let m = days.get(d); if (!m) { m = new Map(); days.set(d, m); }
+          const cap = s * arr[i][1], prev = s * arr[i - 1][1]; const a = m.get(st) || { state: st, n: 0, cap_b: 0, gain_b: 0 }; a.n++; a.cap_b += cap; a.gain_b += cap - prev; m.set(st, a); } });
+      const out = []; const ds = Array.from(days.keys()).sort().slice(-30);
+      for (const d of ds) for (const a of days.get(d).values()) out.push({ date: d, state: a.state, n: a.n, cap_b: Math.round(a.cap_b * 100) / 100, gain_b: Math.round(a.gain_b * 100) / 100, gain_pct: Math.round(a.gain_b / (a.cap_b - a.gain_b) * 10000) / 100 });
+      return out;
+    } });
+  const anim = { frame: 29, playing: false, timer: null, days: [] };
+  let mapRedraw = null;
+  const animStop = () => { if (anim.timer) clearInterval(anim.timer); anim.timer = null; anim.playing = false; const b = document.getElementById('anim-play'); if (b) b.textContent = '▶ Play'; };
+  const animStart = () => { animStop(); anim.playing = true; document.getElementById('anim-play').textContent = '⏸ Pause';
+    anim.timer = setInterval(() => { anim.frame = (anim.frame + 1) % Math.max(1, anim.days.length); if (mapRedraw) mapRedraw(); }, Number(document.getElementById('anim-speed').value)); };
+  document.getElementById('anim-play').addEventListener('click', () => anim.playing ? animStop() : animStart());
+  document.getElementById('anim-day').addEventListener('input', e => { animStop(); anim.frame = Number(e.target.value); if (mapRedraw) mapRedraw(); });
+  document.getElementById('anim-speed').addEventListener('input', () => { if (anim.playing) animStart(); });
   let mapMetric = 'cap'; let mapIdx = 'sp500'; const view = { rot: 0, tilt: 0.8 }; let zoomT = d3.zoomIdentity; let mapRender = null;
   document.querySelectorAll('#map-idx-seg button').forEach(b => b.addEventListener('click', () => {
     mapIdx = b.dataset.idx; document.querySelectorAll('#map-idx-seg button').forEach(x => x.classList.toggle('on', x === b));
@@ -565,19 +616,21 @@
   document.getElementById('map-tilt').addEventListener('input', e => { view.tilt = Number(e.target.value) / 100; if (mapRender) mapRender(); });
   document.getElementById('map-reset').addEventListener('click', () => { view.rot = 0; view.tilt = 0.8; zoomT = d3.zoomIdentity; draw(); });
   document.querySelectorAll('#map-seg button').forEach(b => b.addEventListener('click', () => {
-    mapMetric = b.dataset.m; document.querySelectorAll('#map-seg button').forEach(x => x.classList.toggle('on', x === b)); draw();
+    mapMetric = b.dataset.m; document.querySelectorAll('#map-seg button').forEach(x => x.classList.toggle('on', x === b));
+    document.getElementById('anim-ctl').style.display = mapMetric === 'anim' ? '' : 'none';
+    if (mapMetric === 'anim') { anim.frame = 29; draw(); animStart(); } else { animStop(); draw(); }
   }));
   const capWords = v => v >= 1000 ? '$' + fmtNum(v / 1000, 2) + 'T' : '$' + fmtNum(v, 0) + 'B';
-  function usMap(totals, geo, stocks, color) {
+  function usMap(totals, geo, stocks, color, frameDate, fixedMax) {
     const box = document.getElementById('usmap'); const tip = document.getElementById('tip-map');
     box.classList.remove('dash-skeleton'); box.innerHTML = '';
     const W = box.clientWidth || 900; const PAD = 90; const VH = 610 + PAD; const VW = 1060; const XOFF = 90;
     const H = Math.round(W * VH / VW); box.style.minHeight = H + 'px';
     const byState = new Map(totals.map(r => [r.state, r]));
-    const pctMode = mapMetric === 'pct';
+    const pctMode = mapMetric !== 'cap';
     const val = r => !r ? 0 : pctMode ? Math.abs(r.gain_pct) : r.cap_b;
     const usOnly = geo.map(s => byState.get(s.name)).filter(Boolean);
-    const maxV = d3.max(usOnly, val) || 1;
+    const maxV = fixedMax || d3.max(usOnly, val) || 1;
     // market value: square-root scale up to 72px; percent change: linear and capped at 36px so a big mover doesn't bury its neighbours
     const hScale = pctMode ? d3.scaleLinear([0, maxV], [0, 36]) : d3.scaleSqrt([0, maxV], [0, 72]);
     const muted = tok('--cds-chart-muted'); probe.style.color = (dash.colors && dash.colors[0]) || 'var(--color-fg)'; const accent = getComputedStyle(probe).color;
@@ -585,7 +638,7 @@
     const stateColor = r => !r ? muted : pctMode ? color(r.gain_pct * 2) : seqColor(r.cap_b);
     const labelFor = r => !r ? '' : pctMode ? fmtPct(r.gain_pct) : capWords(r.cap_b);
     const lg = document.getElementById('legend-bar-map');
-    if (pctMode) { lg.style.background = `linear-gradient(90deg, ${color(-3)}, ${color(0)}, ${color(3)})`; document.getElementById('legend-map-lo').textContent = 'Combined move today: −1.5%'; document.getElementById('legend-map-hi').textContent = '+1.5%'; document.getElementById('legend-map-note').textContent = '· Gains rise above the base plane, losses sink below it'; }
+    if (pctMode) { lg.style.background = `linear-gradient(90deg, ${color(-3)}, ${color(0)}, ${color(3)})`; document.getElementById('legend-map-lo').textContent = (frameDate ? 'Combined move: −1.5%' : 'Combined move today: −1.5%'); document.getElementById('legend-map-hi').textContent = '+1.5%'; document.getElementById('legend-map-note').textContent = (frameDate ? `· ${d3.utcFormat('%a %b %-d')(new Date(frameDate + 'T00:00:00Z'))} · ` : '· ') + 'Gains rise above the base plane, losses sink below it'; }
     else { lg.style.background = `linear-gradient(90deg, ${seqColor(0)}, ${seqColor(maxV / 4)}, ${seqColor(maxV)})`; document.getElementById('legend-map-lo').textContent = 'Market value of HQs: $0'; document.getElementById('legend-map-hi').textContent = capWords(maxV); document.getElementById('legend-map-note').textContent = '· Height = market value'; }
     const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${VW} ${VH}`).style('display', 'block');
     const gView = svg.append('g'); const gStates = gView.append('g'); const gLabels = gView.append('g').style('pointer-events', 'none');
@@ -612,7 +665,7 @@
       const rb = box.getBoundingClientRect(); const s = d.s, r = d.r;
       const cos = stocks.filter(x => x.hq_state === s.name && x.hq_country === 'US').map(x => ({ t: x.ticker, cap: num(x.cap_b), chg: num(x.chg_pct) })).sort((a, b) => b.cap - a.cap).slice(0, 5);
       const list = cos.length ? cos.map(c => `<div>${esc(c.t)} · ${capWords(c.cap)} · <span class="${cls(c.chg)}">${fmtPct(c.chg)}</span></div>`).join('') : '<div class="t">No S&amp;P 500 headquarters</div>';
-      const body = r ? `<div>${fmtNum(r.n, 0)} HQ${r.n === 1 ? '' : 's'} · ${capWords(r.cap_b)} market value</div><div class="${cls(r.gain_b)}">Today: ${r.gain_b >= 0 ? '+' : '−'}$${fmtNum(Math.abs(r.gain_b), 1)}B (${fmtPct(r.gain_pct)})</div>` : '';
+      const body = r ? `<div>${fmtNum(r.n, 0)} HQ${r.n === 1 ? '' : 's'} · ${capWords(r.cap_b)} market value</div><div class="${cls(r.gain_b)}">${frameDate ? d3.utcFormat('%b %-d')(new Date(frameDate + 'T00:00:00Z')) : 'Today'}: ${r.gain_b >= 0 ? '+' : '−'}$${fmtNum(Math.abs(r.gain_b), 1)}B (${fmtPct(r.gain_pct)})</div>` : '';
       showTip(tip, box, ev.clientX - rb.left, ev.clientY - rb.top, `<div class="t">${esc(s.name)}</div>${body}<div class="t" style="margin-top:4px">Largest headquartered here</div>${list}`);
     }).on('mouseleave', () => tip.style.display = 'none');
     const labelItems = items.filter(d => { const bb = gs.filter(x => x === d).select('path.face').node().getBBox(); d.bb = bb; return bb.width > 30 && bb.height > 18 && (d.h !== 0 || bb.width > 60); })
@@ -743,7 +796,20 @@
       });
     }
     const um = document.getElementById('usmap');
-    if (st.status === 'ok' && geo.status === 'ok' && members.status === 'ok' && Array.isArray(st.data)) usMap(st.data, geo.data, members.data, color);
+    const sdAll = { sp500: dash.data('state_daily'), dow30: dash.data('state_daily_dow'), ndx100: dash.data('state_daily_ndx') };
+    const sd = sdAll[mapIdx];
+    mapRedraw = null;
+    if (mapMetric === 'anim') {
+      if (sd.status === 'ok' && geo.status === 'ok' && members.status === 'ok' && Array.isArray(sd.data) && sd.data.length) {
+        anim.days = Array.from(new Set(sd.data.map(r => r.date))).sort();
+        const animMax = d3.max(sd.data.filter(r => r.state !== 'Outside US'), r => Math.abs(Number(r.gain_pct))) || 1;
+        const sl = document.getElementById('anim-day'); sl.max = anim.days.length - 1; if (anim.frame > anim.days.length - 1) anim.frame = anim.days.length - 1;
+        mapRedraw = () => { const d = anim.days[anim.frame]; sl.value = anim.frame; document.getElementById('anim-date').textContent = d3.utcFormat('%a, %b %-d, %Y')(new Date(d + 'T00:00:00Z'));
+          usMap(sd.data.filter(r => r.date === d), geo.data, members.data, color, d, animMax); };
+        mapRedraw();
+      } else if (sd.status === 'error' || geo.status === 'error') fail(um);
+      else { um.innerHTML = ''; um.classList.add('dash-skeleton'); }
+    } else if (st.status === 'ok' && geo.status === 'ok' && members.status === 'ok' && Array.isArray(st.data)) usMap(st.data, geo.data, members.data, color);
     else if (st.status === 'error' || geo.status === 'error' || members.status === 'error') fail(um);
     else { um.innerHTML = ''; um.classList.add('dash-skeleton'); }
     [['state_totals', stAll.sp500], ['state_totals_ndx', stAll.ndx100]].forEach(([id, d]) => {
