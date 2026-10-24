@@ -72,6 +72,10 @@
       <span class="bl" data-idx="dow30" style="display:none">All 30 Dow stocks: <span data-source="breadth_dow" data-field="up" data-row="0">—</span> of <span data-source="breadth_dow" data-field="total" data-row="0">—</span> advanced today, median move <span data-source="breadth_dow" data-field="median_pct" data-row="0">—</span>.</span>
       <span class="bl" data-idx="ndx100" style="display:none">All 100 Nasdaq-100 stocks: <span data-source="breadth_ndx" data-field="up" data-row="0">—</span> of <span data-source="breadth_ndx" data-field="total" data-row="0">—</span> advanced today, median move <span data-source="breadth_ndx" data-field="median_pct" data-row="0">—</span>.</span>
       Hover a box for a mini price chart of the last ~3 months of daily closes. Chart window: <span class="seg" id="win-seg"><button data-win="22">1 month</button><button data-win="all" class="on">All (~10 weeks)</button></span></p>
+    <div class="mapctl">
+      <span>Day shown:</span> <span class="seg" id="heat-mode"><button data-hm="today" class="on">Latest session</button><button data-hm="anim">Past 30 days ▶</button></span>
+      <span id="heat-anim-ctl" style="display:none"><button id="heat-play">⏸ Pause</button> <input type="range" id="heat-day" min="0" max="29" value="29" style="width:12rem;vertical-align:middle"> <b id="heat-date" style="color:var(--color-fg)">—</b> <label>Speed <input type="range" id="heat-speed" min="150" max="1500" step="50" value="600" style="width:5rem"></label> <span>· boxes keep today's size; colors and figures are that day's move</span></span>
+    </div>
     <div class="chartbox" data-source="sp500 dow30 ndx100 sectors history">
       <div id="treemap" class="dash-skeleton" style="min-height: 520px"></div>
       <div class="tip" id="tip-tm"></div>
@@ -401,6 +405,7 @@
   }
 
   // ---------- treemap ----------
+  let treePaint = null; let treeKey = '';
   function treemap(stocks, sectors, color) {
     const box = document.getElementById('treemap'); const tip = document.getElementById('tip-tm');
     box.classList.remove('dash-skeleton'); box.innerHTML = '';
@@ -429,6 +434,15 @@
       });
     const leaves = root.leaves();
     const leaf = svg.selectAll('g.leaf').data(leaves).join('g').attr('class', 'leaf').attr('transform', d => `translate(${d.x0},${d.y0})`);
+    treePaint = (chgOf, label) => { // repaint colors and figures for another day; chgOf(ticker) -> % change or NaN
+      leaf.each(function (d) { d.data.chg = chgOf(d.data.name); });
+      leaf.select('rect').attr('fill', d => isNaN(d.data.chg) ? tok('--cds-chart-muted') : color(d.data.chg));
+      leaf.select('text.pct').text(d => fmtPct(d.data.chg));
+      sec.each(function (s) { const ok = s.leaves().filter(l => !isNaN(l.data.chg)); const w = d3.sum(ok, l => l.data.cap); s.data.d1 = w ? d3.sum(ok, l => l.data.cap * l.data.chg) / w : NaN; });
+      sec.select('text').each(function (d) { const el = d3.select(this); const max = d.x1 - d.x0 - 10; const tries = [`${d.data.name} ${fmtPct(d.data.d1)}`, d.data.name, d.data.name.split(' ').map(s => s[0]).join('')];
+        for (const s of tries) { el.text(s); if (this.getComputedTextLength() <= max) return; } el.text(''); });
+      tip.dataset.ticker = ''; tip.dataset.day = label || '';
+    };
     leaf.append('rect').attr('width', d => Math.max(0, d.x1 - d.x0)).attr('height', d => Math.max(0, d.y1 - d.y0)).attr('rx', 1.5)
       .attr('fill', d => isNaN(d.data.chg) ? tok('--cds-chart-muted') : color(d.data.chg)).attr('stroke', 'var(--color-panel)').attr('stroke-width', 0.75);
     leaf.each(function (d) {
@@ -440,7 +454,7 @@
         .attr('font-size', fs + 'px').attr('font-weight', '600').attr('fill', 'var(--color-fg)').text(d.data.name);
       if (t1.node().getComputedTextLength() > w - 4) { t1.remove(); return; }
       if (two) {
-        const t2 = g.append('text').attr('x', w / 2).attr('y', h / 2 + fs * 0.95).attr('text-anchor', 'middle')
+        const t2 = g.append('text').attr('class', 'pct').attr('x', w / 2).attr('y', h / 2 + fs * 0.95).attr('text-anchor', 'middle')
           .attr('font-size', Math.max(8, fs * 0.6) + 'px').attr('fill', 'var(--color-fg)').attr('fill-opacity', 0.85).text(fmtPct(d.data.chg));
         if (t2.node().getComputedTextLength() > w - 4) t2.remove();
       }
@@ -449,7 +463,7 @@
       const r = box.getBoundingClientRect();
       if (tip.dataset.ticker !== d.data.name) {
         tip.dataset.ticker = d.data.name;
-        tip.innerHTML = `<div class="t">${esc(d.parent.data.name)}</div><div><b>${esc(d.data.name)}</b> · ${esc(d.data.full)}</div><div class="${cls(d.data.chg)}">${isNaN(d.data.chg) ? 'No Oct 21 quote' : fmtPct(d.data.chg) + ' today'} · $${fmtNum(d.data.price, 2)}</div><div>Market value: $${d.data.cap >= 1000 ? fmtNum(d.data.cap / 1000, 2) + 'T' : fmtNum(d.data.cap, 0) + 'B'}</div><div class="mini-host"></div>`;
+        tip.innerHTML = `<div class="t">${esc(d.parent.data.name)}</div><div><b>${esc(d.data.name)}</b> · ${esc(d.data.full)}</div><div class="${cls(d.data.chg)}">${isNaN(d.data.chg) ? 'No quote that day' : fmtPct(d.data.chg) + ' ' + (tip.dataset.day || 'latest session')}${tip.dataset.day ? '' : ' · $' + fmtNum(d.data.price, 2)}</div><div>Market value: $${d.data.cap >= 1000 ? fmtNum(d.data.cap / 1000, 2) + 'T' : fmtNum(d.data.cap, 0) + 'B'}</div><div class="mini-host"></div>`;
         miniChart(tip.querySelector('.mini-host'), d.data.name);
       }
       showTip(tip, box, ev.clientX - r.left, ev.clientY - r.top, null);
@@ -553,6 +567,19 @@
       for (const d of ds) for (const a of days.get(d).values()) out.push({ date: d, state: a.state, n: a.n, cap_b: Math.round(a.cap_b * 100) / 100, gain_b: Math.round(a.gain_b * 100) / 100, gain_pct: Math.round(a.gain_b / (a.cap_b - a.gain_b) * 10000) / 100 });
       return out;
     } });
+  const hanim = { frame: 29, playing: false, timer: null, days: [], mode: 'today' };
+  let heatRedraw = null;
+  const hStop = () => { if (hanim.timer) clearInterval(hanim.timer); hanim.timer = null; hanim.playing = false; const b = document.getElementById('heat-play'); if (b) b.textContent = '▶ Play'; };
+  const hStart = () => { hStop(); hanim.playing = true; document.getElementById('heat-play').textContent = '⏸ Pause';
+    hanim.timer = setInterval(() => { hanim.frame = (hanim.frame + 1) % Math.max(1, hanim.days.length); if (heatRedraw) heatRedraw(); }, Number(document.getElementById('heat-speed').value)); };
+  document.getElementById('heat-play').addEventListener('click', () => hanim.playing ? hStop() : hStart());
+  document.getElementById('heat-day').addEventListener('input', e => { hStop(); hanim.frame = Number(e.target.value); if (heatRedraw) heatRedraw(); });
+  document.getElementById('heat-speed').addEventListener('input', () => { if (hanim.playing) hStart(); });
+  document.querySelectorAll('#heat-mode button').forEach(b => b.addEventListener('click', () => {
+    hanim.mode = b.dataset.hm; document.querySelectorAll('#heat-mode button').forEach(x => x.classList.toggle('on', x === b));
+    document.getElementById('heat-anim-ctl').style.display = hanim.mode === 'anim' ? '' : 'none';
+    if (hanim.mode === 'anim') { hanim.frame = 29; draw(true); hStart(); } else { hStop(); draw(true); }
+  }));
   const anim = { frame: 29, playing: false, timer: null, days: [] };
   let mapRedraw = null;
   const animStop = () => { if (anim.timer) clearInterval(anim.timer); anim.timer = null; anim.playing = false; const b = document.getElementById('anim-play'); if (b) b.textContent = '▶ Play'; };
@@ -665,7 +692,7 @@
     const ids = ['indices', 'sectors', 'stocks', 'macro', 'calendar', 'sp500', 'dow30', 'ndx100', 'history', 'states_geo', 'breadth', 'breadth_dow', 'breadth_ndx', 'top_gainers', 'top_losers', 'state_totals', 'state_totals_dow', 'state_totals_ndx', 'state_daily', 'state_daily_dow', 'state_daily_ndx'];
     const sig = ids.map(i => { const d = dash.data(i); return d.status + (d.refreshing ? 'r' : '') + (Array.isArray(d.data) ? d.data.length : 0); }).join(',') +
       '|' + [document.getElementById('treemap').clientWidth, document.getElementById('usmap').clientWidth, document.getElementById('bar-d1').clientWidth].join('x') +
-      '|' + heatIdx + mapIdx + mapMetric + miniWin + JSON.stringify(sortState);
+      '|' + heatIdx + mapIdx + mapMetric + miniWin + hanim.mode + JSON.stringify(sortState);
     if (!force && sig === lastSig) return;
     lastSig = sig;
     const color = colorScale();
@@ -744,7 +771,22 @@
     // constituents: treemap, breadth, extremes
     const tm = document.getElementById('treemap');
     const active = heatIdx === 'dow30' ? dj : heatIdx === 'ndx100' ? nx : sp;
-    if (active.status === 'ok' && sec.status === 'ok') treemap(active.data, sec.data, color);
+    heatRedraw = null;
+    if (active.status === 'ok' && sec.status === 'ok') {
+      const key = `${heatIdx}|${tm.clientWidth}|${active.data.length}`;
+      if (treeKey !== key || !treePaint || !tm.querySelector('svg')) { treemap(active.data, sec.data, color); treeKey = key; }
+      if (hanim.mode === 'anim' && histBy.size) {
+        const dayList = Array.from(new Set(Array.from(histBy.values()).flat().map(r => r.date.toISOString().slice(0, 10)))).sort();
+        hanim.days = dayList.slice(-30);
+        const sl = document.getElementById('heat-day'); sl.max = hanim.days.length - 1; if (hanim.frame > hanim.days.length - 1) hanim.frame = hanim.days.length - 1;
+        heatRedraw = () => {
+          const d = hanim.days[hanim.frame]; sl.value = hanim.frame; document.getElementById('heat-date').textContent = d3.utcFormat('%a, %b %-d, %Y')(new Date(d + 'T00:00:00Z'));
+          const chgOf = tk => { const s = histBy.get(tk); if (!s) return NaN; let i = s.findIndex(r => r.date.toISOString().slice(0, 10) === d); if (i < 1) return NaN; return (s[i].close / s[i - 1].close - 1) * 100; };
+          treePaint(chgOf, d3.utcFormat('on %b %-d')(new Date(d + 'T00:00:00Z')));
+        };
+        heatRedraw();
+      } else if (treePaint) treePaint(tk => { const r = active.data.find(x => x.ticker === tk); return r ? num(r.chg_pct) : NaN; }, '');
+    }
     else if (active.status === 'error' || sec.status === 'error') fail(tm);
     else { tm.innerHTML = ''; tm.classList.add('dash-skeleton'); }
     [['breadth', br], ['breadth_dow', brd], ['breadth_ndx', brn]].forEach(([id, d]) => {

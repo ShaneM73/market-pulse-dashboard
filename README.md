@@ -7,7 +7,8 @@ An interactive market dashboard built as a single HTML page with d3. Snapshot da
 
 - Index tiles (S&P 500, Dow, Nasdaq, Russell 2000, VIX, 10-year yield) and a one-line takeaway
 - **Heat map** of the S&P 500 (463 constituents), Dow 30 or Nasdaq-100 — boxes sized by market value,
-  colored by the day's move, grouped by sector; hover for a mini price chart (~10 weeks of daily closes for 93 names)
+  colored by the day's move, grouped by sector; hover for a mini price chart; **Past 30 days** replays each
+  trading day's moves across the whole map (play/pause, scrub, speed)
 - **3-D headquarters map** — each state raised by the total market value (or today's ±% change) of the
   index companies headquartered there; drag to pan, scroll to zoom, Shift-drag to rotate and tilt;
   losses sink below the base plane in the ±% view; **Change, past 30 days** replays each trading day's
