@@ -594,14 +594,14 @@
     const stateColor = r => !r ? muted : pctMode ? color(r.gain_pct * 2) : seqColor(r.cap_b);
     const labelFor = r => !r ? '' : pctMode ? fmtPct(r.gain_pct) : capWords(r.cap_b);
     const lg = document.getElementById('legend-bar-map');
-    if (pctMode) { lg.style.background = `linear-gradient(90deg, ${color(-3)}, ${color(0)}, ${color(3)})`; document.getElementById('legend-map-lo').textContent = (frameDate ? 'Combined move: −1.5%' : 'Combined move today: −1.5%'); document.getElementById('legend-map-hi').textContent = '+1.5%'; document.getElementById('legend-map-note').textContent = (frameDate ? `· ${d3.utcFormat('%a %b %-d')(new Date(frameDate + 'T00:00:00Z'))} · ` : '· ') + 'Height: a ±3% combined move = full height (same scale on every day); gains rise above the base plane, losses sink below it'; }
+    if (pctMode) { lg.style.background = `linear-gradient(90deg, ${color(-3)}, ${color(0)}, ${color(3)})`; document.getElementById('legend-map-lo').textContent = (frameDate ? 'Combined move: −1.5%' : 'Combined move today: −1.5%'); document.getElementById('legend-map-hi').textContent = '+1.5%'; document.getElementById('legend-map-note').textContent = (frameDate ? `· ${d3.utcFormat('%a %b %-d')(new Date(frameDate + 'T00:00:00Z'))} · ` : '· ') + 'Height: a +3% combined move = full height, a −3% move = half that depth (same scale on every day); gains rise above the base plane, losses sink below it'; }
     else { lg.style.background = `linear-gradient(90deg, ${seqColor(0)}, ${seqColor(maxV / 4)}, ${seqColor(maxV)})`; document.getElementById('legend-map-lo').textContent = 'Market value of HQs: $0'; document.getElementById('legend-map-hi').textContent = capWords(maxV); document.getElementById('legend-map-note').textContent = '· Height = market value'; }
     const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${VW} ${VH}`).style('display', 'block');
     const gView = svg.append('g'); const gStates = gView.append('g'); const gLabels = gView.append('g').style('pointer-events', 'none');
     const CX = 487.5, CY = 305;
     const plane = () => { const a = view.rot * Math.PI / 180, c = Math.cos(a), s = Math.sin(a), tl = view.tilt;
       return { a: c, b: s * tl, c: -s, d: c * tl, e: VW / 2 - (c * CX - s * CY), f: VH / 2 + 30 - (s * CX + c * CY) * tl }; };
-    const items = geo.map(s => { const r = byState.get(s.name); const sign = (pctMode && r && r.gain_pct < 0) ? -1 : 1; const h = sign * Math.round(hScale(val(r))); const top = stateColor(r); const dc = d3.color(top);
+    const items = geo.map(s => { const r = byState.get(s.name); const sign = (pctMode && r && r.gain_pct < 0) ? -1 : 1; const h = sign * Math.round(hScale(val(r)) * (sign < 0 ? 0.5 : 1)); // losses sink at half the rate gains rise const top = stateColor(r); const dc = d3.color(top);
       return { s, r, h, top, side: dc ? dc.darker(sign < 0 ? 1.5 : 0.9).formatRgb() : top }; });
     const gs = gStates.selectAll('g.state').data(items).join('g').attr('class', 'state').style('cursor', 'grab');
     gs.each(function (d) {
