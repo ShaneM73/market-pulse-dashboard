@@ -318,7 +318,7 @@
       table.querySelectorAll('th button').forEach(b => b.addEventListener('click', () => {
         const f = b.parentElement.dataset.field; const cur = sortState[id];
         sortState[id] = { field: f, dir: cur && cur.field === f && cur.dir === 'desc' ? 'asc' : 'desc' };
-        draw();
+        draw(true);
       }));
     }
   }
@@ -464,7 +464,7 @@
   let heatIdx = 'sp500';
   document.querySelectorAll('#idx-seg button').forEach(b => b.addEventListener('click', () => {
     heatIdx = b.dataset.idx; document.querySelectorAll('#idx-seg button').forEach(x => x.classList.toggle('on', x === b));
-    document.querySelectorAll('#heatmap-card .bl').forEach(x => x.style.display = x.dataset.idx === heatIdx ? '' : 'none'); draw();
+    document.querySelectorAll('#heatmap-card .bl').forEach(x => x.style.display = x.dataset.idx === heatIdx ? '' : 'none'); draw(true);
   }));
   dash.calc('top_gainers', { inputs: ['sp500'], title: 'Top 10 gainers', description: 'The ten constituents with the largest percent gain today.',
     fn: (sp500) => sp500.slice().sort((a, b) => Number(b.chg_pct) - Number(a.chg_pct)).slice(0, 10) });
@@ -564,18 +564,18 @@
   let mapMetric = 'cap'; let mapIdx = 'sp500'; const view = { rot: 0, tilt: 0.8 }; let zoomT = d3.zoomIdentity; let mapRender = null;
   document.querySelectorAll('#map-idx-seg button').forEach(b => b.addEventListener('click', () => {
     mapIdx = b.dataset.idx; document.querySelectorAll('#map-idx-seg button').forEach(x => x.classList.toggle('on', x === b));
-    document.querySelectorAll('#map-card .ml').forEach(x => x.style.display = x.dataset.idx === mapIdx ? '' : 'none'); draw();
+    document.querySelectorAll('#map-card .ml').forEach(x => x.style.display = x.dataset.idx === mapIdx ? '' : 'none'); draw(true);
   }));
   document.getElementById('map-rot').addEventListener('input', e => { view.rot = Number(e.target.value); if (mapRender) mapRender(); });
   document.getElementById('map-tilt').addEventListener('input', e => { view.tilt = Number(e.target.value) / 100; if (mapRender) mapRender(); });
-  document.getElementById('map-reset').addEventListener('click', () => { view.rot = 0; view.tilt = 0.8; zoomT = d3.zoomIdentity; draw(); });
+  document.getElementById('map-reset').addEventListener('click', () => { view.rot = 0; view.tilt = 0.8; zoomT = d3.zoomIdentity; draw(true); });
   document.querySelectorAll('#map-seg button').forEach(b => b.addEventListener('click', () => {
     mapMetric = b.dataset.m; document.querySelectorAll('#map-seg button').forEach(x => x.classList.toggle('on', x === b));
     document.getElementById('anim-ctl').style.display = mapMetric === 'anim' ? '' : 'none';
-    if (mapMetric === 'anim') { anim.frame = 29; draw(); animStart(); } else { animStop(); draw(); }
+    if (mapMetric === 'anim') { anim.frame = 29; draw(true); animStart(); } else { animStop(); draw(true); }
   }));
   const capWords = v => v >= 1000 ? '$' + fmtNum(v / 1000, 2) + 'T' : '$' + fmtNum(v, 0) + 'B';
-  let mapPaint = null;
+  let mapPaint = null; let mapKey = '';
   function usMap(totals, geo, stocks, color, frameDate, fixedMax) {
     const box = document.getElementById('usmap'); const tip = document.getElementById('tip-map');
     box.classList.remove('dash-skeleton'); box.innerHTML = '';
@@ -660,7 +660,14 @@
   }
 
   // ---------- main ----------
-  function draw() {
+  let lastSig = '';
+  function draw(force) {
+    const ids = ['indices', 'sectors', 'stocks', 'macro', 'calendar', 'sp500', 'dow30', 'ndx100', 'history', 'states_geo', 'breadth', 'breadth_dow', 'breadth_ndx', 'top_gainers', 'top_losers', 'state_totals', 'state_totals_dow', 'state_totals_ndx', 'state_daily', 'state_daily_dow', 'state_daily_ndx'];
+    const sig = ids.map(i => { const d = dash.data(i); return d.status + (d.refreshing ? 'r' : '') + (Array.isArray(d.data) ? d.data.length : 0); }).join(',') +
+      '|' + [document.getElementById('treemap').clientWidth, document.getElementById('usmap').clientWidth, document.getElementById('bar-d1').clientWidth].join('x') +
+      '|' + heatIdx + mapIdx + mapMetric + miniWin + JSON.stringify(sortState);
+    if (!force && sig === lastSig) return;
+    lastSig = sig;
     const color = colorScale();
     legendBar.style.background = `linear-gradient(90deg, ${color(-3)}, ${color(0)}, ${color(3)})`;
     const idx = dash.data('indices'), sec = dash.data('sectors'), stk = dash.data('stocks'), mac = dash.data('macro'), cal = dash.data('calendar');
@@ -768,15 +775,15 @@
         anim.days = Array.from(new Set(sd.data.map(r => r.date))).sort();
         // one height scale for the whole window: the largest move of any state with several HQs (single-company states swing too wildly to set the scale)
         const animMax = d3.max(sd.data.filter(r => r.state !== 'Outside US' && r.n >= 2), r => Math.abs(Number(r.gain_pct))) || 1;
-        let built = false;
+        const key = `anim|${mapIdx}|${um.clientWidth}|${sd.data.length}`;
         const sl = document.getElementById('anim-day'); sl.max = anim.days.length - 1; if (anim.frame > anim.days.length - 1) anim.frame = anim.days.length - 1;
         mapRedraw = () => { const d = anim.days[anim.frame]; sl.value = anim.frame; document.getElementById('anim-date').textContent = d3.utcFormat('%a, %b %-d, %Y')(new Date(d + 'T00:00:00Z'));
           const tot = sd.data.filter(r => r.date === d);
-          if (!built || !mapPaint) { usMap(tot, geo.data, members.data, color, d, animMax); built = true; } else mapPaint(tot, d); };
+          if (mapKey !== key || !mapPaint || !um.querySelector('svg')) { usMap(tot, geo.data, members.data, color, d, animMax); mapKey = key; } else mapPaint(tot, d); };
         mapRedraw();
       } else if (sd.status === 'error' || geo.status === 'error') fail(um);
       else { um.innerHTML = ''; um.classList.add('dash-skeleton'); }
-    } else if (st.status === 'ok' && geo.status === 'ok' && members.status === 'ok' && Array.isArray(st.data)) usMap(st.data, geo.data, members.data, color);
+    } else if (st.status === 'ok' && geo.status === 'ok' && members.status === 'ok' && Array.isArray(st.data)) { mapKey = ''; usMap(st.data, geo.data, members.data, color); }
     else if (st.status === 'error' || geo.status === 'error' || members.status === 'error') fail(um);
     else { um.innerHTML = ''; um.classList.add('dash-skeleton'); }
     [['state_totals', stAll.sp500], ['state_totals_ndx', stAll.ndx100]].forEach(([id, d]) => {
