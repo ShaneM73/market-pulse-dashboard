@@ -578,7 +578,7 @@
   function usMap(totals, geo, stocks, color, frameDate) {
     const box = document.getElementById('usmap'); const tip = document.getElementById('tip-map');
     box.classList.remove('dash-skeleton'); box.innerHTML = '';
-    const W = box.clientWidth || 900; const PAD = 130; const VH = 610 + PAD; const VW = 1060; const XOFF = 90;
+    const W = box.clientWidth || 900; const PAD = 240; const VH = 610 + PAD; const VW = 1060; const XOFF = 90;
     const H = Math.round(W * VH / VW); box.style.minHeight = H + 'px';
     const byState = new Map(totals.map(r => [r.state, r]));
     const pctMode = mapMetric !== 'cap';
@@ -588,7 +588,7 @@
     // market value: square-root scale up to 72px; percent change: linear and capped at 36px so a big mover doesn't bury its neighbours
     // percent views share one fixed scale: a 3% combined move = full height, larger moves clamp, so days and views compare directly
     const PCT_FULL = 3;
-    const hScale = pctMode ? d3.scaleLinear([0, PCT_FULL], [0, 112]).clamp(true) : d3.scaleSqrt([0, maxV], [0, 72]);
+    const hScale = pctMode ? d3.scaleLinear([0, PCT_FULL], [0, 224]).clamp(true) : d3.scaleSqrt([0, maxV], [0, 72]);
     const muted = tok('--cds-chart-muted'); probe.style.color = (dash.colors && dash.colors[0]) || 'var(--color-fg)'; const accent = getComputedStyle(probe).color;
     const seq = d3.scaleSqrt([0, maxV], [0, 1]); const seqColor = v => d3.interpolateRgb(muted, accent)(seq(v));
     const stateColor = r => !r ? muted : pctMode ? color(r.gain_pct * 2) : seqColor(r.cap_b);
