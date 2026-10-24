@@ -632,7 +632,7 @@
     const usOnly = geo.map(s => byState.get(s.name)).filter(Boolean);
     const maxV = fixedMax || d3.max(usOnly, val) || 1;
     // market value: square-root scale up to 72px; percent change: linear and capped at 36px so a big mover doesn't bury its neighbours
-    const hScale = pctMode ? d3.scaleLinear([0, maxV], [0, 36]) : d3.scaleSqrt([0, maxV], [0, 72]);
+    const hScale = pctMode ? d3.scaleLinear([0, maxV], [0, fixedMax ? 56 : 36]).clamp(true) : d3.scaleSqrt([0, maxV], [0, 72]);
     const muted = tok('--cds-chart-muted'); probe.style.color = (dash.colors && dash.colors[0]) || 'var(--color-fg)'; const accent = getComputedStyle(probe).color;
     const seq = d3.scaleSqrt([0, maxV], [0, 1]); const seqColor = v => d3.interpolateRgb(muted, accent)(seq(v));
     const stateColor = r => !r ? muted : pctMode ? color(r.gain_pct * 2) : seqColor(r.cap_b);
@@ -802,7 +802,8 @@
     if (mapMetric === 'anim') {
       if (sd.status === 'ok' && geo.status === 'ok' && members.status === 'ok' && Array.isArray(sd.data) && sd.data.length) {
         anim.days = Array.from(new Set(sd.data.map(r => r.date))).sort();
-        const animMax = d3.max(sd.data.filter(r => r.state !== 'Outside US'), r => Math.abs(Number(r.gain_pct))) || 1;
+        // scale anchored to a typical big state-day (90th percentile of |move|, weighted toward states with several HQs), with larger moves clamped at the ceiling
+        const animMax = d3.quantile(sd.data.filter(r => r.state !== 'Outside US' && r.n >= 2).map(r => Math.abs(Number(r.gain_pct))).sort(d3.ascending), 0.9) || 1;
         const sl = document.getElementById('anim-day'); sl.max = anim.days.length - 1; if (anim.frame > anim.days.length - 1) anim.frame = anim.days.length - 1;
         mapRedraw = () => { const d = anim.days[anim.frame]; sl.value = anim.frame; document.getElementById('anim-date').textContent = d3.utcFormat('%a, %b %-d, %Y')(new Date(d + 'T00:00:00Z'));
           usMap(sd.data.filter(r => r.date === d), geo.data, members.data, color, d, animMax); };
