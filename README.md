@@ -1,5 +1,9 @@
 # Market Pulse — S&P 500 / Dow / Nasdaq-100 dashboard
 
+**▶ Open the live dashboard: [shanem73.github.io/market-pulse-dashboard](https://shanem73.github.io/market-pulse-dashboard/)**
+
+**Designer and main contributor:** Prof. Xin (Shane) Miao, Missouri State University ([@ShaneM73](https://github.com/ShaneM73))
+
 An interactive market dashboard built as a single HTML page with d3. Snapshot data is for the
 **October 21, 2026** close.
 
