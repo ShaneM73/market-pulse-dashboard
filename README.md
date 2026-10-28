@@ -67,3 +67,7 @@ change. It can also be run by hand from the Actions tab ("Run workflow").
 - Headquarters location is a proxy for where a company's employees, plants and taxes sit.
 - ~36 of the smallest S&P 500 members are missing from the constituent fetch.
 - Not investment advice.
+
+## License
+
+Code is released under the [MIT License](LICENSE). Market data in `data/` comes from the sources listed above and remains subject to their terms.
