@@ -1,42 +1,42 @@
 ticker,name,sector,cap_b,cap_basis,chg_pct,note
-NVDA,Nvidia,Technology,4832.62,reported,-3.17,AI chip rebound; GTC Berlin keynote
-AAPL,Apple,Technology,5100.56,reported,5.31,New all-time closing high
-MSFT,Microsoft,Technology,4129.78,reported,6.68,Flat
-AMD,Advanced Micro Devices,Technology,797.92,reported,1.01,AI chip rebound
-IBM,IBM,Technology,239.61,reported,1.71,Beat on revenue and EPS
-DELL,Dell Technologies,Technology,236.75,reported,-8.82,Rode Super Micro outlook
-TXN,Texas Instruments,Technology,284.47,reported,-0.32,Chip rally
-PANW,Palo Alto Networks,Technology,284.7,reported,-0.62,Security rally
-LRCX,Lam Research,Technology,277.1,reported,-4.03,Fell ~6% after hours despite beat
-SMCI,Super Micro Computer,Technology,19.45,reported,-5.7,Raised quarterly revenue outlook to $18.5-19.5B
-HPE,Hewlett Packard Enterprise,Technology,66.49,reported,-5.67,Rode Super Micro outlook
+NVDA,Nvidia,Technology,4385.17,reported,-9.26,AI chip rebound; GTC Berlin keynote
+AAPL,Apple,Technology,5022.63,reported,-1.53,New all-time closing high
+MSFT,Microsoft,Technology,3982.14,reported,-3.58,Flat
+AMD,Advanced Micro Devices,Technology,660.17,reported,-17.26,AI chip rebound
+IBM,IBM,Technology,232.81,reported,-2.84,Beat on revenue and EPS
+DELL,Dell Technologies,Technology,201.5,reported,-14.89,Rode Super Micro outlook
+TXN,Texas Instruments,Technology,254.02,reported,-10.7,Chip rally
+PANW,Palo Alto Networks,Technology,257.4,reported,-9.59,Security rally
+LRCX,Lam Research,Technology,231.76,reported,-16.36,Fell ~6% after hours despite beat
+SMCI,Super Micro Computer,Technology,17.79,reported,-8.51,Raised quarterly revenue outlook to $18.5-19.5B
+HPE,Hewlett Packard Enterprise,Technology,58.62,reported,-11.84,Rode Super Micro outlook
 ZS,Zscaler,Technology,80,tier,7.84,Nvidia OpenShell AI-agent security push
 OKTA,Okta,Technology,80,tier,7.54,Security rally
-FTNT,Fortinet,Technology,94.93,reported,1.0,Up despite double downgrade
-GOOGL,Alphabet,Communication Services,3530.06,reported,3.18,About 17% below its high
-META,Meta Platforms,Communication Services,1607.7,reported,1.44,Beat after hours; +3.3% late
-NFLX,Netflix,Communication Services,276.44,reported,4.68,52-week low on weak Q4 profit outlook
-T,AT&T,Communication Services,149.59,reported,2.06,Starlink Mobile competition fears
-VZ,Verizon,Communication Services,191.82,reported,2.06,Telecom selloff
-TMUS,T-Mobile US,Communication Services,170.73,reported,3.08,Telecom selloff
-AMZN,Amazon,Consumer Discretionary,2869.48,reported,6.12,Flat
-TSLA,Tesla,Consumer Discretionary,1524.93,reported,-3.34,SpaceX merger talk; positive FCF after hours
-CMG,Chipotle,Consumer Discretionary,44.54,reported,5.83,TD Cowen downgrade
+FTNT,Fortinet,Technology,89.89,reported,-5.32,Up despite double downgrade
+GOOGL,Alphabet,Communication Services,3452.36,reported,-2.2,About 17% below its high
+META,Meta Platforms,Communication Services,1544.1,reported,-3.96,Beat after hours; +3.3% late
+NFLX,Netflix,Communication Services,272.99,reported,-1.25,52-week low on weak Q4 profit outlook
+T,AT&T,Communication Services,149.52,reported,-0.05,Starlink Mobile competition fears
+VZ,Verizon,Communication Services,191.62,reported,-0.11,Telecom selloff
+TMUS,T-Mobile US,Communication Services,172.26,reported,0.89,Telecom selloff
+AMZN,Amazon,Consumer Discretionary,2806.7,reported,-2.19,Flat
+TSLA,Tesla,Consumer Discretionary,1360.64,reported,-10.77,SpaceX merger talk; positive FCF after hours
+CMG,Chipotle,Consumer Discretionary,44.79,reported,0.57,TD Cowen downgrade
 LVS,Las Vegas Sands,Consumer Discretionary,80,tier,-1.73,Q3 miss after hours
 WING,Wingstop,Consumer Discretionary,80,tier,-7.95,Revenue miss
 LAD,Lithia Motors,Consumer Discretionary,80,tier,-10.15,Fell despite EPS beat
-SPCX,SpaceX,Industrials,1842.87,reported,-3.81,First profit as public company; revenue +161% (Nasdaq-listed; not an S&P 500 member)
-CSX,CSX,Industrials,96.41,reported,2.62,Rose ~4% after hours on EPS beat
-JPM,JPMorgan Chase,Financials,935.06,reported,4.18,Flat
-GS,Goldman Sachs,Financials,280.97,reported,3.56,Led the Dow
-COF,Capital One,Financials,126.56,reported,-1.15,EPS crushed estimates
-MCO,Moody's,Financials,91.5,reported,4.89,Earnings
-HOOD,Robinhood,Financials,78.59,reported,2.02,Rosenblatt initiation at Buy
-COIN,Coinbase,Financials,39.97,reported,4.16,OCC finalized stablecoin rules
-DHR,Danaher,Health Care,165.15,reported,2.09,EPS beat
-ABT,Abbott Laboratories,Health Care,199.88,reported,5.59,Cut 2026 sales growth outlook
-ISRG,Intuitive Surgical,Health Care,170.32,reported,9.38,Fell despite upgrade
-ELV,Elevance Health,Health Care,94.16,reported,4.94,Earnings
-DXCM,Dexcom,Health Care,33.39,reported,6.64,Laggard
-CRL,Charles River Labs,Health Care,15.57,reported,-7.27,Leader
-NEE,NextEra Energy,Utilities,184.5,reported,4.89,Earnings
+SPCX,SpaceX,Industrials,1676.1,reported,-9.05,First profit as public company; revenue +161% (Nasdaq-listed; not an S&P 500 member)
+CSX,CSX,Industrials,94.15,reported,-2.34,Rose ~4% after hours on EPS beat
+JPM,JPMorgan Chase,Financials,895.84,reported,-4.19,Flat
+GS,Goldman Sachs,Financials,263.09,reported,-6.36,Led the Dow
+COF,Capital One,Financials,125.05,reported,-1.2,EPS crushed estimates
+MCO,Moody's,Financials,89.25,reported,-2.46,Earnings
+HOOD,Robinhood,Financials,70.48,reported,-10.32,Rosenblatt initiation at Buy
+COIN,Coinbase,Financials,36.1,reported,-9.69,OCC finalized stablecoin rules
+DHR,Danaher,Health Care,159.11,reported,-3.66,EPS beat
+ABT,Abbott Laboratories,Health Care,196.57,reported,-1.65,Cut 2026 sales growth outlook
+ISRG,Intuitive Surgical,Health Care,165.52,reported,-2.82,Fell despite upgrade
+ELV,Elevance Health,Health Care,93.69,reported,-0.5,Earnings
+DXCM,Dexcom,Health Care,31.88,reported,-4.54,Laggard
+CRL,Charles River Labs,Health Care,14.94,reported,-4.07,Leader
+NEE,NextEra Energy,Utilities,184.09,reported,-0.23,Earnings
