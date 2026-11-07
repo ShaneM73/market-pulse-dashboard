@@ -1,14 +1,14 @@
 metric,value,unit,change,note
-10-year Treasury yield,4.84,%,-6 bp,as of 2026-11-05
-30-year Treasury yield,5.25,%,-3 bp,as of 2026-11-05
-13-week T-bill yield,3.99,%,-4 bp,as of 2026-11-05
-VIX,28.18,,+69.66%,as of 2026-11-05
-Brent crude,99.93,$/bbl,+5.61%,as of 2026-11-05
-WTI crude,91.72,$/bbl,+4.09%,as of 2026-11-05
-Gold (front month),4073.0,$/oz,+0.00%,as of 2026-11-05
-Bitcoin,76154.18,$,-5.29%,as of 2026-11-05
-Dollar index (DXY),101.66,,+0.14%,as of 2026-11-05
-S&P 500 distance from record,-5.95,%,,"52-week closing high 7,818.93"
+10-year Treasury yield,4.86,%,+2 bp,as of 2026-11-06
+30-year Treasury yield,5.26,%,+1 bp,as of 2026-11-06
+13-week T-bill yield,4.0,%,+1 bp,as of 2026-11-06
+VIX,25.64,,-9.01%,as of 2026-11-06
+Brent crude,97.76,$/bbl,-0.54%,as of 2026-11-06
+WTI crude,90.34,$/bbl,-0.20%,as of 2026-11-06
+Gold (front month),4079.5,$/oz,-0.83%,as of 2026-11-06
+Bitcoin,75943.48,$,+0.00%,as of 2026-11-06
+Dollar index (DXY),102.28,,+0.72%,as of 2026-11-06
+S&P 500 distance from record,-5.65,%,,"52-week closing high 7,818.93"
 Fed funds target (upper),4.00,%,,Hiked Sep 16 to 3.75-4.00%
 Odds of hold at Oct 27-28 FOMC,88,%,,Kalshi; hike odds 11%
 Odds of 25 bp hike in December,75,%,,Market pricing (TradingView)
