@@ -1,464 +1,464 @@
 ticker,name,sector,cap_b,price,chg_pct,hq_city,hq_state,hq_country
-A,"Agilent Technologies, Inc.",Health Care,49.88,176.95,-0.52,Santa Clara,California,US
-AAPL,Apple Inc.,Technology,5189.87,355.63,2.04,Cupertino,California,US
-ABBV,AbbVie Inc.,Health Care,521.27,294.98,0.37,North Chicago,Illinois,US
-ABNB,"Airbnb, Inc.",Consumer Discretionary,106.8,181.13,-3.09,San Francisco,California,US
-ABT,Abbott Laboratories,Health Care,189.11,109.29,-1.06,North Chicago,Illinois,US
-ACGL,Arch Capital Group Ltd.,Financials,37.1,109.17,0.03,Hamilton,Bermuda,non-US
-ACN,Accenture plc,Technology,149.85,253.66,-1.88,Dublin,Ireland,non-US
-ADBE,Adobe Inc.,Technology,92.47,237.6,0.38,San Jose,California,US
-ADI,"Analog Devices, Inc.",Technology,198.22,409.08,4.01,Wilmington,Massachusetts,US
-ADM,Archer-Daniels-Midland Company,Consumer Staples,34.18,70.92,2.34,Chicago,Illinois,US
-ADP,"Automatic Data Processing, Inc.",Industrials,121.4,306.36,0.3,Roseland,New Jersey,US
-ADSK,"Autodesk, Inc.",Technology,54.34,260.01,-0.04,San Francisco,California,US
-AEE,Ameren Corporation,Utilities,31.36,113.28,-0.35,St. Louis,Missouri,US
-AEP,"American Electric Power Company, Inc.",Utilities,70.34,129.21,1.07,Columbus,Ohio,US
-AFL,Aflac Incorporated,Financials,63.73,127.11,0.37,Columbus,Georgia,US
-AIG,"American International Group, Inc.",Financials,43.33,82.85,0.64,New York City,New York,US
-AIZ,"Assurant, Inc.",Financials,15.95,323.38,0.38,Atlanta,Georgia,US
-AJG,Arthur J. Gallagher & Co.,Financials,72.29,282.01,-0.23,Rolling Meadows,Illinois,US
-AKAM,"Akamai Technologies, Inc.",Technology,12.45,86.68,3.55,Cambridge,Massachusetts,US
-ALL,The Allstate Corporation,Financials,66.3,262.18,0.41,Northbrook,Illinois,US
-ALLE,Allegion plc,Industrials,16.25,191.09,0.84,Dublin,Ireland,non-US
-AMAT,"Applied Materials, Inc.",Technology,313.53,395.08,6.05,Santa Clara,California,US
-AMCR,Amcor plc,Materials,20.5,44.39,-1.77,Warmley,United Kingdom,non-US
-AMD,"Advanced Micro Devices, Inc.",Technology,902.59,552.9,7.32,Santa Clara,California,US
-AME,"AMETEK, Inc.",Industrials,54.95,239.69,0.58,Berwyn,Pennsylvania,US
-AMGN,Amgen Inc.,Health Care,253.07,468.11,0.62,Thousand Oaks,California,US
-AMP,"Ameriprise Financial, Inc.",Financials,45.94,520.06,0.02,Minneapolis,Minnesota,US
-AMT,American Tower Corporation,Real Estate,88.64,190.24,-0.07,Boston,Massachusetts,US
-AMZN,"Amazon.com, Inc.",Consumer Discretionary,2870.99,266.17,-1.74,Seattle,Washington,US
-ANET,"Arista Networks, Inc.",Technology,248.06,196.68,6.3,Santa Clara,California,US
-AON,Aon plc,Financials,71.39,336.55,0.06,London,United Kingdom,non-US
-APA,APA Corporation,Energy,15.9,46.74,3.59,Houston,Texas,US
-APD,"Air Products and Chemicals, Inc.",Materials,70.19,315.18,0.94,Upper Macungie Township,Pennsylvania,US
-APH,Amphenol Corporation,Technology,195.57,79.31,-0.8,Wallingford,Connecticut,US
-APO,"Apollo Global Management, Inc.",Financials,72.61,122.95,0.17,New York City,New York,US
-APP,AppLovin Corporation,Communication Services,135.45,404.77,2.34,Palo Alto,California,US
-ARES,Ares Management Corporation,Financials,45.55,137.89,-1.09,Los Angeles,California,US
-ATO,Atmos Energy Corporation,Utilities,29.68,175.65,0.16,Dallas,Texas,US
-AVGO,Broadcom Inc.,Technology,1645.36,345.22,3.99,Palo Alto,California,US
-AVY,Avery Dennison Corporation,Materials,14.26,188.18,-0.45,Mentor,Ohio,US
-AWK,"American Water Works Company, Inc.",Utilities,29.74,149.66,-0.47,Camden,New Jersey,US
-AXON,"Axon Enterprise, Inc.",Industrials,25.63,315.42,4.26,Scottsdale,Arizona,US
-AXP,American Express Company,Financials,218.2,323.11,-0.11,New York City,New York,US
-AZO,"AutoZone, Inc.",Consumer Discretionary,52.35,3237.73,0.63,Memphis,Tennessee,US
-BA,The Boeing Company,Industrials,137.95,174.54,0.67,Arlington,Virginia,US
-BAC,Bank of America Corporation,Financials,350.77,50.67,-0.02,Charlotte,North Carolina,US
-BALL,Ball Corporation,Materials,17.42,65.81,-1.47,Broomfield,Colorado,US
-BAX,Baxter International Inc.,Health Care,13.62,26.34,-0.3,Deerfield,Illinois,US
-BBY,"Best Buy Co., Inc.",Consumer Discretionary,22.06,105.16,1.02,Richfield,Minnesota,US
-BDX,"Becton, Dickinson and Company",Health Care,58.44,214.52,0.9,Franklin Lakes,New Jersey,US
-BE,Bloom Energy Corporation,Industrials,61.69,209.47,12.97,San Jose,California,US
-BG,Bunge Global SA,Consumer Staples,19.27,100.28,0.87,Chesterfield,Missouri,US
-BIIB,Biogen Inc.,Health Care,37.44,253.4,0.06,Cambridge,Massachusetts,US
-BKNG,Booking Holdings Inc.,Consumer Discretionary,120.38,160.21,0.6,Norwalk,Connecticut,US
-BKR,Baker Hughes Company,Energy,49.05,49.41,3.43,Houston,Texas,US
-BLK,"BlackRock, Inc.",Financials,198.91,1226.31,0.34,New York City,New York,US
-BMY,Bristol-Myers Squibb Company,Health Care,128.51,62.91,0.18,New York City,New York,US
-BNY,The Bank of New York Mellon Corporation,Financials,102.74,152.69,1.03,New York City,New York,US
-BR,"Broadridge Financial Solutions, Inc.",Industrials,21.77,192.85,-0.06,Lake Success,New York,US
-BRK.B,Berkshire Hathaway Inc.,Financials,1265.99,588.24,0.84,Omaha,Nebraska,US
-BRO,"Brown & Brown, Inc.",Financials,23.89,71.39,-0.7,Daytona Beach,Florida,US
-BSX,Boston Scientific Corporation,Health Care,65.41,45.13,0.96,Marlborough,Massachusetts,US
-BX,Blackstone Inc.,Financials,151.75,122.01,-0.42,New York City,New York,US
-C,Citigroup Inc.,Financials,205.6,124.21,1.59,New York City,New York,US
-CAH,"Cardinal Health, Inc.",Health Care,64.25,277.45,0.24,Dublin,Ohio,US
-CARR,Carrier Global Corporation,Industrials,44.99,54.58,2.96,Palm Beach Gardens,Florida,US
-CASY,"Casey's General Stores, Inc.",Consumer Staples,26.39,714.11,2.24,Ankeny,Iowa,US
-CAT,Caterpillar Inc.,Industrials,276.55,601.61,2.91,Irving,Texas,US
-CB,Chubb Limited,Financials,142.87,370.33,0.33,Zurich,Switzerland,non-US
-CBOE,"Cboe Global Markets, Inc.",Financials,38.55,369.19,1.2,Chicago,Illinois,US
-CBRE,"CBRE Group, Inc.",Real Estate,38.97,134.58,-0.16,Dallas,Texas,US
-CCI,Crown Castle Inc.,Real Estate,37.89,89.06,-0.32,Houston,Texas,US
-CCL,Carnival Corporation Ltd.,Consumer Discretionary,41.26,30.68,-0.2,Miami,Florida,US
-CDNS,"Cadence Design Systems, Inc.",Technology,90.68,329.26,-0.72,San Jose,California,US
-CDW,CDW Corporation,Technology,21.64,173.08,2.2,Vernon Hills,Illinois,US
-CEG,Constellation Energy Corporation,Utilities,97.35,274.73,2.6,Baltimore,Maryland,US
-CF,"CF Industries Holdings, Inc.",Materials,18.65,123.24,0.72,Deerfield,Illinois,US
-CFG,"Citizens Financial Group, Inc.",Financials,27.54,65.38,0.86,Providence,Rhode Island,US
-CHD,"Church & Dwight Co., Inc.",Consumer Staples,26.58,112.02,0.23,Ewing,New Jersey,US
-CHRW,"C.H. Robinson Worldwide, Inc.",Industrials,15.44,133.76,3.7,Eden Prairie,Minnesota,US
-CHTR,"Charter Communications, Inc.",Communication Services,22.29,136.31,1.68,Stamford,Connecticut,US
-CI,The Cigna Group,Health Care,79.66,301.45,-0.55,Bloomfield,Connecticut,US
-CIEN,Ciena Corporation,Technology,41.98,296.04,8.8,Hanover,Maryland,US
-CINF,Cincinnati Financial Corporation,Financials,29.13,189.78,-0.06,Fairfield,Ohio,US
-CL,Colgate-Palmolive Company,Consumer Staples,78.13,98.0,-0.09,New York City,New York,US
-CMCSA,Comcast Corporation,Communication Services,88.78,25.02,1.09,Philadelphia,Pennsylvania,US
-CME,CME Group Inc.,Financials,113.58,315.87,2.19,Chicago,Illinois,US
-CMG,"Chipotle Mexican Grill, Inc.",Consumer Discretionary,46.36,36.64,2.0,Newport Beach,California,US
-CMI,Cummins Inc.,Industrials,63.77,463.26,2.0,Columbus,Indiana,US
-CMS,CMS Energy Corporation,Utilities,21.84,69.62,-0.23,Jackson,Michigan,US
-CNC,Centene Corporation,Health Care,34.82,70.48,0.41,St. Louis,Missouri,US
-CNP,"CenterPoint Energy, Inc.",Utilities,27.01,41.0,-0.58,Houston,Texas,US
-COF,Capital One Financial Corporation,Financials,120.92,197.11,0.65,Tysons Corner,Virginia,US
-COHR,Coherent Corp.,Technology,46.18,234.51,9.25,Saxonburg,Pennsylvania,US
-COIN,"Coinbase Global, Inc.",Financials,35.95,136.27,3.13,New York City,New York,US
-COP,ConocoPhillips,Energy,165.62,137.86,1.67,Houston,Texas,US
-COR,"Cencora, Inc.",Health Care,66.76,349.88,0.34,Conshohocken,Pennsylvania,US
-COST,Costco Wholesale Corporation,Consumer Staples,481.95,1087.61,2.01,Issaquah,Washington,US
-CPAY,"Corpay, Inc.",Financials,30.33,461.95,0.5,Atlanta,Georgia,US
-CPRT,"Copart, Inc.",Industrials,29.79,32.17,-0.4,Dallas,Texas,US
-CRH,CRH plc,Materials,64.04,96.26,-0.62,Dublin,Ireland,non-US
-CRL,"Charles River Laboratories International, Inc.",Health Care,16.36,342.69,-0.9,Wilmington,Massachusetts,US
-CRM,"Salesforce, Inc.",Technology,179.42,218.01,2.12,San Francisco,California,US
-CRWD,"CrowdStrike Holdings, Inc.",Technology,235.04,229.06,1.46,Austin,Texas,US
-CSCO,"Cisco Systems, Inc.",Technology,397.25,100.76,2.66,San Jose,California,US
-CSGP,"CoStar Group, Inc.",Real Estate,12.26,30.27,-0.2,Washington,District of Columbia,US
-CSX,CSX Corporation,Industrials,96.13,51.9,1.61,Jacksonville,Florida,US
-CTAS,Cintas Corporation,Industrials,90.24,227.26,0.88,Mason,Ohio,US
-CTSH,Cognizant Technology Solutions Corporation,Technology,29.02,64.43,-0.88,Teaneck,New Jersey,US
-CVNA,Carvana Co.,Consumer Discretionary,82.31,73.87,1.16,Tempe,Arizona,US
-CVS,CVS Health Corporation,Health Care,114.49,89.52,0.57,Woonsocket,Rhode Island,US
-CVX,Chevron Corporation,Energy,418.37,213.28,0.98,Houston,Texas,US
-D,"Dominion Energy, Inc.",Utilities,59.86,68.06,-0.45,Richmond,Virginia,US
-DAL,"Delta Air Lines, Inc.",Industrials,59.75,91.32,-0.95,Atlanta,Georgia,US
-DASH,"DoorDash, Inc.",Consumer Discretionary,77.24,178.26,0.01,San Francisco,California,US
-DD,"DuPont de Nemours, Inc.",Industrials,21.02,155.61,-0.81,Wilmington,Delaware,US
-DDOG,"Datadog, Inc.",Technology,66.21,184.38,3.35,New York City,New York,US
-DE,Deere & Company,Industrials,186.52,691.75,0.6,Moline,Illinois,US
-DELL,Dell Technologies Inc.,Technology,237.59,373.68,11.75,Round Rock,Texas,US
-DG,Dollar General Corporation,Consumer Staples,30.32,137.44,0.09,Goodlettsville,Tennessee,US
-DGX,Quest Diagnostics Incorporated,Health Care,28.55,258.69,0.1,Secaucus,New Jersey,US
-DHI,"D.R. Horton, Inc.",Consumer Discretionary,41.25,147.48,-1.48,Arlington,Texas,US
-DHR,Danaher Corporation,Health Care,165.42,235.31,-0.34,Washington,District of Columbia,US
-DIS,The Walt Disney Company,Communication Services,206.6,119.65,0.37,Burbank,California,US
-DLR,"Digital Realty Trust, Inc.",Real Estate,68.41,181.13,0.14,Austin,Texas,US
-DLTR,"Dollar Tree, Inc.",Consumer Staples,26.81,142.9,1.47,Chesapeake,Virginia,US
-DOC,"Healthpeak Properties, Inc.",Real Estate,14.31,20.38,-0.15,Denver,Colorado,US
-DOV,Dover Corporation,Industrials,28.61,212.43,0.2,Downers Grove,Illinois,US
-DOW,Dow Inc.,Materials,23.5,32.54,3.37,Midland,Michigan,US
-DRI,"Darden Restaurants, Inc.",Consumer Discretionary,25.9,228.94,0.12,Orlando,Florida,US
-DTE,DTE Energy Company,Utilities,29.07,139.69,0.5,Detroit,Michigan,US
-DUK,Duke Energy Corporation,Utilities,100.41,128.77,-0.13,Charlotte,North Carolina,US
-DVN,Devon Energy Corporation,Energy,51.69,44.95,3.55,Oklahoma City,Oklahoma,US
-DXCM,"DexCom, Inc.",Health Care,30.32,80.35,0.54,San Diego,California,US
-EBAY,eBay Inc.,Consumer Discretionary,54.59,122.68,-0.68,San Jose,California,US
-ECHO,EchoStar Corporation,Communication Services,29.72,102.2,-1.88,Englewood,Colorado,US
-ECL,Ecolab Inc.,Materials,86.3,307.86,0.6,Saint Paul,Minnesota,US
-ED,"Consolidated Edison, Inc.",Utilities,44.08,119.19,-0.08,New York City,New York,US
-EFX,Equifax Inc.,Industrials,22.04,188.41,0.1,Atlanta,Georgia,US
-EG,"Everest Group, Ltd.",Financials,16.25,423.74,0.34,Hamilton,Bermuda,non-US
-EIX,Edison International,Utilities,23.06,59.92,-0.47,Rosemead,California,US
-EL,The Estée Lauder Companies Inc.,Consumer Staples,40.64,112.33,-0.97,New York City,New York,US
-ELV,"Elevance Health, Inc.",Health Care,93.14,429.48,-0.04,Indianapolis,Indiana,US
-EME,"EMCOR Group, Inc.",Industrials,29.41,666.74,3.31,Norwalk,Connecticut,US
-EMR,Emerson Electric Co.,Industrials,93.18,167.06,-0.29,Ferguson,Missouri,US
-EOG,"EOG Resources, Inc.",Energy,80.65,153.77,1.49,Houston,Texas,US
-EQIX,"Equinix, Inc.",Real Estate,105.39,1068.06,1.72,Redwood City,California,US
-EQT,EQT Corporation,Energy,32.96,52.69,1.33,Pittsburgh,Pennsylvania,US
-ES,Eversource Energy,Utilities,26.57,70.54,1.32,Hartford,Connecticut,US
-ESS,"Essex Property Trust, Inc.",Real Estate,18.21,274.0,-0.63,San Mateo,California,US
-ETN,Eaton Corporation plc,Industrials,140.07,360.62,1.81,Dublin,Ireland,non-US
-ETR,Entergy Corporation,Utilities,53.5,111.99,0.25,New Orleans,Louisiana,US
-EVRG,"Evergy, Inc.",Utilities,20.37,88.34,-0.11,Kansas City,Missouri,US
-EW,Edwards Lifesciences Corporation,Health Care,60.98,105.81,1.73,Irvine,California,US
-EXC,Exelon Corporation,Utilities,47.08,45.61,0.18,Chicago,Illinois,US
-EXE,Expand Energy Corporation,Energy,20.52,88.63,0.78,Oklahoma City,Oklahoma,US
-EXPD,"Expeditors International of Washington, Inc.",Industrials,25.29,194.59,2.85,Seattle,Washington,US
-EXPE,"Expedia Group, Inc.",Consumer Discretionary,31.18,259.79,2.37,Seattle,Washington,US
-EXR,Extra Space Storage Inc.,Real Estate,35.13,159.21,0.16,Salt Lake City,Utah,US
-F,Ford Motor Company,Consumer Discretionary,48.85,12.25,-0.24,Dearborn,Michigan,US
-FANG,"Diamondback Energy, Inc.",Energy,50.68,180.98,1.63,Midland,Texas,US
-FAST,Fastenal Company,Industrials,63.66,55.49,1.19,Winona,Minnesota,US
-FCX,Freeport-McMoRan Inc.,Materials,89.2,62.12,3.0,Phoenix,Arizona,US
-FDX,FedEx Corporation,Industrials,76.35,322.63,0.99,Memphis,Tennessee,US
-FDXF,"FedEx Freight Holding Company, Inc.",Industrials,19.83,132.64,2.16,Memphis,Tennessee,US
-FE,FirstEnergy Corp.,Utilities,26.92,46.53,0.11,Akron,Ohio,US
-FERG,Ferguson Enterprises Inc.,Industrials,51.17,264.5,1.95,Newport News,Virginia,US
-FFIV,"F5, Inc.",Technology,18.12,320.01,0.85,Seattle,Washington,US
-FICO,Fair Isaac Corporation,Technology,15.74,728.85,-0.25,Bozeman,Montana,US
-FIS,"Fidelity National Information Services, Inc.",Financials,15.58,30.21,6.71,Jacksonville,Florida,US
-FISV,"Fiserv, Inc.",Financials,33.98,63.9,0.92,Brookfield,Wisconsin,US
-FITB,Fifth Third Bancorp,Financials,49.33,54.4,0.39,Cincinnati,Ohio,US
-FIX,"Comfort Systems USA, Inc.",Industrials,40.82,1161.63,5.04,Houston,Texas,US
-FLEX,Flex Ltd.,Technology,29.18,78.97,3.78,Austin,Texas,US
-FOXA,Fox Corporation,Communication Services,28.66,67.98,0.91,New York City,New York,US
-FSLR,"First Solar, Inc.",Technology,19.14,178.11,-1.59,Tempe,Arizona,US
-FTNT,"Fortinet, Inc.",Technology,93.99,128.1,3.67,Sunnyvale,California,US
-FTV,Fortive Corporation,Industrials,20.5,67.89,0.24,Everett,Washington,US
-GD,General Dynamics Corporation,Industrials,99.2,367.22,-0.06,Reston,Virginia,US
-GDDY,GoDaddy Inc.,Technology,14.38,113.54,0.36,Tempe,Arizona,US
-GE,GE Aerospace,Industrials,354.18,342.75,1.43,Evendale,Ohio,US
-GEHC,GE HealthCare Technologies Inc.,Health Care,37.31,82.6,-1.26,Chicago,Illinois,US
-GEN,Gen Digital Inc.,Technology,18.34,30.64,2.1,Tempe,Arizona,US
-GEV,GE Vernova Inc.,Industrials,215.26,808.24,1.41,Cambridge,Massachusetts,US
-GILD,"Gilead Sciences, Inc.",Health Care,210.46,169.73,-0.67,Foster City,California,US
-GIS,"General Mills, Inc.",Consumer Staples,18.29,34.21,-1.13,Golden Valley,Minnesota,US
-GL,Globe Life Inc.,Financials,12.44,161.8,-1.02,McKinney,Texas,US
-GLW,Corning Incorporated,Technology,103.76,120.46,7.43,Corning,New York,US
-GM,General Motors Company,Consumer Discretionary,74.99,88.9,0.24,Detroit,Michigan,US
-GNRC,Generac Holdings Inc.,Industrials,11.46,194.0,6.72,Waukesha,Wisconsin,US
-GOOGL,Alphabet Inc.,Communication Services,3585.29,293.45,2.11,Mountain View,California,US
-GPC,Genuine Parts Company,Consumer Discretionary,17.06,123.75,-0.77,Atlanta,Georgia,US
-GPN,Global Payments Inc.,Financials,26.52,100.23,-1.34,Atlanta,Georgia,US
-GRMN,Garmin Ltd.,Consumer Discretionary,56.69,293.93,1.83,Schaffhausen,Switzerland,non-US
-GS,"The Goldman Sachs Group, Inc.",Financials,280.61,926.81,1.83,New York City,New York,US
-GWW,"W.W. Grainger, Inc.",Industrials,70.02,1486.53,0.92,Lake Forest,Illinois,US
-HAL,Halliburton Company,Energy,27.44,32.93,3.36,Houston,Texas,US
-HAS,"Hasbro, Inc.",Consumer Discretionary,17.49,124.02,1.81,Pawtucket,Rhode Island,US
-HBAN,Huntington Bancshares Incorporated,Financials,32.08,15.88,0.25,Columbus,Ohio,US
-HCA,"HCA Healthcare, Inc.",Health Care,109.56,506.04,0.32,Nashville,Tennessee,US
-HD,"The Home Depot, Inc.",Consumer Discretionary,350.49,351.31,0.09,Atlanta,Georgia,US
-HIG,"The Hartford Insurance Group, Inc.",Financials,37.16,137.18,-0.45,Hartford,Connecticut,US
-HLT,Hilton Worldwide Holdings Inc.,Consumer Discretionary,84.83,376.91,-0.75,Tysons Corner,Virginia,US
-HON,Honeywell International Inc.,Industrials,72.15,227.64,-0.25,Charlotte,North Carolina,US
-HONA,Honeywell Aerospace Inc.,Industrials,53.73,169.53,1.84,Phoenix,Arizona,US
-HOOD,"Robinhood Markets, Inc.",Financials,76.04,84.58,4.0,Menlo Park,California,US
-HPE,Hewlett Packard Enterprise Company,Technology,66.71,50.25,4.84,Houston,Texas,US
-HPQ,HP Inc.,Technology,26.11,28.96,1.9,Palo Alto,California,US
-HST,"Host Hotels & Resorts, Inc.",Real Estate,17.91,25.78,-0.58,Bethesda,Maryland,US
-HSY,The Hershey Company,Consumer Staples,35.45,176.43,1.43,Hershey,Pennsylvania,US
-HUBB,Hubbell Incorporated,Industrials,23.43,443.48,1.3,Shelton,Connecticut,US
-HUM,Humana Inc.,Health Care,53.59,446.31,1.88,Louisville,Kentucky,US
-HWM,Howmet Aerospace Inc.,Industrials,89.33,224.0,2.26,Pittsburgh,Pennsylvania,US
-IBKR,"Interactive Brokers Group, Inc.",Financials,37.37,82.49,6.32,Greenwich,Connecticut,US
-IBM,International Business Machines Corporation,Technology,233.86,248.22,1.51,Armonk,New York,US
-ICE,"Intercontinental Exchange, Inc.",Financials,101.39,180.59,2.4,Atlanta,Georgia,US
-IDXX,"IDEXX Laboratories, Inc.",Health Care,55.34,702.59,0.85,Westbrook,Maine,US
-IEX,IDEX Corporation,Industrials,17.69,239.96,1.29,Northbrook,Illinois,US
-IFF,International Flavors & Fragrances Inc.,Materials,21.09,82.65,-0.63,New York City,New York,US
-ILMN,"Illumina, Inc.",Health Care,32.15,212.93,-0.92,San Diego,California,US
-INCY,Incyte Corporation,Health Care,24.78,122.27,1.64,Wilmington,Delaware,US
-INTC,Intel Corporation,Technology,328.41,62.5,7.52,Santa Clara,California,US
-INTU,Intuit Inc.,Technology,91.57,342.64,0.65,Mountain View,California,US
-INVH,Invitation Homes Inc.,Real Estate,15.93,26.88,-0.78,Dallas,Texas,US
-IP,International Paper Company,Materials,18.36,34.66,-1.34,Memphis,Tennessee,US
-IQV,IQVIA Holdings Inc.,Health Care,45.18,274.53,-0.23,Durham,North Carolina,US
-IR,Ingersoll Rand Inc.,Industrials,33.02,85.08,-0.91,Davidson,North Carolina,US
-IRM,Iron Mountain Incorporated,Real Estate,33.47,112.43,1.49,Portsmouth,New Hampshire,US
-ISRG,"Intuitive Surgical, Inc.",Health Care,158.81,449.53,-0.11,Sunnyvale,California,US
-IT,"Gartner, Inc.",Technology,12.19,193.0,2.16,Stamford,Connecticut,US
-ITW,Illinois Tool Works Inc.,Industrials,82.22,288.72,0.23,Glenview,Illinois,US
-IVZ,Invesco Ltd.,Financials,12.64,28.63,-0.83,Atlanta,Georgia,US
-J,Jacobs Solutions Inc.,Industrials,18.43,157.47,0.23,Dallas,Texas,US
-JBHT,"J.B. Hunt Transport Services, Inc.",Industrials,21.22,227.66,0.61,Lowell,Arkansas,US
-JBL,Jabil Inc.,Technology,27.12,258.89,3.63,St. Petersburg,Florida,US
-JCI,Johnson Controls International plc,Industrials,87.6,144.61,2.47,Cork,Ireland,non-US
-JNJ,Johnson & Johnson,Health Care,675.75,280.41,-0.13,New Brunswick,New Jersey,US
-JPM,JPMorgan Chase & Co.,Financials,911.91,343.39,0.39,New York City,New York,US
-KDP,Keurig Dr Pepper Inc.,Consumer Staples,52.05,38.25,1.76,Burlington,Massachusetts,US
-KEY,KeyCorp,Financials,22.88,21.44,0.47,Cleveland,Ohio,US
-KEYS,"Keysight Technologies, Inc.",Technology,52.03,305.64,4.87,Santa Rosa,California,US
-KHC,The Kraft Heinz Company,Consumer Staples,28.78,24.27,0.12,Chicago,Illinois,US
-KIM,Kimco Realty Corporation,Real Estate,17.23,25.62,-0.23,Jericho,New York,US
-KKR,KKR & Co. Inc.,Financials,89.81,100.05,-0.79,New York City,New York,US
-KLAC,KLA Corporation,Technology,210.12,161.01,5.24,Milpitas,California,US
-KMB,Kimberly-Clark Corporation,Consumer Staples,36.21,108.86,-1.72,Irving,Texas,US
-KMI,"Kinder Morgan, Inc.",Energy,70.34,31.59,1.28,Houston,Texas,US
-KO,The Coca-Cola Company,Consumer Staples,419.8,97.57,0.68,Atlanta,Georgia,US
-KR,The Kroger Co.,Consumer Staples,41.04,69.49,1.3,Cincinnati,Ohio,US
+A,"Agilent Technologies, Inc.",Health Care,48.77,173.01,-2.23,Santa Clara,California,US
+AAPL,Apple Inc.,Technology,5178.92,354.88,-0.21,Cupertino,California,US
+ABBV,AbbVie Inc.,Health Care,520.33,294.45,-0.18,North Chicago,Illinois,US
+ABNB,"Airbnb, Inc.",Consumer Discretionary,106.8,181.13,0.0,San Francisco,California,US
+ABT,Abbott Laboratories,Health Care,185.58,107.25,-1.87,North Chicago,Illinois,US
+ACGL,Arch Capital Group Ltd.,Financials,37.13,109.24,0.06,Hamilton,Bermuda,non-US
+ACN,Accenture plc,Technology,147.66,249.95,-1.46,Dublin,Ireland,non-US
+ADBE,Adobe Inc.,Technology,92.84,238.54,0.4,San Jose,California,US
+ADI,"Analog Devices, Inc.",Technology,198.33,409.29,0.05,Wilmington,Massachusetts,US
+ADM,Archer-Daniels-Midland Company,Consumer Staples,34.21,70.97,0.07,Chicago,Illinois,US
+ADP,"Automatic Data Processing, Inc.",Industrials,122.02,307.92,0.51,Roseland,New Jersey,US
+ADSK,"Autodesk, Inc.",Technology,54.23,259.48,-0.2,San Francisco,California,US
+AEE,Ameren Corporation,Utilities,31.43,113.52,0.21,St. Louis,Missouri,US
+AEP,"American Electric Power Company, Inc.",Utilities,70.18,128.91,-0.23,Columbus,Ohio,US
+AFL,Aflac Incorporated,Financials,63.43,126.51,-0.47,Columbus,Georgia,US
+AIG,"American International Group, Inc.",Financials,43.18,82.57,-0.34,New York City,New York,US
+AIZ,"Assurant, Inc.",Financials,15.83,321.09,-0.71,Atlanta,Georgia,US
+AJG,Arthur J. Gallagher & Co.,Financials,71.08,277.28,-1.68,Rolling Meadows,Illinois,US
+AKAM,"Akamai Technologies, Inc.",Technology,12.44,86.56,-0.14,Cambridge,Massachusetts,US
+ALL,The Allstate Corporation,Financials,67.44,266.69,1.72,Northbrook,Illinois,US
+ALLE,Allegion plc,Industrials,16.16,190.07,-0.53,Dublin,Ireland,non-US
+AMAT,"Applied Materials, Inc.",Technology,302.32,380.95,-3.58,Santa Clara,California,US
+AMCR,Amcor plc,Materials,20.23,43.8,-1.33,Warmley,United Kingdom,non-US
+AMD,"Advanced Micro Devices, Inc.",Technology,955.48,585.3,5.86,Santa Clara,California,US
+AME,"AMETEK, Inc.",Industrials,55.26,241.04,0.56,Berwyn,Pennsylvania,US
+AMGN,Amgen Inc.,Health Care,252.51,467.06,-0.22,Thousand Oaks,California,US
+AMP,"Ameriprise Financial, Inc.",Financials,45.36,513.48,-1.27,Minneapolis,Minnesota,US
+AMT,American Tower Corporation,Real Estate,88.43,189.79,-0.24,Boston,Massachusetts,US
+AMZN,"Amazon.com, Inc.",Consumer Discretionary,2884.69,267.44,0.48,Seattle,Washington,US
+ANET,"Arista Networks, Inc.",Technology,260.61,206.63,5.06,Santa Clara,California,US
+AON,Aon plc,Financials,70.73,333.42,-0.93,London,United Kingdom,non-US
+APA,APA Corporation,Energy,16.21,47.66,1.97,Houston,Texas,US
+APD,"Air Products and Chemicals, Inc.",Materials,70.41,316.2,0.32,Upper Macungie Township,Pennsylvania,US
+APH,Amphenol Corporation,Technology,196.34,79.62,0.39,Wallingford,Connecticut,US
+APO,"Apollo Global Management, Inc.",Financials,71.66,121.35,-1.3,New York City,New York,US
+APP,AppLovin Corporation,Communication Services,131.74,393.68,-2.74,Palo Alto,California,US
+ARES,Ares Management Corporation,Financials,44.03,133.29,-3.34,Los Angeles,California,US
+ATO,Atmos Energy Corporation,Utilities,29.73,175.92,0.15,Dallas,Texas,US
+AVGO,Broadcom Inc.,Technology,1736.59,364.36,5.54,Palo Alto,California,US
+AVY,Avery Dennison Corporation,Materials,14.17,186.96,-0.65,Mentor,Ohio,US
+AWK,"American Water Works Company, Inc.",Utilities,29.33,147.58,-1.39,Camden,New Jersey,US
+AXON,"Axon Enterprise, Inc.",Industrials,24.95,307.11,-2.63,Scottsdale,Arizona,US
+AXP,American Express Company,Financials,214.79,318.06,-1.56,New York City,New York,US
+AZO,"AutoZone, Inc.",Consumer Discretionary,52.59,3252.19,0.45,Memphis,Tennessee,US
+BA,The Boeing Company,Industrials,135.59,171.55,-1.71,Arlington,Virginia,US
+BAC,Bank of America Corporation,Financials,349.66,50.51,-0.32,Charlotte,North Carolina,US
+BALL,Ball Corporation,Materials,17.18,64.91,-1.37,Broomfield,Colorado,US
+BAX,Baxter International Inc.,Health Care,13.31,25.74,-2.28,Deerfield,Illinois,US
+BBY,"Best Buy Co., Inc.",Consumer Discretionary,21.69,103.41,-1.66,Richfield,Minnesota,US
+BDX,"Becton, Dickinson and Company",Health Care,58.76,215.71,0.55,Franklin Lakes,New Jersey,US
+BE,Bloom Energy Corporation,Industrials,59.47,201.93,-3.6,San Jose,California,US
+BG,Bunge Global SA,Consumer Staples,19.21,99.98,-0.3,Chesterfield,Missouri,US
+BIIB,Biogen Inc.,Health Care,37.01,250.48,-1.15,Cambridge,Massachusetts,US
+BKNG,Booking Holdings Inc.,Consumer Discretionary,121.12,161.2,0.62,Norwalk,Connecticut,US
+BKR,Baker Hughes Company,Energy,48.5,48.86,-1.11,Houston,Texas,US
+BLK,"BlackRock, Inc.",Financials,197.33,1216.61,-0.79,New York City,New York,US
+BMY,Bristol-Myers Squibb Company,Health Care,127.3,62.32,-0.94,New York City,New York,US
+BNY,The Bank of New York Mellon Corporation,Financials,102.81,152.79,0.07,New York City,New York,US
+BR,"Broadridge Financial Solutions, Inc.",Industrials,21.62,191.47,-0.72,Lake Success,New York,US
+BRK.B,Berkshire Hathaway Inc.,Financials,1269.41,589.83,0.27,Omaha,Nebraska,US
+BRO,"Brown & Brown, Inc.",Financials,23.61,70.55,-1.18,Daytona Beach,Florida,US
+BSX,Boston Scientific Corporation,Health Care,64.06,44.2,-2.06,Marlborough,Massachusetts,US
+BX,Blackstone Inc.,Financials,147.44,118.54,-2.84,New York City,New York,US
+C,Citigroup Inc.,Financials,205.35,124.06,-0.12,New York City,New York,US
+CAH,"Cardinal Health, Inc.",Health Care,64.41,278.14,0.25,Dublin,Ohio,US
+CARR,Carrier Global Corporation,Industrials,44.82,54.37,-0.38,Palm Beach Gardens,Florida,US
+CASY,"Casey's General Stores, Inc.",Consumer Staples,26.11,706.63,-1.05,Ankeny,Iowa,US
+CAT,Caterpillar Inc.,Industrials,278.24,605.28,0.61,Irving,Texas,US
+CB,Chubb Limited,Financials,143.43,371.76,0.39,Zurich,Switzerland,non-US
+CBOE,"Cboe Global Markets, Inc.",Financials,38.52,368.89,-0.08,Chicago,Illinois,US
+CBRE,"CBRE Group, Inc.",Real Estate,38.38,132.54,-1.52,Dallas,Texas,US
+CCI,Crown Castle Inc.,Real Estate,38.16,89.69,0.71,Houston,Texas,US
+CCL,Carnival Corporation Ltd.,Consumer Discretionary,39.45,29.34,-4.37,Miami,Florida,US
+CDNS,"Cadence Design Systems, Inc.",Technology,91.8,333.32,1.23,San Jose,California,US
+CDW,CDW Corporation,Technology,21.6,172.79,-0.17,Vernon Hills,Illinois,US
+CEG,Constellation Energy Corporation,Utilities,100.06,282.4,2.79,Baltimore,Maryland,US
+CF,"CF Industries Holdings, Inc.",Materials,18.9,124.92,1.36,Deerfield,Illinois,US
+CFG,"Citizens Financial Group, Inc.",Financials,27.32,64.86,-0.8,Providence,Rhode Island,US
+CHD,"Church & Dwight Co., Inc.",Consumer Staples,26.51,111.73,-0.26,Ewing,New Jersey,US
+CHRW,"C.H. Robinson Worldwide, Inc.",Industrials,15.51,134.39,0.47,Eden Prairie,Minnesota,US
+CHTR,"Charter Communications, Inc.",Communication Services,21.69,132.66,-2.68,Stamford,Connecticut,US
+CI,The Cigna Group,Health Care,78.29,296.27,-1.72,Bloomfield,Connecticut,US
+CIEN,Ciena Corporation,Technology,41.69,293.99,-0.69,Hanover,Maryland,US
+CINF,Cincinnati Financial Corporation,Financials,29.21,190.31,0.28,Fairfield,Ohio,US
+CL,Colgate-Palmolive Company,Consumer Staples,78.05,97.9,-0.1,New York City,New York,US
+CMCSA,Comcast Corporation,Communication Services,88.0,24.8,-0.88,Philadelphia,Pennsylvania,US
+CME,CME Group Inc.,Financials,113.45,315.5,-0.12,Chicago,Illinois,US
+CMG,"Chipotle Mexican Grill, Inc.",Consumer Discretionary,44.5,35.17,-4.01,Newport Beach,California,US
+CMI,Cummins Inc.,Industrials,62.69,455.4,-1.7,Columbus,Indiana,US
+CMS,CMS Energy Corporation,Utilities,21.71,69.22,-0.57,Jackson,Michigan,US
+CNC,Centene Corporation,Health Care,34.71,70.27,-0.3,St. Louis,Missouri,US
+CNP,"CenterPoint Energy, Inc.",Utilities,26.97,40.95,-0.12,Houston,Texas,US
+COF,Capital One Financial Corporation,Financials,118.77,193.6,-1.78,Tysons Corner,Virginia,US
+COHR,Coherent Corp.,Technology,45.71,232.08,-1.04,Saxonburg,Pennsylvania,US
+COIN,"Coinbase Global, Inc.",Financials,34.48,130.67,-4.11,New York City,New York,US
+COP,ConocoPhillips,Energy,168.26,140.06,1.6,Houston,Texas,US
+COR,"Cencora, Inc.",Health Care,66.67,349.38,-0.14,Conshohocken,Pennsylvania,US
+COST,Costco Wholesale Corporation,Consumer Staples,483.99,1092.21,0.42,Issaquah,Washington,US
+CPAY,"Corpay, Inc.",Financials,29.94,456.01,-1.29,Atlanta,Georgia,US
+CPRT,"Copart, Inc.",Industrials,29.63,32.0,-0.53,Dallas,Texas,US
+CRH,CRH plc,Materials,62.48,93.92,-2.43,Dublin,Ireland,non-US
+CRL,"Charles River Laboratories International, Inc.",Health Care,16.27,340.81,-0.55,Wilmington,Massachusetts,US
+CRM,"Salesforce, Inc.",Technology,179.06,217.57,-0.2,San Francisco,California,US
+CRWD,"CrowdStrike Holdings, Inc.",Technology,235.87,229.87,0.35,Austin,Texas,US
+CSCO,"Cisco Systems, Inc.",Technology,402.18,102.01,1.24,San Jose,California,US
+CSGP,"CoStar Group, Inc.",Real Estate,12.2,30.1,-0.56,Washington,District of Columbia,US
+CSX,CSX Corporation,Industrials,97.06,52.4,0.96,Jacksonville,Florida,US
+CTAS,Cintas Corporation,Industrials,90.35,227.52,0.11,Mason,Ohio,US
+CTSH,Cognizant Technology Solutions Corporation,Technology,28.72,63.75,-1.06,Teaneck,New Jersey,US
+CVNA,Carvana Co.,Consumer Discretionary,78.93,70.84,-4.1,Tempe,Arizona,US
+CVS,CVS Health Corporation,Health Care,114.84,89.79,0.3,Woonsocket,Rhode Island,US
+CVX,Chevron Corporation,Energy,424.39,216.35,1.44,Houston,Texas,US
+D,"Dominion Energy, Inc.",Utilities,59.38,67.51,-0.81,Richmond,Virginia,US
+DAL,"Delta Air Lines, Inc.",Industrials,56.63,86.55,-5.22,Atlanta,Georgia,US
+DASH,"DoorDash, Inc.",Consumer Discretionary,74.78,172.58,-3.19,San Francisco,California,US
+DD,"DuPont de Nemours, Inc.",Industrials,20.9,154.7,-0.58,Wilmington,Delaware,US
+DDOG,"Datadog, Inc.",Technology,66.24,184.46,0.04,New York City,New York,US
+DE,Deere & Company,Industrials,183.02,678.79,-1.87,Moline,Illinois,US
+DELL,Dell Technologies Inc.,Technology,236.0,371.17,-0.67,Round Rock,Texas,US
+DG,Dollar General Corporation,Consumer Staples,29.7,134.61,-2.06,Goodlettsville,Tennessee,US
+DGX,Quest Diagnostics Incorporated,Health Care,28.66,259.65,0.37,Secaucus,New Jersey,US
+DHI,"D.R. Horton, Inc.",Consumer Discretionary,40.4,144.45,-2.05,Arlington,Texas,US
+DHR,Danaher Corporation,Health Care,163.2,232.16,-1.34,Washington,District of Columbia,US
+DIS,The Walt Disney Company,Communication Services,204.15,118.23,-1.19,Burbank,California,US
+DLR,"Digital Realty Trust, Inc.",Real Estate,69.29,183.47,1.29,Austin,Texas,US
+DLTR,"Dollar Tree, Inc.",Consumer Staples,26.5,141.27,-1.14,Chesapeake,Virginia,US
+DOC,"Healthpeak Properties, Inc.",Real Estate,14.13,20.12,-1.28,Denver,Colorado,US
+DOV,Dover Corporation,Industrials,28.21,209.47,-1.39,Downers Grove,Illinois,US
+DOW,Dow Inc.,Materials,23.94,33.15,1.87,Midland,Michigan,US
+DRI,"Darden Restaurants, Inc.",Consumer Discretionary,25.78,227.9,-0.45,Orlando,Florida,US
+DTE,DTE Energy Company,Utilities,28.97,139.2,-0.35,Detroit,Michigan,US
+DUK,Duke Energy Corporation,Utilities,100.27,128.59,-0.14,Charlotte,North Carolina,US
+DVN,Devon Energy Corporation,Energy,53.16,46.23,2.85,Oklahoma City,Oklahoma,US
+DXCM,"DexCom, Inc.",Health Care,30.72,81.39,1.29,San Diego,California,US
+EBAY,eBay Inc.,Consumer Discretionary,53.46,120.14,-2.07,San Jose,California,US
+ECHO,EchoStar Corporation,Communication Services,28.54,98.13,-3.98,Englewood,Colorado,US
+ECL,Ecolab Inc.,Materials,85.34,304.41,-1.12,Saint Paul,Minnesota,US
+ED,"Consolidated Edison, Inc.",Utilities,44.13,119.35,0.13,New York City,New York,US
+EFX,Equifax Inc.,Industrials,21.85,186.78,-0.87,Atlanta,Georgia,US
+EG,"Everest Group, Ltd.",Financials,16.2,422.33,-0.33,Hamilton,Bermuda,non-US
+EIX,Edison International,Utilities,23.09,59.99,0.12,Rosemead,California,US
+EL,The Estée Lauder Companies Inc.,Consumer Staples,39.98,110.51,-1.62,New York City,New York,US
+ELV,"Elevance Health, Inc.",Health Care,93.23,429.9,0.1,Indianapolis,Indiana,US
+EME,"EMCOR Group, Inc.",Industrials,29.23,662.77,-0.6,Norwalk,Connecticut,US
+EMR,Emerson Electric Co.,Industrials,93.1,166.92,-0.08,Ferguson,Missouri,US
+EOG,"EOG Resources, Inc.",Energy,81.62,155.62,1.2,Houston,Texas,US
+EQIX,"Equinix, Inc.",Real Estate,105.85,1072.77,0.44,Redwood City,California,US
+EQT,EQT Corporation,Energy,32.75,52.36,-0.63,Pittsburgh,Pennsylvania,US
+ES,Eversource Energy,Utilities,26.8,71.15,0.86,Hartford,Connecticut,US
+ESS,"Essex Property Trust, Inc.",Real Estate,18.07,271.8,-0.8,San Mateo,California,US
+ETN,Eaton Corporation plc,Industrials,139.45,359.04,-0.44,Dublin,Ireland,non-US
+ETR,Entergy Corporation,Utilities,53.48,111.95,-0.04,New Orleans,Louisiana,US
+EVRG,"Evergy, Inc.",Utilities,20.35,88.27,-0.08,Kansas City,Missouri,US
+EW,Edwards Lifesciences Corporation,Health Care,60.98,105.8,-0.01,Irvine,California,US
+EXC,Exelon Corporation,Utilities,47.1,45.63,0.04,Chicago,Illinois,US
+EXE,Expand Energy Corporation,Energy,20.33,87.8,-0.94,Oklahoma City,Oklahoma,US
+EXPD,"Expeditors International of Washington, Inc.",Industrials,25.44,195.67,0.56,Seattle,Washington,US
+EXPE,"Expedia Group, Inc.",Consumer Discretionary,31.33,261.05,0.48,Seattle,Washington,US
+EXR,Extra Space Storage Inc.,Real Estate,34.9,158.2,-0.63,Salt Lake City,Utah,US
+F,Ford Motor Company,Consumer Discretionary,47.45,11.9,-2.86,Dearborn,Michigan,US
+FANG,"Diamondback Energy, Inc.",Energy,51.03,182.2,0.67,Midland,Texas,US
+FAST,Fastenal Company,Industrials,63.73,55.55,0.11,Winona,Minnesota,US
+FCX,Freeport-McMoRan Inc.,Materials,86.81,60.45,-2.69,Phoenix,Arizona,US
+FDX,FedEx Corporation,Industrials,75.57,319.3,-1.03,Memphis,Tennessee,US
+FDXF,"FedEx Freight Holding Company, Inc.",Industrials,19.59,131.0,-1.24,Memphis,Tennessee,US
+FE,FirstEnergy Corp.,Utilities,26.9,46.5,-0.06,Akron,Ohio,US
+FERG,Ferguson Enterprises Inc.,Industrials,49.31,254.89,-3.63,Newport News,Virginia,US
+FFIV,"F5, Inc.",Technology,17.99,317.64,-0.74,Seattle,Washington,US
+FICO,Fair Isaac Corporation,Technology,15.49,717.38,-1.57,Bozeman,Montana,US
+FIS,"Fidelity National Information Services, Inc.",Financials,14.62,28.36,-6.12,Jacksonville,Florida,US
+FISV,"Fiserv, Inc.",Financials,32.71,61.5,-3.76,Brookfield,Wisconsin,US
+FITB,Fifth Third Bancorp,Financials,48.88,53.9,-0.92,Cincinnati,Ohio,US
+FIX,"Comfort Systems USA, Inc.",Industrials,39.64,1128.09,-2.89,Houston,Texas,US
+FLEX,Flex Ltd.,Technology,28.87,78.12,-1.08,Austin,Texas,US
+FOXA,Fox Corporation,Communication Services,27.71,65.71,-3.34,New York City,New York,US
+FSLR,"First Solar, Inc.",Technology,18.52,172.3,-3.26,Tempe,Arizona,US
+FTNT,"Fortinet, Inc.",Technology,95.04,129.54,1.12,Sunnyvale,California,US
+FTV,Fortive Corporation,Industrials,20.49,67.85,-0.06,Everett,Washington,US
+GD,General Dynamics Corporation,Industrials,98.08,363.07,-1.13,Reston,Virginia,US
+GDDY,GoDaddy Inc.,Technology,14.23,112.33,-1.07,Tempe,Arizona,US
+GE,GE Aerospace,Industrials,341.9,330.86,-3.47,Evendale,Ohio,US
+GEHC,GE HealthCare Technologies Inc.,Health Care,36.96,81.84,-0.92,Chicago,Illinois,US
+GEN,Gen Digital Inc.,Technology,17.77,29.69,-3.1,Tempe,Arizona,US
+GEV,GE Vernova Inc.,Industrials,217.99,818.49,1.27,Cambridge,Massachusetts,US
+GILD,"Gilead Sciences, Inc.",Health Care,208.25,167.95,-1.05,Foster City,California,US
+GIS,"General Mills, Inc.",Consumer Staples,17.92,33.52,-2.02,Golden Valley,Minnesota,US
+GL,Globe Life Inc.,Financials,12.31,160.11,-1.04,McKinney,Texas,US
+GLW,Corning Incorporated,Technology,102.94,119.5,-0.8,Corning,New York,US
+GM,General Motors Company,Consumer Discretionary,72.75,86.25,-2.98,Detroit,Michigan,US
+GNRC,Generac Holdings Inc.,Industrials,11.39,192.88,-0.58,Waukesha,Wisconsin,US
+GOOGL,Alphabet Inc.,Communication Services,3649.43,298.7,1.79,Mountain View,California,US
+GPC,Genuine Parts Company,Consumer Discretionary,16.93,122.84,-0.74,Atlanta,Georgia,US
+GPN,Global Payments Inc.,Financials,23.33,88.19,-12.01,Atlanta,Georgia,US
+GRMN,Garmin Ltd.,Consumer Discretionary,55.2,286.18,-2.64,Schaffhausen,Switzerland,non-US
+GS,"The Goldman Sachs Group, Inc.",Financials,276.61,913.6,-1.43,New York City,New York,US
+GWW,"W.W. Grainger, Inc.",Industrials,70.77,1502.61,1.08,Lake Forest,Illinois,US
+HAL,Halliburton Company,Energy,27.3,32.76,-0.52,Houston,Texas,US
+HAS,"Hasbro, Inc.",Consumer Discretionary,17.13,121.48,-2.05,Pawtucket,Rhode Island,US
+HBAN,Huntington Bancshares Incorporated,Financials,31.78,15.73,-0.94,Columbus,Ohio,US
+HCA,"HCA Healthcare, Inc.",Health Care,108.39,500.66,-1.06,Nashville,Tennessee,US
+HD,"The Home Depot, Inc.",Consumer Discretionary,347.45,348.26,-0.87,Atlanta,Georgia,US
+HIG,"The Hartford Insurance Group, Inc.",Financials,37.08,136.9,-0.2,Hartford,Connecticut,US
+HLT,Hilton Worldwide Holdings Inc.,Consumer Discretionary,83.89,372.73,-1.11,Tysons Corner,Virginia,US
+HON,Honeywell International Inc.,Industrials,70.82,223.45,-1.84,Charlotte,North Carolina,US
+HONA,Honeywell Aerospace Inc.,Industrials,52.68,166.23,-1.95,Phoenix,Arizona,US
+HOOD,"Robinhood Markets, Inc.",Financials,73.14,81.35,-3.82,Menlo Park,California,US
+HPE,Hewlett Packard Enterprise Company,Technology,66.59,50.16,-0.18,Houston,Texas,US
+HPQ,HP Inc.,Technology,26.04,28.88,-0.28,Palo Alto,California,US
+HST,"Host Hotels & Resorts, Inc.",Real Estate,17.73,25.52,-1.01,Bethesda,Maryland,US
+HSY,The Hershey Company,Consumer Staples,34.82,173.29,-1.78,Hershey,Pennsylvania,US
+HUBB,Hubbell Incorporated,Industrials,23.14,437.98,-1.24,Shelton,Connecticut,US
+HUM,Humana Inc.,Health Care,53.27,443.68,-0.59,Louisville,Kentucky,US
+HWM,Howmet Aerospace Inc.,Industrials,88.98,223.11,-0.4,Pittsburgh,Pennsylvania,US
+IBKR,"Interactive Brokers Group, Inc.",Financials,36.85,81.33,-1.41,Greenwich,Connecticut,US
+IBM,International Business Machines Corporation,Technology,230.51,244.67,-1.43,Armonk,New York,US
+ICE,"Intercontinental Exchange, Inc.",Financials,99.85,177.86,-1.51,Atlanta,Georgia,US
+IDXX,"IDEXX Laboratories, Inc.",Health Care,54.98,698.02,-0.65,Westbrook,Maine,US
+IEX,IDEX Corporation,Industrials,17.55,238.03,-0.8,Northbrook,Illinois,US
+IFF,International Flavors & Fragrances Inc.,Materials,20.51,80.38,-2.75,New York City,New York,US
+ILMN,"Illumina, Inc.",Health Care,31.64,209.55,-1.59,San Diego,California,US
+INCY,Incyte Corporation,Health Care,24.66,121.7,-0.47,Wilmington,Delaware,US
+INTC,Intel Corporation,Technology,321.58,61.2,-2.08,Santa Clara,California,US
+INTU,Intuit Inc.,Technology,90.91,340.17,-0.72,Mountain View,California,US
+INVH,Invitation Homes Inc.,Real Estate,15.8,26.65,-0.86,Dallas,Texas,US
+IP,International Paper Company,Materials,17.97,33.94,-2.08,Memphis,Tennessee,US
+IQV,IQVIA Holdings Inc.,Health Care,44.62,271.11,-1.25,Durham,North Carolina,US
+IR,Ingersoll Rand Inc.,Industrials,33.11,85.31,0.27,Davidson,North Carolina,US
+IRM,Iron Mountain Incorporated,Real Estate,34.11,114.58,1.91,Portsmouth,New Hampshire,US
+ISRG,"Intuitive Surgical, Inc.",Health Care,155.41,439.89,-2.14,Sunnyvale,California,US
+IT,"Gartner, Inc.",Technology,12.06,190.84,-1.12,Stamford,Connecticut,US
+ITW,Illinois Tool Works Inc.,Industrials,81.66,286.75,-0.68,Glenview,Illinois,US
+IVZ,Invesco Ltd.,Financials,12.57,28.47,-0.56,Atlanta,Georgia,US
+J,Jacobs Solutions Inc.,Industrials,18.58,158.69,0.77,Dallas,Texas,US
+JBHT,"J.B. Hunt Transport Services, Inc.",Industrials,21.22,227.66,0.0,Lowell,Arkansas,US
+JBL,Jabil Inc.,Technology,27.24,259.96,0.41,St. Petersburg,Florida,US
+JCI,Johnson Controls International plc,Industrials,86.35,142.55,-1.42,Cork,Ireland,non-US
+JNJ,Johnson & Johnson,Health Care,683.25,283.52,1.11,New Brunswick,New Jersey,US
+JPM,JPMorgan Chase & Co.,Financials,910.39,342.82,-0.17,New York City,New York,US
+KDP,Keurig Dr Pepper Inc.,Consumer Staples,48.2,35.42,-7.4,Burlington,Massachusetts,US
+KEY,KeyCorp,Financials,22.76,21.33,-0.51,Cleveland,Ohio,US
+KEYS,"Keysight Technologies, Inc.",Technology,51.79,304.23,-0.46,Santa Rosa,California,US
+KHC,The Kraft Heinz Company,Consumer Staples,29.03,24.48,0.87,Chicago,Illinois,US
+KIM,Kimco Realty Corporation,Real Estate,17.12,25.46,-0.62,Jericho,New York,US
+KKR,KKR & Co. Inc.,Financials,87.25,97.2,-2.85,New York City,New York,US
+KLAC,KLA Corporation,Technology,205.28,157.3,-2.3,Milpitas,California,US
+KMB,Kimberly-Clark Corporation,Consumer Staples,35.65,107.19,-1.53,Irving,Texas,US
+KMI,"Kinder Morgan, Inc.",Energy,71.28,32.01,1.33,Houston,Texas,US
+KO,The Coca-Cola Company,Consumer Staples,419.24,97.44,-0.13,Atlanta,Georgia,US
+KR,The Kroger Co.,Consumer Staples,41.22,69.81,0.46,Cincinnati,Ohio,US
 KVUE,Kenvue Inc.,Consumer Staples,,,,Skillman,New Jersey,US
-L,Loews Corporation,Financials,22.8,111.51,0.52,New York City,New York,US
-LDOS,"Leidos Holdings, Inc.",Industrials,16.8,133.89,-2.44,Reston,Virginia,US
-LEN,Lennar Corporation,Consumer Discretionary,20.53,86.33,-0.38,Miami,Florida,US
-LH,Labcorp Holdings Inc.,Health Care,30.19,372.23,0.36,Burlington,North Carolina,US
-LHX,"L3Harris Technologies, Inc.",Industrials,51.51,276.59,0.23,Melbourne,Florida,US
-LII,Lennox International Inc.,Industrials,12.12,350.73,0.8,Richardson,Texas,US
-LIN,Linde plc,Materials,242.72,526.55,0.91,Guildford,United Kingdom,non-US
-LITE,Lumentum Holdings Inc.,Technology,58.7,648.06,10.67,San Jose,California,US
-LLY,Eli Lilly and Company,Health Care,1278.1,1437.29,0.35,Indianapolis,Indiana,US
-LMT,Lockheed Martin Corporation,Industrials,140.79,610.05,1.15,Bethesda,Maryland,US
-LNT,Alliant Energy Corporation,Utilities,19.09,73.62,0.52,Madison,Wisconsin,US
-LOW,"Lowe's Companies, Inc.",Consumer Discretionary,129.94,231.6,-0.12,Mooresville,North Carolina,US
-LRCX,Lam Research Corporation,Technology,295.18,235.88,6.07,Fremont,California,US
-LUV,Southwest Airlines Co.,Industrials,22.74,46.48,0.35,Dallas,Texas,US
-LYB,LyondellBasell Industries N.V.,Materials,20.22,62.58,3.27,Rotterdam,Netherlands,non-US
-LYV,"Live Nation Entertainment, Inc.",Communication Services,41.97,180.16,1.07,Beverly Hills,California,US
-MA,Mastercard Incorporated,Financials,578.81,660.73,0.29,Harrison,New York,US
-MAA,"Mid-America Apartment Communities, Inc.",Real Estate,14.06,118.19,-0.56,Memphis,Tennessee,US
-MAR,"Marriott International, Inc.",Consumer Discretionary,111.92,429.18,0.21,Bethesda,Maryland,US
-MAS,Masco Corporation,Industrials,16.67,84.91,0.13,Livonia,Michigan,US
-MCD,McDonald's Corporation,Consumer Discretionary,194.46,274.8,-2.61,Chicago,Illinois,US
-MCHP,Microchip Technology Incorporated,Technology,33.73,62.13,2.98,Chandler,Arizona,US
-MCK,McKesson Corporation,Health Care,125.89,1079.79,-0.26,Irving,Texas,US
-MCO,Moody's Corporation,Financials,89.18,514.93,0.83,New York City,New York,US
-MDLZ,"Mondelez International, Inc.",Consumer Staples,85.13,66.7,0.24,Chicago,Illinois,US
-MDT,Medtronic plc,Health Care,124.38,101.61,0.02,Galway,Ireland,non-US
-MET,"MetLife, Inc.",Financials,65.41,102.94,0.49,New York City,New York,US
-META,"Meta Platforms, Inc.",Communication Services,1604.56,628.77,-1.97,Menlo Park,California,US
-MKC,"McCormick & Company, Incorporated",Consumer Staples,12.63,46.94,0.47,Hunt Valley,Maryland,US
-MLM,"Martin Marietta Materials, Inc.",Materials,37.22,524.13,-0.77,Raleigh,North Carolina,US
-MMM,3M Company,Industrials,97.6,188.88,-0.26,Saint Paul,Minnesota,US
-MNST,Monster Beverage Corporation,Consumer Staples,88.94,45.4,0.13,Corona,California,US
-MO,"Altria Group, Inc.",Consumer Staples,129.22,77.39,1.38,Richmond,Virginia,US
-MPC,Marathon Petroleum Corporation,Energy,113.13,402.84,3.41,Findlay,Ohio,US
-MPWR,"Monolithic Power Systems, Inc.",Technology,72.68,1478.69,8.92,Kirkland,Washington,US
-MRK,"Merck & Co., Inc.",Health Care,363.12,147.18,-0.59,Kenilworth,New Jersey,US
-MRNA,"Moderna, Inc.",Health Care,99.29,248.69,-0.85,Cambridge,Massachusetts,US
-MRSH,"Marsh & McLennan Companies, Inc.",Financials,98.67,207.52,0.28,New York City,New York,US
-MRVL,"Marvell Technology, Inc.",Technology,148.03,168.8,9.33,Santa Clara,California,US
-MS,Morgan Stanley,Financials,298.3,190.61,1.63,New York City,New York,US
-MSCI,MSCI Inc.,Financials,48.09,661.53,0.71,New York City,New York,US
-MSFT,Microsoft Corporation,Technology,3872.17,521.13,-2.26,Redmond,Washington,US
-MSI,"Motorola Solutions, Inc.",Technology,88.58,535.22,1.49,Chicago,Illinois,US
-MTB,M&T Bank Corporation,Financials,31.65,220.19,-0.19,Buffalo,New York,US
-MTD,Mettler-Toledo International Inc.,Health Care,35.05,1749.01,-0.14,Columbus,Ohio,US
-MU,"Micron Technology, Inc.",Technology,914.59,811.3,11.89,Boise,Idaho,US
-NDAQ,"Nasdaq, Inc.",Financials,61.31,109.68,-0.31,New York City,New York,US
-NDSN,Nordson Corporation,Industrials,18.34,329.23,1.27,Westlake,Ohio,US
-NEE,"NextEra Energy, Inc.",Utilities,179.37,85.99,-0.32,Juno Beach,Florida,US
-NEM,Newmont Corporation,Materials,123.43,118.47,-1.24,Denver,Colorado,US
-NFLX,"Netflix, Inc.",Communication Services,268.74,64.54,2.02,Los Gatos,California,US
-NI,NiSource Inc.,Utilities,21.85,45.55,0.57,Merrillville,Indiana,US
-NKE,"NIKE, Inc.",Consumer Discretionary,56.91,38.32,-0.91,Washington County,Oregon,US
-NOC,Northrop Grumman Corporation,Industrials,78.27,550.96,0.43,West Falls Church,Virginia,US
-NOW,"ServiceNow, Inc.",Technology,106.24,102.76,3.16,Santa Clara,California,US
-NRG,"NRG Energy, Inc.",Utilities,20.5,97.5,0.4,Houston,Texas,US
-NSC,Norfolk Southern Corporation,Industrials,74.25,330.59,0.81,Atlanta,Georgia,US
-NTAP,"NetApp, Inc.",Technology,35.96,183.12,4.05,San Jose,California,US
-NTRS,Northern Trust Corporation,Financials,32.7,178.71,0.46,Chicago,Illinois,US
-NUE,Nucor Corporation,Materials,59.3,261.39,1.92,Charlotte,North Carolina,US
-NVDA,NVIDIA Corporation,Technology,4195.13,173.73,2.87,Santa Clara,California,US
-NVR,"NVR, Inc.",Consumer Discretionary,15.68,5895.4,-2.34,Reston,Virginia,US
-NXPI,NXP Semiconductors N.V.,Technology,67.96,269.51,3.04,Eindhoven,Netherlands,non-US
-O,Realty Income Corporation,Real Estate,56.35,59.57,0.05,San Diego,California,US
-ODFL,"Old Dominion Freight Line, Inc.",Industrials,35.35,170.5,1.48,Thomasville,North Carolina,US
-OKE,"ONEOK, Inc.",Energy,55.58,88.17,0.92,Tulsa,Oklahoma,US
-OMC,Omnicom Group Inc.,Communication Services,24.38,88.88,0.05,New York City,New York,US
-ON,ON Semiconductor Corporation,Technology,28.66,73.62,5.76,Phoenix,Arizona,US
-ORCL,Oracle Corporation,Technology,389.19,128.38,8.82,Austin,Texas,US
-ORLY,"O'Reilly Automotive, Inc.",Consumer Discretionary,73.24,90.54,1.29,Springfield,Missouri,US
-OTIS,Otis Worldwide Corporation,Industrials,29.5,77.5,-0.81,Farmington,Connecticut,US
-OXY,Occidental Petroleum Corporation,Energy,57.22,57.24,0.6,Houston,Texas,US
-P,"Everpure, Inc.",Technology,35.49,106.5,4.43,Santa Clara,California,US
-PANW,"Palo Alto Networks, Inc.",Technology,273.6,334.47,2.48,Santa Clara,California,US
-PAYX,"Paychex, Inc.",Industrials,41.07,115.37,-0.71,Penfield,New York,US
-PCAR,PACCAR Inc,Industrials,56.92,108.13,2.42,Bellevue,Washington,US
-PCG,PG&E Corporation,Utilities,28.85,13.1,-0.98,Oakland,California,US
-PEG,Public Service Enterprise Group Incorporated,Utilities,37.03,74.29,-0.52,Newark,New Jersey,US
-PEP,"PepsiCo, Inc.",Consumer Staples,196.15,143.94,0.23,Purchase,New York,US
-PFE,Pfizer Inc.,Health Care,167.86,29.45,0.31,New York City,New York,US
-PFG,"Principal Financial Group, Inc.",Financials,24.56,114.69,-1.12,Des Moines,Iowa,US
-PG,The Procter & Gamble Company,Consumer Staples,389.45,167.67,-0.59,Cincinnati,Ohio,US
-PGR,The Progressive Corporation,Financials,135.33,233.53,0.77,Mayfield Village,Ohio,US
-PH,Parker-Hannifin Corporation,Industrials,122.69,972.9,0.8,Cleveland,Ohio,US
-PHM,"PulteGroup, Inc.",Consumer Discretionary,24.27,129.5,-0.84,Atlanta,Georgia,US
-PKG,Packaging Corporation of America,Materials,22.41,253.01,-0.48,Lake Forest,Illinois,US
-PLD,"Prologis, Inc.",Real Estate,126.08,130.03,-0.05,San Francisco,California,US
-PLTR,Palantir Technologies Inc.,Technology,414.28,172.4,2.12,Aventura,Florida,US
-PM,Philip Morris International Inc.,Consumer Staples,306.03,196.35,1.08,New York City,New York,US
-PNC,"The PNC Financial Services Group, Inc.",Financials,92.16,232.0,0.3,Pittsburgh,Pennsylvania,US
-PNW,Pinnacle West Capital Corporation,Utilities,13.08,107.91,1.84,Phoenix,Arizona,US
-PPG,"PPG Industries, Inc.",Materials,27.78,124.97,0.44,Pittsburgh,Pennsylvania,US
-PPL,PPL Corporation,Utilities,26.62,35.38,-0.95,Allentown,Pennsylvania,US
-PRU,"Prudential Financial, Inc.",Financials,42.48,123.04,-0.21,Newark,New Jersey,US
-PSA,Public Storage,Real Estate,65.2,335.73,-0.06,Glendale,California,US
-PSX,Phillips 66,Energy,103.22,258.68,3.18,Houston,Texas,US
-PTC,PTC Inc.,Technology,21.28,196.14,-0.21,Boston,Massachusetts,US
-PWR,"Quanta Services, Inc.",Industrials,91.4,607.94,4.25,Houston,Texas,US
-PYPL,"PayPal Holdings, Inc.",Financials,50.88,59.48,1.19,San Jose,California,US
-Q,"Qnity Electronics, Inc.",Technology,26.48,126.57,2.37,Wilmington,Delaware,US
-QCOM,QUALCOMM Incorporated,Technology,188.54,176.57,1.75,San Diego,California,US
-RCL,Royal Caribbean Cruises Ltd.,Consumer Discretionary,89.65,335.18,-1.37,Miami,Florida,US
-RDDT,"Reddit, Inc.",Communication Services,20.33,105.66,7.08,San Francisco,California,US
-REG,Regency Centers Corporation,Real Estate,14.21,76.18,-0.47,Jacksonville,Florida,US
-REGN,"Regeneron Pharmaceuticals, Inc.",Health Care,95.8,959.41,4.73,Tarrytown,New York,US
-RF,Regions Financial Corporation,Financials,24.34,28.64,-0.21,Birmingham,Alabama,US
-RJF,"Raymond James Financial, Inc.",Financials,32.15,167.13,-0.58,St. Petersburg,Florida,US
-RL,Ralph Lauren Corporation,Consumer Discretionary,23.48,394.05,-1.39,New York City,New York,US
-RMD,ResMed Inc.,Health Care,33.55,238.53,1.89,San Diego,California,US
-ROK,"Rockwell Automation, Inc.",Industrials,45.11,406.19,2.27,Milwaukee,Wisconsin,US
-ROP,"Roper Technologies, Inc.",Technology,47.24,477.7,0.68,Sarasota,Florida,US
-ROST,"Ross Stores, Inc.",Consumer Discretionary,77.08,241.27,0.97,Dublin,California,US
-RSG,"Republic Services, Inc.",Industrials,76.36,249.34,0.69,Phoenix,Arizona,US
-RTX,RTX Corporation,Industrials,271.29,201.29,0.51,Waltham,Massachusetts,US
-RVTY,"Revvity, Inc.",Health Care,17.66,158.25,-0.53,Waltham,Massachusetts,US
-SBAC,SBA Communications Corporation,Real Estate,20.16,190.03,-0.73,Boca Raton,Florida,US
-SBUX,Starbucks Corporation,Consumer Discretionary,125.25,109.89,-0.05,Seattle,Washington,US
-SCHW,The Charles Schwab Corporation,Financials,160.45,92.78,-0.27,Westlake,Texas,US
-SHW,The Sherwin-Williams Company,Materials,85.85,355.76,0.12,Cleveland,Ohio,US
-SJM,The J. M. Smucker Company,Consumer Staples,14.21,133.07,-0.4,Orrville,Ohio,US
-SLB,SLB N.V.,Energy,75.63,50.96,2.12,Houston,Texas,US
-SMCI,"Super Micro Computer, Inc.",Technology,19.99,30.43,9.5,San Jose,California,US
-SNA,Snap-on Incorporated,Industrials,19.38,374.75,0.39,Kenosha,Wisconsin,US
-SNDK,Sandisk Corporation,Technology,143.15,977.69,13.69,Milpitas,California,US
-SNPS,"Synopsys, Inc.",Technology,88.56,462.12,0.47,Sunnyvale,California,US
-SO,The Southern Company,Utilities,107.95,93.84,0.2,Atlanta,Georgia,US
-SOLV,Solventum Corporation,Health Care,15.08,88.62,-1.62,Saint Paul,Minnesota,US
-SPG,"Simon Property Group, Inc.",Real Estate,89.06,234.75,0.12,Indianapolis,Indiana,US
-SPGI,S&P Global Inc.,Financials,140.05,475.11,0.37,New York City,New York,US
-SRE,Sempra,Utilities,51.15,78.22,-0.2,San Diego,California,US
-STE,STERIS plc,Health Care,24.98,256.27,-0.33,Dublin,Ireland,non-US
-STLD,"Steel Dynamics, Inc.",Materials,34.25,238.99,1.22,Fort Wayne,Indiana,US
-STT,State Street Corporation,Financials,47.51,174.17,1.49,Boston,Massachusetts,US
-STX,Seagate Technology Holdings plc,Technology,125.46,551.72,9.99,Dublin,Ireland,non-US
-STZ,"Constellation Brands, Inc.",Consumer Staples,24.39,144.12,-0.96,Rochester,New York,US
-SW,Smurfit Westrock Plc,Materials,23.07,44.03,-0.74,Dublin,Ireland,non-US
-SWK,"Stanley Black & Decker, Inc.",Industrials,17.46,115.62,-0.7,New Britain,Connecticut,US
-SWKS,"Skyworks Solutions, Inc.",Technology,13.19,87.64,5.96,Irvine,California,US
-SYF,Synchrony Financial,Financials,23.43,72.02,0.45,Stamford,Connecticut,US
-SYK,Stryker Corporation,Health Care,122.28,318.79,-1.7,Kalamazoo,Michigan,US
-SYY,Sysco Corporation,Consumer Staples,37.85,76.94,-0.89,Houston,Texas,US
-T,AT&T Inc.,Communication Services,152.54,22.26,1.46,Dallas,Texas,US
-TDG,TransDigm Group Incorporated,Industrials,68.82,1245.0,1.59,Cleveland,Ohio,US
-TDY,Teledyne Technologies Incorporated,Technology,30.19,651.12,0.77,Thousand Oaks,California,US
-TEL,TE Connectivity plc,Technology,63.52,219.41,0.76,Galway,Ireland,non-US
-TER,"Teradyne, Inc.",Technology,41.55,265.78,8.3,North Reading,Massachusetts,US
-TFC,Truist Financial Corporation,Financials,60.23,50.26,0.0,Charlotte,North Carolina,US
-TGT,Target Corporation,Consumer Staples,73.92,162.7,0.57,Minneapolis,Minnesota,US
-TJX,"The TJX Companies, Inc.",Consumer Discretionary,150.08,136.44,-0.35,Framingham,Massachusetts,US
-TMO,Thermo Fisher Scientific Inc.,Health Care,265.37,717.71,-0.07,Waltham,Massachusetts,US
-TMUS,"T-Mobile US, Inc.",Communication Services,184.67,172.16,1.82,Bellevue,Washington,US
-TPL,Texas Pacific Land Corporation,Energy,19.41,281.42,2.47,Dallas,Texas,US
-TPR,"Tapestry, Inc.",Consumer Discretionary,26.46,133.34,-1.68,New York City,New York,US
-TRGP,Targa Resources Corp.,Energy,62.57,291.78,3.72,Houston,Texas,US
-TRMB,Trimble Inc.,Technology,13.17,56.48,3.16,Westminster,Colorado,US
-TROW,"T. Rowe Price Group, Inc.",Financials,23.61,110.69,-0.19,Baltimore,Maryland,US
-TRV,"The Travelers Companies, Inc.",Financials,81.87,399.46,-0.33,New York City,New York,US
-TSCO,Tractor Supply Company,Consumer Discretionary,19.14,36.74,-2.03,Brentwood,Tennessee,US
-TSLA,"Tesla, Inc.",Consumer Discretionary,1547.3,390.84,2.91,Austin,Texas,US
-TSN,"Tyson Foods, Inc.",Consumer Staples,21.01,59.87,-0.7,Springdale,Arkansas,US
-TT,Trane Technologies plc,Industrials,93.47,424.84,0.96,Dublin,Ireland,non-US
-TTWO,"Take-Two Interactive Software, Inc.",Communication Services,43.25,231.31,2.97,New York City,New York,US
-TWLO,Twilio Inc.,Technology,33.71,219.48,2.46,San Francisco,California,US
-TXN,Texas Instruments Incorporated,Technology,282.94,309.81,3.09,Dallas,Texas,US
-TXT,Textron Inc.,Industrials,14.78,85.94,-1.01,Providence,Rhode Island,US
-TYL,"Tyler Technologies, Inc.",Technology,17.43,425.52,0.92,Plano,Texas,US
-UAL,"United Airlines Holdings, Inc.",Industrials,38.42,118.37,-1.82,Chicago,Illinois,US
-UBER,"Uber Technologies, Inc.",Industrials,144.37,70.68,0.9,San Francisco,California,US
-ULTA,"Ulta Beauty, Inc.",Consumer Discretionary,28.18,659.08,-0.8,Bolingbrook,Illinois,US
-UNH,UnitedHealth Group Incorporated,Health Care,361.68,402.94,-0.54,Eden Prairie,Minnesota,US
-UNP,Union Pacific Corporation,Industrials,179.48,302.11,0.5,Omaha,Nebraska,US
-UPS,"United Parcel Service, Inc.",Industrials,95.67,112.45,1.26,Sandy Springs,Georgia,US
-URI,"United Rentals, Inc.",Industrials,71.64,1150.8,4.15,Stamford,Connecticut,US
-USB,U.S. Bancorp,Financials,94.57,60.7,-0.08,Minneapolis,Minnesota,US
-V,Visa Inc.,Financials,781.14,425.55,0.6,San Francisco,California,US
-VEEV,Veeva Systems Inc.,Health Care,49.35,304.77,-0.26,Pleasanton,California,US
-VICI,VICI Properties Inc.,Real Estate,27.46,24.94,-0.2,New York City,New York,US
-VLO,Valero Energy Corporation,Energy,104.72,363.71,3.71,San Antonio,Texas,US
-VLTO,Veralto Corporation,Industrials,28.96,118.77,0.47,Waltham,Massachusetts,US
-VMC,Vulcan Materials Company,Materials,36.85,284.37,-1.02,Birmingham,Alabama,US
-VMRK,Vivmark Residential,Real Estate,50.01,64.63,-1.7,Chicago,Illinois,US
-VRSK,"Verisk Analytics, Inc.",Industrials,26.8,205.98,0.96,Jersey City,New Jersey,US
-VRSN,"VeriSign, Inc.",Technology,28.36,314.09,0.95,Reston,Virginia,US
-VRT,Vertiv Holdings Co,Industrials,79.51,206.51,6.33,Westerville,Ohio,US
-VRTX,Vertex Pharmaceuticals Incorporated,Health Care,138.66,547.03,-0.16,Boston,Massachusetts,US
-VST,Vistra Corp.,Utilities,44.79,133.45,1.73,Irving,Texas,US
-VTR,"Ventas, Inc.",Real Estate,46.69,90.42,0.09,Chicago,Illinois,US
-VTRS,Viatris Inc.,Health Care,24.19,21.06,1.01,Pittsburgh,Pennsylvania,US
-VYLR,Vylor Inc.,Materials,48.12,72.1,-0.59,,Unknown,
-VZ,Verizon Communications Inc.,Communication Services,193.61,46.6,0.63,New York City,New York,US
-WAB,Westinghouse Air Brake Technologies Corporation,Industrials,51.38,304.18,0.23,Pittsburgh,Pennsylvania,US
-WAT,Waters Corporation,Health Care,46.27,470.9,-0.97,Milford,Massachusetts,US
-WDAY,"Workday, Inc.",Technology,46.07,191.16,1.2,Pleasanton,California,US
-WDC,Western Digital Corporation,Technology,117.28,313.31,8.34,San Jose,California,US
-WEC,"WEC Energy Group, Inc.",Utilities,38.27,117.47,0.39,Milwaukee,Wisconsin,US
-WELL,Welltower Inc.,Real Estate,178.28,247.35,-0.13,Toledo,Ohio,US
-WFC,Wells Fargo & Company,Financials,257.55,85.8,0.05,San Francisco,California,US
-WM,"Waste Management, Inc.",Industrials,96.05,240.29,1.23,Houston,Texas,US
-WMB,"The Williams Companies, Inc.",Energy,84.3,68.92,2.16,Tulsa,Oklahoma,US
-WMT,Walmart Inc.,Consumer Staples,997.04,125.67,0.1,Bentonville,Arkansas,US
-WRB,W. R. Berkley Corporation,Financials,29.82,76.67,-0.21,Greenwich,Connecticut,US
-WSM,"Williams-Sonoma, Inc.",Consumer Discretionary,30.87,262.09,0.21,San Francisco,California,US
-WST,"West Pharmaceutical Services, Inc.",Health Care,29.05,412.86,0.08,Exton,Pennsylvania,US
-WTW,Willis Towers Watson Public Limited Company,Financials,31.04,334.18,0.39,London,United Kingdom,non-US
-WY,Weyerhaeuser Company,Real Estate,14.88,20.65,0.1,Seattle,Washington,US
-XEL,Xcel Energy Inc.,Utilities,50.66,81.1,1.22,Minneapolis,Minnesota,US
-XOM,ExxonMobil Holdings Corporation,Energy,685.5,166.71,1.36,Irving,Texas,US
-XYL,Xylem Inc.,Industrials,22.21,95.11,-1.79,White Plains,New York,US
-XYZ,"Block, Inc.",Financials,51.82,85.72,0.16,,No fixed HQ (remote),
-YUM,"Yum! Brands, Inc.",Consumer Discretionary,43.72,160.21,0.0,Louisville,Kentucky,US
-ZBH,"Zimmer Biomet Holdings, Inc.",Health Care,20.49,107.47,0.14,Warsaw,Indiana,US
-ZBRA,Zebra Technologies Corporation,Technology,15.49,327.44,1.89,Lincolnshire,Illinois,US
-ZTS,Zoetis Inc.,Health Care,34.12,82.57,0.13,Parsippany,New Jersey,US
+L,Loews Corporation,Financials,22.86,111.83,0.29,New York City,New York,US
+LDOS,"Leidos Holdings, Inc.",Industrials,16.46,131.11,-2.08,Reston,Virginia,US
+LEN,Lennar Corporation,Consumer Discretionary,19.88,83.58,-3.19,Miami,Florida,US
+LH,Labcorp Holdings Inc.,Health Care,30.2,372.32,0.02,Burlington,North Carolina,US
+LHX,"L3Harris Technologies, Inc.",Industrials,50.62,271.84,-1.72,Melbourne,Florida,US
+LII,Lennox International Inc.,Industrials,12.03,348.08,-0.76,Richardson,Texas,US
+LIN,Linde plc,Materials,240.85,522.49,-0.77,Guildford,United Kingdom,non-US
+LITE,Lumentum Holdings Inc.,Technology,56.58,624.65,-3.61,San Jose,California,US
+LLY,Eli Lilly and Company,Health Care,1269.19,1427.28,-0.7,Indianapolis,Indiana,US
+LMT,Lockheed Martin Corporation,Industrials,139.41,604.09,-0.98,Bethesda,Maryland,US
+LNT,Alliant Energy Corporation,Utilities,18.94,73.05,-0.77,Madison,Wisconsin,US
+LOW,"Lowe's Companies, Inc.",Consumer Discretionary,127.62,227.46,-1.79,Mooresville,North Carolina,US
+LRCX,Lam Research Corporation,Technology,292.55,233.78,-0.89,Fremont,California,US
+LUV,Southwest Airlines Co.,Industrials,22.13,45.23,-2.69,Dallas,Texas,US
+LYB,LyondellBasell Industries N.V.,Materials,20.64,63.88,2.08,Rotterdam,Netherlands,non-US
+LYV,"Live Nation Entertainment, Inc.",Communication Services,41.96,180.14,-0.01,Beverly Hills,California,US
+MA,Mastercard Incorporated,Financials,571.68,652.6,-1.23,Harrison,New York,US
+MAA,"Mid-America Apartment Communities, Inc.",Real Estate,13.87,116.55,-1.39,Memphis,Tennessee,US
+MAR,"Marriott International, Inc.",Consumer Discretionary,110.74,424.66,-1.05,Bethesda,Maryland,US
+MAS,Masco Corporation,Industrials,16.59,84.48,-0.51,Livonia,Michigan,US
+MCD,McDonald's Corporation,Consumer Discretionary,193.63,273.63,-0.43,Chicago,Illinois,US
+MCHP,Microchip Technology Incorporated,Technology,33.71,62.08,-0.08,Chandler,Arizona,US
+MCK,McKesson Corporation,Health Care,125.57,1077.05,-0.25,Irving,Texas,US
+MCO,Moody's Corporation,Financials,87.73,506.56,-1.63,New York City,New York,US
+MDLZ,"Mondelez International, Inc.",Consumer Staples,84.96,66.56,-0.21,Chicago,Illinois,US
+MDT,Medtronic plc,Health Care,123.62,100.99,-0.61,Galway,Ireland,non-US
+MET,"MetLife, Inc.",Financials,64.73,101.87,-1.04,New York City,New York,US
+META,"Meta Platforms, Inc.",Communication Services,1591.39,623.61,-0.82,Menlo Park,California,US
+MKC,"McCormick & Company, Incorporated",Consumer Staples,12.48,46.41,-1.13,Hunt Valley,Maryland,US
+MLM,"Martin Marietta Materials, Inc.",Materials,36.74,517.33,-1.3,Raleigh,North Carolina,US
+MMM,3M Company,Industrials,96.23,186.24,-1.4,Saint Paul,Minnesota,US
+MNST,Monster Beverage Corporation,Consumer Staples,89.27,45.57,0.37,Corona,California,US
+MO,"Altria Group, Inc.",Consumer Staples,130.11,77.92,0.68,Richmond,Virginia,US
+MPC,Marathon Petroleum Corporation,Energy,115.94,412.85,2.48,Findlay,Ohio,US
+MPWR,"Monolithic Power Systems, Inc.",Technology,71.14,1447.4,-2.12,Kirkland,Washington,US
+MRK,"Merck & Co., Inc.",Health Care,362.55,146.95,-0.16,Kenilworth,New Jersey,US
+MRNA,"Moderna, Inc.",Health Care,92.37,231.35,-6.97,Cambridge,Massachusetts,US
+MRSH,"Marsh & McLennan Companies, Inc.",Financials,97.8,205.69,-0.88,New York City,New York,US
+MRVL,"Marvell Technology, Inc.",Technology,144.21,164.45,-2.58,Santa Clara,California,US
+MS,Morgan Stanley,Financials,296.05,189.17,-0.76,New York City,New York,US
+MSCI,MSCI Inc.,Financials,47.36,651.51,-1.51,New York City,New York,US
+MSFT,Microsoft Corporation,Technology,3886.07,523.0,0.36,Redmond,Washington,US
+MSI,"Motorola Solutions, Inc.",Technology,87.78,530.4,-0.9,Chicago,Illinois,US
+MTB,M&T Bank Corporation,Financials,31.59,219.78,-0.19,Buffalo,New York,US
+MTD,Mettler-Toledo International Inc.,Health Care,34.69,1730.93,-1.03,Columbus,Ohio,US
+MU,"Micron Technology, Inc.",Technology,900.1,798.44,-1.59,Boise,Idaho,US
+NDAQ,"Nasdaq, Inc.",Financials,60.73,108.65,-0.94,New York City,New York,US
+NDSN,Nordson Corporation,Industrials,18.19,326.6,-0.8,Westlake,Ohio,US
+NEE,"NextEra Energy, Inc.",Utilities,177.91,85.29,-0.81,Juno Beach,Florida,US
+NEM,Newmont Corporation,Materials,117.36,112.64,-4.92,Denver,Colorado,US
+NFLX,"Netflix, Inc.",Communication Services,261.03,62.69,-2.87,Los Gatos,California,US
+NI,NiSource Inc.,Utilities,21.97,45.81,0.57,Merrillville,Indiana,US
+NKE,"NIKE, Inc.",Consumer Discretionary,56.08,37.76,-1.46,Washington County,Oregon,US
+NOC,Northrop Grumman Corporation,Industrials,78.01,549.13,-0.33,West Falls Church,Virginia,US
+NOW,"ServiceNow, Inc.",Technology,104.07,100.66,-2.04,Santa Clara,California,US
+NRG,"NRG Energy, Inc.",Utilities,20.61,98.05,0.56,Houston,Texas,US
+NSC,Norfolk Southern Corporation,Industrials,74.85,333.24,0.8,Atlanta,Georgia,US
+NTAP,"NetApp, Inc.",Technology,36.55,186.08,1.62,San Jose,California,US
+NTRS,Northern Trust Corporation,Financials,32.51,177.67,-0.58,Chicago,Illinois,US
+NUE,Nucor Corporation,Materials,59.16,260.75,-0.24,Charlotte,North Carolina,US
+NVDA,NVIDIA Corporation,Technology,4013.06,166.19,-4.34,Santa Clara,California,US
+NVR,"NVR, Inc.",Consumer Discretionary,15.47,5814.34,-1.37,Reston,Virginia,US
+NXPI,NXP Semiconductors N.V.,Technology,67.4,267.29,-0.82,Eindhoven,Netherlands,non-US
+O,Realty Income Corporation,Real Estate,56.06,59.26,-0.52,San Diego,California,US
+ODFL,"Old Dominion Freight Line, Inc.",Industrials,35.6,171.66,0.68,Thomasville,North Carolina,US
+OKE,"ONEOK, Inc.",Energy,56.01,88.86,0.78,Tulsa,Oklahoma,US
+OMC,Omnicom Group Inc.,Communication Services,23.82,86.84,-2.3,New York City,New York,US
+ON,ON Semiconductor Corporation,Technology,28.7,73.73,0.15,Phoenix,Arizona,US
+ORCL,Oracle Corporation,Technology,385.34,127.11,-0.99,Austin,Texas,US
+ORLY,"O'Reilly Automotive, Inc.",Consumer Discretionary,74.07,91.56,1.13,Springfield,Missouri,US
+OTIS,Otis Worldwide Corporation,Industrials,29.36,77.14,-0.46,Farmington,Connecticut,US
+OXY,Occidental Petroleum Corporation,Energy,58.38,58.4,2.03,Houston,Texas,US
+P,"Everpure, Inc.",Technology,36.69,110.1,3.38,Santa Clara,California,US
+PANW,"Palo Alto Networks, Inc.",Technology,263.94,322.66,-3.53,Santa Clara,California,US
+PAYX,"Paychex, Inc.",Industrials,41.0,115.18,-0.16,Penfield,New York,US
+PCAR,PACCAR Inc,Industrials,55.97,106.33,-1.66,Bellevue,Washington,US
+PCG,PG&E Corporation,Utilities,28.56,12.97,-0.99,Oakland,California,US
+PEG,Public Service Enterprise Group Incorporated,Utilities,37.28,74.8,0.69,Newark,New Jersey,US
+PEP,"PepsiCo, Inc.",Consumer Staples,193.86,142.26,-1.17,Purchase,New York,US
+PFE,Pfizer Inc.,Health Care,164.33,28.83,-2.11,New York City,New York,US
+PFG,"Principal Financial Group, Inc.",Financials,24.19,112.97,-1.5,Des Moines,Iowa,US
+PG,The Procter & Gamble Company,Consumer Staples,390.28,168.03,0.21,Cincinnati,Ohio,US
+PGR,The Progressive Corporation,Financials,136.46,235.49,0.84,Mayfield Village,Ohio,US
+PH,Parker-Hannifin Corporation,Industrials,120.81,957.98,-1.53,Cleveland,Ohio,US
+PHM,"PulteGroup, Inc.",Consumer Discretionary,23.79,126.9,-2.01,Atlanta,Georgia,US
+PKG,Packaging Corporation of America,Materials,22.2,250.58,-0.96,Lake Forest,Illinois,US
+PLD,"Prologis, Inc.",Real Estate,124.64,128.55,-1.14,San Francisco,California,US
+PLTR,Palantir Technologies Inc.,Technology,412.31,171.58,-0.48,Aventura,Florida,US
+PM,Philip Morris International Inc.,Consumer Staples,306.51,196.66,0.16,New York City,New York,US
+PNC,"The PNC Financial Services Group, Inc.",Financials,91.77,231.03,-0.42,Pittsburgh,Pennsylvania,US
+PNW,Pinnacle West Capital Corporation,Utilities,12.97,107.03,-0.82,Phoenix,Arizona,US
+PPG,"PPG Industries, Inc.",Materials,27.2,122.35,-2.1,Pittsburgh,Pennsylvania,US
+PPL,PPL Corporation,Utilities,26.49,35.21,-0.48,Allentown,Pennsylvania,US
+PRU,"Prudential Financial, Inc.",Financials,42.26,122.41,-0.51,Newark,New Jersey,US
+PSA,Public Storage,Real Estate,64.73,333.33,-0.71,Glendale,California,US
+PSX,Phillips 66,Energy,104.9,262.91,1.64,Houston,Texas,US
+PTC,PTC Inc.,Technology,21.29,196.25,0.06,Boston,Massachusetts,US
+PWR,"Quanta Services, Inc.",Industrials,91.14,606.16,-0.29,Houston,Texas,US
+PYPL,"PayPal Holdings, Inc.",Financials,49.87,58.3,-1.98,San Jose,California,US
+Q,"Qnity Electronics, Inc.",Technology,25.67,122.69,-3.07,Wilmington,Delaware,US
+QCOM,QUALCOMM Incorporated,Technology,189.15,177.14,0.32,San Diego,California,US
+RCL,Royal Caribbean Cruises Ltd.,Consumer Discretionary,86.12,321.99,-3.94,Miami,Florida,US
+RDDT,"Reddit, Inc.",Communication Services,19.15,99.55,-5.78,San Francisco,California,US
+REG,Regency Centers Corporation,Real Estate,14.13,75.74,-0.58,Jacksonville,Florida,US
+REGN,"Regeneron Pharmaceuticals, Inc.",Health Care,94.98,951.19,-0.86,Tarrytown,New York,US
+RF,Regions Financial Corporation,Financials,24.23,28.51,-0.45,Birmingham,Alabama,US
+RJF,"Raymond James Financial, Inc.",Financials,32.18,167.29,0.1,St. Petersburg,Florida,US
+RL,Ralph Lauren Corporation,Consumer Discretionary,23.28,390.8,-0.82,New York City,New York,US
+RMD,ResMed Inc.,Health Care,33.6,238.89,0.15,San Diego,California,US
+ROK,"Rockwell Automation, Inc.",Industrials,44.89,404.2,-0.49,Milwaukee,Wisconsin,US
+ROP,"Roper Technologies, Inc.",Technology,47.26,477.87,0.04,Sarasota,Florida,US
+ROST,"Ross Stores, Inc.",Consumer Discretionary,75.79,237.24,-1.67,Dublin,California,US
+RSG,"Republic Services, Inc.",Industrials,77.48,253.0,1.47,Phoenix,Arizona,US
+RTX,RTX Corporation,Industrials,267.34,198.36,-1.46,Waltham,Massachusetts,US
+RVTY,"Revvity, Inc.",Health Care,17.53,157.02,-0.78,Waltham,Massachusetts,US
+SBAC,SBA Communications Corporation,Real Estate,19.8,186.57,-1.82,Boca Raton,Florida,US
+SBUX,Starbucks Corporation,Consumer Discretionary,122.25,107.26,-2.39,Seattle,Washington,US
+SCHW,The Charles Schwab Corporation,Financials,158.62,91.72,-1.14,Westlake,Texas,US
+SHW,The Sherwin-Williams Company,Materials,84.8,351.39,-1.23,Cleveland,Ohio,US
+SJM,The J. M. Smucker Company,Consumer Staples,14.07,131.71,-1.02,Orrville,Ohio,US
+SLB,SLB N.V.,Energy,75.56,50.91,-0.1,Houston,Texas,US
+SMCI,"Super Micro Computer, Inc.",Technology,17.73,26.99,-11.3,San Jose,California,US
+SNA,Snap-on Incorporated,Industrials,19.03,367.89,-1.83,Kenosha,Wisconsin,US
+SNDK,Sandisk Corporation,Technology,137.26,937.46,-4.11,Milpitas,California,US
+SNPS,"Synopsys, Inc.",Technology,88.67,462.69,0.12,Sunnyvale,California,US
+SO,The Southern Company,Utilities,106.37,92.47,-1.46,Atlanta,Georgia,US
+SOLV,Solventum Corporation,Health Care,15.11,88.81,0.21,Saint Paul,Minnesota,US
+SPG,"Simon Property Group, Inc.",Real Estate,88.62,233.61,-0.49,Indianapolis,Indiana,US
+SPGI,S&P Global Inc.,Financials,138.1,468.51,-1.39,New York City,New York,US
+SRE,Sempra,Utilities,51.64,78.98,0.97,San Diego,California,US
+STE,STERIS plc,Health Care,24.71,253.44,-1.1,Dublin,Ireland,non-US
+STLD,"Steel Dynamics, Inc.",Materials,33.98,237.11,-0.79,Fort Wayne,Indiana,US
+STT,State Street Corporation,Financials,47.39,173.7,-0.27,Boston,Massachusetts,US
+STX,Seagate Technology Holdings plc,Technology,123.96,545.14,-1.19,Dublin,Ireland,non-US
+STZ,"Constellation Brands, Inc.",Consumer Staples,24.47,144.6,0.33,Rochester,New York,US
+SW,Smurfit Westrock Plc,Materials,22.62,43.18,-1.93,Dublin,Ireland,non-US
+SWK,"Stanley Black & Decker, Inc.",Industrials,17.06,113.02,-2.25,New Britain,Connecticut,US
+SWKS,"Skyworks Solutions, Inc.",Technology,13.55,90.03,2.73,Irvine,California,US
+SYF,Synchrony Financial,Financials,23.31,71.66,-0.5,Stamford,Connecticut,US
+SYK,Stryker Corporation,Health Care,119.82,312.39,-2.01,Kalamazoo,Michigan,US
+SYY,Sysco Corporation,Consumer Staples,37.51,76.24,-0.91,Houston,Texas,US
+T,AT&T Inc.,Communication Services,151.99,22.18,-0.36,Dallas,Texas,US
+TDG,TransDigm Group Incorporated,Industrials,66.5,1203.0,-3.37,Cleveland,Ohio,US
+TDY,Teledyne Technologies Incorporated,Technology,30.02,647.57,-0.55,Thousand Oaks,California,US
+TEL,TE Connectivity plc,Technology,63.06,217.82,-0.72,Galway,Ireland,non-US
+TER,"Teradyne, Inc.",Technology,41.23,263.75,-0.76,North Reading,Massachusetts,US
+TFC,Truist Financial Corporation,Financials,59.79,49.89,-0.74,Charlotte,North Carolina,US
+TGT,Target Corporation,Consumer Staples,73.1,160.9,-1.11,Minneapolis,Minnesota,US
+TJX,"The TJX Companies, Inc.",Consumer Discretionary,149.58,135.98,-0.34,Framingham,Massachusetts,US
+TMO,Thermo Fisher Scientific Inc.,Health Care,258.61,699.44,-2.55,Waltham,Massachusetts,US
+TMUS,"T-Mobile US, Inc.",Communication Services,183.46,171.03,-0.66,Bellevue,Washington,US
+TPL,Texas Pacific Land Corporation,Energy,19.4,281.18,-0.09,Dallas,Texas,US
+TPR,"Tapestry, Inc.",Consumer Discretionary,26.32,132.63,-0.53,New York City,New York,US
+TRGP,Targa Resources Corp.,Energy,63.54,296.3,1.55,Houston,Texas,US
+TRMB,Trimble Inc.,Technology,13.01,55.83,-1.15,Westminster,Colorado,US
+TROW,"T. Rowe Price Group, Inc.",Financials,23.08,108.22,-2.23,Baltimore,Maryland,US
+TRV,"The Travelers Companies, Inc.",Financials,82.63,403.18,0.93,New York City,New York,US
+TSCO,Tractor Supply Company,Consumer Discretionary,19.08,36.63,-0.3,Brentwood,Tennessee,US
+TSLA,"Tesla, Inc.",Consumer Discretionary,1573.47,397.45,1.69,Austin,Texas,US
+TSN,"Tyson Foods, Inc.",Consumer Staples,20.8,59.26,-1.02,Springdale,Arkansas,US
+TT,Trane Technologies plc,Industrials,93.3,424.05,-0.19,Dublin,Ireland,non-US
+TTWO,"Take-Two Interactive Software, Inc.",Communication Services,42.44,226.95,-1.88,New York City,New York,US
+TWLO,Twilio Inc.,Technology,32.59,212.21,-3.31,San Francisco,California,US
+TXN,Texas Instruments Incorporated,Technology,285.38,312.48,0.86,Dallas,Texas,US
+TXT,Textron Inc.,Industrials,14.5,84.31,-1.9,Providence,Rhode Island,US
+TYL,"Tyler Technologies, Inc.",Technology,17.35,423.59,-0.45,Plano,Texas,US
+UAL,"United Airlines Holdings, Inc.",Industrials,36.11,111.25,-6.02,Chicago,Illinois,US
+UBER,"Uber Technologies, Inc.",Industrials,141.18,69.12,-2.21,San Francisco,California,US
+ULTA,"Ulta Beauty, Inc.",Consumer Discretionary,27.83,650.97,-1.23,Bolingbrook,Illinois,US
+UNH,UnitedHealth Group Incorporated,Health Care,363.64,405.13,0.54,Eden Prairie,Minnesota,US
+UNP,Union Pacific Corporation,Industrials,180.72,304.2,0.69,Omaha,Nebraska,US
+UPS,"United Parcel Service, Inc.",Industrials,93.91,110.38,-1.84,Sandy Springs,Georgia,US
+URI,"United Rentals, Inc.",Industrials,70.91,1139.14,-1.01,Stamford,Connecticut,US
+USB,U.S. Bancorp,Financials,94.21,60.47,-0.38,Minneapolis,Minnesota,US
+V,Visa Inc.,Financials,771.52,420.31,-1.23,San Francisco,California,US
+VEEV,Veeva Systems Inc.,Health Care,48.96,302.42,-0.77,Pleasanton,California,US
+VICI,VICI Properties Inc.,Real Estate,27.31,24.8,-0.56,New York City,New York,US
+VLO,Valero Energy Corporation,Energy,107.96,374.95,3.09,San Antonio,Texas,US
+VLTO,Veralto Corporation,Industrials,28.65,117.49,-1.08,Waltham,Massachusetts,US
+VMC,Vulcan Materials Company,Materials,36.3,280.18,-1.47,Birmingham,Alabama,US
+VMRK,Vivmark Residential,Real Estate,49.47,63.93,-1.08,Chicago,Illinois,US
+VRSK,"Verisk Analytics, Inc.",Industrials,26.85,206.32,0.17,Jersey City,New Jersey,US
+VRSN,"VeriSign, Inc.",Technology,28.21,312.48,-0.51,Reston,Virginia,US
+VRT,Vertiv Holdings Co,Industrials,80.71,209.64,1.52,Westerville,Ohio,US
+VRTX,Vertex Pharmaceuticals Incorporated,Health Care,137.54,542.62,-0.81,Boston,Massachusetts,US
+VST,Vistra Corp.,Utilities,45.15,134.51,0.79,Irving,Texas,US
+VTR,"Ventas, Inc.",Real Estate,46.3,89.65,-0.85,Chicago,Illinois,US
+VTRS,Viatris Inc.,Health Care,23.74,20.67,-1.85,Pittsburgh,Pennsylvania,US
+VYLR,Vylor Inc.,Materials,48.09,72.06,-0.06,,Unknown,
+VZ,Verizon Communications Inc.,Communication Services,193.4,46.55,-0.11,New York City,New York,US
+WAB,Westinghouse Air Brake Technologies Corporation,Industrials,50.76,300.51,-1.21,Pittsburgh,Pennsylvania,US
+WAT,Waters Corporation,Health Care,45.42,462.2,-1.85,Milford,Massachusetts,US
+WDAY,"Workday, Inc.",Technology,45.94,190.64,-0.27,Pleasanton,California,US
+WDC,Western Digital Corporation,Technology,116.5,311.21,-0.67,San Jose,California,US
+WEC,"WEC Energy Group, Inc.",Utilities,38.28,117.48,0.01,Milwaukee,Wisconsin,US
+WELL,Welltower Inc.,Real Estate,176.53,244.93,-0.98,Toledo,Ohio,US
+WFC,Wells Fargo & Company,Financials,257.43,85.76,-0.05,San Francisco,California,US
+WM,"Waste Management, Inc.",Industrials,97.58,244.11,1.59,Houston,Texas,US
+WMB,"The Williams Companies, Inc.",Energy,84.94,69.44,0.75,Tulsa,Oklahoma,US
+WMT,Walmart Inc.,Consumer Staples,1001.16,126.19,0.41,Bentonville,Arkansas,US
+WRB,W. R. Berkley Corporation,Financials,30.0,77.15,0.63,Greenwich,Connecticut,US
+WSM,"Williams-Sonoma, Inc.",Consumer Discretionary,29.49,250.38,-4.47,San Francisco,California,US
+WST,"West Pharmaceutical Services, Inc.",Health Care,28.94,411.3,-0.38,Exton,Pennsylvania,US
+WTW,Willis Towers Watson Public Limited Company,Financials,30.54,328.78,-1.62,London,United Kingdom,non-US
+WY,Weyerhaeuser Company,Real Estate,14.75,20.46,-0.92,Seattle,Washington,US
+XEL,Xcel Energy Inc.,Utilities,50.91,81.5,0.49,Minneapolis,Minnesota,US
+XOM,ExxonMobil Holdings Corporation,Energy,698.12,169.78,1.84,Irving,Texas,US
+XYL,Xylem Inc.,Industrials,21.95,94.03,-1.14,White Plains,New York,US
+XYZ,"Block, Inc.",Financials,49.73,82.26,-4.04,,No fixed HQ (remote),
+YUM,"Yum! Brands, Inc.",Consumer Discretionary,43.48,159.34,-0.54,Louisville,Kentucky,US
+ZBH,"Zimmer Biomet Holdings, Inc.",Health Care,19.94,104.56,-2.71,Warsaw,Indiana,US
+ZBRA,Zebra Technologies Corporation,Technology,15.04,317.83,-2.93,Lincolnshire,Illinois,US
+ZTS,Zoetis Inc.,Health Care,34.28,82.96,0.47,Parsippany,New Jersey,US
