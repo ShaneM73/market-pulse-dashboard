@@ -1,31 +1,31 @@
 ticker,name,sector,cap_b,price,chg_pct,hq_city,hq_state,hq_country
-AAPL,Apple Inc.,Technology,5096.18,349.21,-0.92,Cupertino,California,US
-AMGN,Amgen Inc.,Health Care,237.24,438.82,-1.14,Thousand Oaks,California,US
-AMZN,"Amazon.com, Inc.",Consumer Discretionary,2776.07,257.37,-3.87,Seattle,Washington,US
-AXP,American Express Company,Financials,210.1,311.11,-1.36,New York City,New York,US
-BA,The Boeing Company,Industrials,126.86,160.51,-1.47,Arlington,Virginia,US
-CAT,Caterpillar Inc.,Industrials,247.02,537.37,-3.83,Irving,Texas,US
-CRM,"Salesforce, Inc.",Technology,150.86,183.31,-3.72,San Francisco,California,US
-CSCO,"Cisco Systems, Inc.",Technology,373.36,94.7,-2.55,San Jose,California,US
-CVX,Chevron Corporation,Energy,405.07,206.5,0.3,Houston,Texas,US
-DIS,The Walt Disney Company,Communication Services,207.64,120.25,-1.72,Burbank,California,US
-GOOGL,Alphabet Inc.,Communication Services,3331.28,272.66,-3.46,Mountain View,California,US
-GS,"The Goldman Sachs Group, Inc.",Financials,256.61,847.53,-2.94,New York City,New York,US
-HD,"The Home Depot, Inc.",Consumer Discretionary,335.9,336.68,-0.28,Atlanta,Georgia,US
-HON,Honeywell International Inc.,Industrials,69.05,217.84,-2.18,Charlotte,North Carolina,US
-IBM,International Business Machines Corporation,Technology,210.93,223.88,-2.03,Armonk,New York,US
-JNJ,Johnson & Johnson,Health Care,643.78,267.14,-2.04,New Brunswick,New Jersey,US
-JPM,JPMorgan Chase & Co.,Financials,850.38,320.22,-1.2,New York City,New York,US
-KO,The Coca-Cola Company,Consumer Staples,413.43,96.09,-2.04,Atlanta,Georgia,US
-MCD,McDonald's Corporation,Consumer Discretionary,192.73,272.35,-0.61,Chicago,Illinois,US
-MMM,3M Company,Industrials,92.22,178.47,-1.43,Saint Paul,Minnesota,US
-MRK,"Merck & Co., Inc.",Health Care,327.66,132.81,-3.61,Kenilworth,New Jersey,US
-MSFT,Microsoft Corporation,Technology,3702.54,498.3,-1.97,Redmond,Washington,US
-NKE,"NIKE, Inc.",Consumer Discretionary,50.99,34.33,-5.45,Washington County,Oregon,US
-NVDA,NVIDIA Corporation,Technology,3525.04,145.98,-3.3,Santa Clara,California,US
-PG,The Procter & Gamble Company,Consumer Staples,389.86,167.85,-1.43,Cincinnati,Ohio,US
-SHW,The Sherwin-Williams Company,Materials,82.01,339.83,-1.95,Cleveland,Ohio,US
-TRV,"The Travelers Companies, Inc.",Financials,80.05,390.61,-0.25,New York City,New York,US
-UNH,UnitedHealth Group Incorporated,Health Care,296.64,330.48,-5.55,Eden Prairie,Minnesota,US
-V,Visa Inc.,Financials,738.37,402.25,-3.12,San Francisco,California,US
-WMT,Walmart Inc.,Consumer Staples,999.97,126.04,-1.04,Bentonville,Arkansas,US
+AAPL,Apple Inc.,Technology,4999.13,342.56,-1.9,Cupertino,California,US
+AMGN,Amgen Inc.,Health Care,235.52,435.64,-0.72,Thousand Oaks,California,US
+AMZN,"Amazon.com, Inc.",Consumer Discretionary,2662.27,246.82,-4.1,Seattle,Washington,US
+AXP,American Express Company,Financials,203.74,301.7,-3.02,New York City,New York,US
+BA,The Boeing Company,Industrials,123.21,155.89,-2.88,Arlington,Virginia,US
+CAT,Caterpillar Inc.,Industrials,234.64,510.45,-5.01,Irving,Texas,US
+CRM,"Salesforce, Inc.",Technology,148.65,180.62,-1.47,San Francisco,California,US
+CSCO,"Cisco Systems, Inc.",Technology,357.35,90.64,-4.29,San Jose,California,US
+CVX,Chevron Corporation,Energy,408.74,208.37,0.91,Houston,Texas,US
+DIS,The Walt Disney Company,Communication Services,203.72,117.98,-1.89,Burbank,California,US
+GOOGL,Alphabet Inc.,Communication Services,3241.24,265.29,-2.7,Mountain View,California,US
+GS,"The Goldman Sachs Group, Inc.",Financials,239.4,790.69,-6.71,New York City,New York,US
+HD,"The Home Depot, Inc.",Consumer Discretionary,338.25,339.04,0.7,Atlanta,Georgia,US
+HON,Honeywell International Inc.,Industrials,67.4,212.64,-2.39,Charlotte,North Carolina,US
+IBM,International Business Machines Corporation,Technology,211.45,224.44,0.25,Armonk,New York,US
+JNJ,Johnson & Johnson,Health Care,651.8,270.47,1.25,New Brunswick,New Jersey,US
+JPM,JPMorgan Chase & Co.,Financials,824.64,310.53,-3.03,New York City,New York,US
+KO,The Coca-Cola Company,Consumer Staples,417.3,96.99,0.94,Atlanta,Georgia,US
+MCD,McDonald's Corporation,Consumer Discretionary,193.36,273.24,0.33,Chicago,Illinois,US
+MMM,3M Company,Industrials,91.97,177.99,-0.27,Saint Paul,Minnesota,US
+MRK,"Merck & Co., Inc.",Health Care,329.91,133.72,0.69,Kenilworth,New Jersey,US
+MSFT,Microsoft Corporation,Technology,3600.15,484.52,-2.77,Redmond,Washington,US
+NKE,"NIKE, Inc.",Consumer Discretionary,48.89,32.92,-4.11,Washington County,Oregon,US
+NVDA,NVIDIA Corporation,Technology,3031.22,125.53,-14.01,Santa Clara,California,US
+PG,The Procter & Gamble Company,Consumer Staples,393.39,169.37,0.91,Cincinnati,Ohio,US
+SHW,The Sherwin-Williams Company,Materials,81.99,339.74,-0.03,Cleveland,Ohio,US
+TRV,"The Travelers Companies, Inc.",Financials,80.59,393.24,0.67,New York City,New York,US
+UNH,UnitedHealth Group Incorporated,Health Care,305.05,339.85,2.84,Eden Prairie,Minnesota,US
+V,Visa Inc.,Financials,737.67,401.87,-0.09,San Francisco,California,US
+WMT,Walmart Inc.,Consumer Staples,1015.13,127.95,1.52,Bentonville,Arkansas,US
